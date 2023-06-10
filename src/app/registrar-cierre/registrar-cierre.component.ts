@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-cierre',
@@ -24,7 +24,10 @@ export class RegistrarCierreComponent {
   crearFormulario() {
     this.formulario = this.fb.group({
       experienciaLaboral: this.fb.array([]),
-      centimo1: new FormControl(""),
+      centimo1: new FormControl("",Validators.compose([
+        Validators.minLength(6),
+        Validators.maxLength(10),
+        Validators.pattern('/^[1-9]\d{6,10}$/')])),
       centimo2: new FormControl(""),
       centimo5: new FormControl(""),
       centimo10: new FormControl(""),
