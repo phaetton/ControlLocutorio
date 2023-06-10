@@ -12,64 +12,76 @@
         </div>
 </div> -->
 <div class="col ">
-    <div class="row">
+    <form [formGroup]="formulario" class="row">
         <div class="col-12 col-md-6 p-5 bileneal">
+            <h1 class="text-white">Cantidad de monedas</h1>
+
             <div class="row">
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type=" number" class="form-control" id="001" placeholder="10">
-                    <label for="01">1 centimos</label>
+                    <input formControlName="centimo1" type=" number" class="form-control bg-yellow-300" id="001">
+                    <label for="01">1 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm sm-w-50 col-md-3 ">
-                    <input type=" number" class="form-control" id="002" placeholder="10">
-                    <label for="01">2 centimos</label>
+                    <input formControlName="centimo2" type=" number" class="form-control bg-yellow-300" id="002">
+                    <label for="01">2 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type=" number" class="form-control" id="005" placeholder="10">
-                    <label for="01">5 centimos</label>
+                    <input formControlName="centimo5" type=" number" class="form-control bg-yellow-300" id="005"
+                        placeholder="5">
+                    <label for="01">5 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type=" number" class="form-control" id="01" placeholder="10">
-                    <label for="01">10 centimos</label>
+                    <input formControlName="centimo10" type=" number" class="form-control bg-yellow-300" id="01"
+                        placeholder="10">
+                    <label for="01">10 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="02" placeholder="euro">
-                    <label for="02">20 centimos</label>
+                    <input formControlName="centimo20" type="number" class="form-control bg-yellow-300" id="02"
+                        placeholder="E">
+                    <label for="02">20 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="50" placeholder="euro">
-                    <label for="01">50 centimos</label>
+                    <input formControlName="centimo50" type="number" class="form-control bg-yellow-300" id="50"
+                        placeholder="E">
+                    <label for="01">50 Cent</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="1" placeholder="euro">
-                    <label for="02">1 euro</label>
+                    <input formControlName="euro1" type="number" class="form-control" id="1" placeholder="E">
+                    <label for="02">1 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="2" placeholder="euro">
-                    <label for="01">2 euro</label>
+                    <input formControlName="euro2" type="number" class="form-control" id="2" placeholder="E">
+                    <label for="01">2 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="5" placeholder="euro">
-                    <label for="02">5 euro</label>
+                    <input formControlName="euro5" type="number" class="form-control" id="5" placeholder="E">
+                    <label for="02">5 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="10" placeholder="euro">
-                    <label for="01">10 euro</label>
+                    <input formControlName="euro10" type="number" class="form-control" id="10" placeholder="E">
+                    <label for="01">10 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="50" placeholder="euro">
-                    <label for="02">50 euro</label>
+                    <input formControlName="euro20" type="number" class="form-control" id="10" placeholder="E">
+                    <label for="01">20 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type="number" class="form-control" id="100" placeholder="euro">
-                    <label for="02">100 euro</label>
+                    <input formControlName="euro50" type="number" class="form-control" id="50" placeholder="E">
+                    <label for="02">50 E</label>
                 </div>
                 <div class=" form-floating form-control-sm col-md-3">
-                    <input type=" number" class="form-control" id="005" placeholder="10">
+                    <input formControlName="euro100" type="number" class="form-control" id="100" placeholder="E">
+                    <label for="02">100 E</label>
+                </div>
+                <div class=" form-floating form-control-sm col-md-3">
+                    <input formControlName="papel" type=" number" class="form-control" id="005" placeholder="Papel">
                     <label for="01">En papel</label>
                 </div>
+                <h2 class="text-white">Total en euros</h2>
                 <div class=" form-floating form-control-sm col">
+
                     <input type="number" class="form-control" id="100" placeholder="euro" disabled readonly>
-                    <label for="02">Total en Monedas</label>
+                    <label for="02">{{cantidadmonedas}}</label>
                 </div>
             </div>
         </div>
@@ -92,18 +104,25 @@
                     <input type=" number" class="form-control" id="005" placeholder="10" disabled readonly>
                     <label for="01">Total Barberia</label>
                 </div>
-
-                <div class=" form-floating form-control-sm w-50">
+                <div class=" form-floating form-control-sm col-md-8">
                     <input type="number" class="form-control" id="02" placeholder="euro">
-                    <label for="02">Pagos de productos</label>
+                    <label for="02">Compañia</label>
                 </div>
-                <div class=" form-floating form-control-sm col-md-3">
-                    <input type=" number" class="form-control" id="01" placeholder="10">
-                    <label for="01">Retiros</label>
+                <div class=" form-floating form-control-sm col-md-4">
+                    <input type="number" class="form-control" id="02" placeholder="euro">
+                    <label for="02">Cantidad</label>
                 </div>
-                <div class=" form-floating form-control-sm col-md-3">
+                <div class=" form-floating form-control-sm col-md-5">
                     <input type="number" class="form-control" id="50" placeholder="euro">
-                    <label for="01">Ingresos</label>
+                    <label for="01">Ingresos J</label>
+                </div>
+                <div class=" form-floating form-control-sm col-md-5">
+                    <input type=" number" class="form-control" id="01" placeholder="10">
+                    <label for="01">Retiros J</label>
+                </div>
+                <div class=" form-floating form-control-sm col-md-2">
+                    <input type=" number" class="form-control" id="01" placeholder="10" disabled readonly>
+                    <label for="01">Total Jefe</label>
                 </div>
 
                 <div class=" form-floating form-control-sm w-100">
@@ -114,6 +133,5 @@
             </div>
         </div>
         <button type="button" class="btn btn-success">Guardar</button>
-
-    </div>
+    </form>
 </div>
