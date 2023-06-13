@@ -50,57 +50,63 @@
                         <tr>
                             <th scope="row">50¢</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="centimo50" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{centimo50}}€</td>
                         </tr>
 
                         <tr>
                             <th scope="row">1€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro1" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro1}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">2€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro2" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro2}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">5€ </th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro5" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro5}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">10€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro10" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro10}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">20€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro20" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro20}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">50€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro50" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro50 }}€</td>
                         </tr>
                         <tr>
                             <th scope="row">100€</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="euro100" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{euro100}}€</td>
                         </tr>
                         <tr>
                             <th scope="row">Papel</th>
                             <td><input (keypress)="validateFormat($event)" formControlName="papel" type=" number"
-                                class="form-control"></td>
+                                    class="form-control"></td>
                             <td>{{papel}}€</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Papel</th>
+                            <td><input (keypress)="validateFormat($event)" formControlName="papel" type=" number"
+                                    class="form-control"></td>
+                            <td> {{cantidadmonedas | number}}€</td>
                         </tr>
 
 
