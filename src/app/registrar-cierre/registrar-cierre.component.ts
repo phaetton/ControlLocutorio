@@ -43,46 +43,46 @@ export class RegistrarCierreComponent {
 
 
   get centimo1() {
-    return parseInt(this.f['centimo1']);
+    return this.f['centimo1']? parseInt(this.f['centimo1'])/100:0;
   }
   get centimo2() {
-    return parseInt(this.f['centimo2']);
+    return this.f['centimo2']? parseInt(this.f['centimo2'])/50:0;
   }
   get centimo5() {
-    return parseInt(this.f['centimo5']);
+    return this.f['centimo5']? parseInt(this.f['centimo5'])/20:0;
   }
   get centimo10() {
-    return parseInt(this.f['centimo10']);
+    return this.f['centimo10']? parseInt(this.f['centimo10'])/10:0;
   }
   get centimo20() {
-    return parseInt(this.f['centimo20']);
+    return this.f['centimo20']? parseInt(this.f['centimo20'])/5:0;
   }
   get centimo50() {
-    return parseInt(this.f['centimo50']);
+    return this.f['centimo50']? parseInt(this.f['centimo50'])/2:0;
   }
   get euro1() {
-    return parseInt(this.f['euro1']);
+    return this.f['euro1']? parseInt(this.f['euro1']):0;
   }
   get euro2() {
-    return parseInt(this.f['euro2']);
+    return this.f['euro2']? parseInt(this.f['euro2'])*2:0;
   }
   get euro5() {
-    return parseInt(this.f['euro5']);
+    return this.f['euro5']? parseInt(this.f['euro5'])*5:0;
   }
   get euro10() {
-    return parseInt(this.f['euro10']);
+    return this.f['euro10']? parseInt(this.f['euro10'])*10:0;
   }
   get euro20() {
-    return parseInt(this.f['euro20']);
+    return this.f['euro20']? parseInt(this.f['euro20'])*20:0;
   }
   get euro50() {
-    return parseInt(this.f['euro50']);
+    return this.f['euro50']? parseInt(this.f['euro50'])*50:0;
   }
   get euro100() {
-    return parseInt(this.f['euro100']);
+    return this.f['euro100']? parseInt(this.f['euro100'])*100:0;
   }
   get papel() {
-    return parseInt(this.f['papel']);
+    return this.f['papel']? parseInt(this.f['papel']):0;
   }
 
 
