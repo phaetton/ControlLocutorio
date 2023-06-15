@@ -136,82 +136,79 @@
                 </tbody>
             </table>
 
-            <!-- <table class="table table-striped table-hover ">
+       
+        </div>
+        <div class="col ">
+            <table class="table table-striped table-hover">
 
                 <thead>
                     <tr>
-                        <th scope="row">1¢</th>
-                        <th scope="row">2¢</th>
-                        <th scope="row">5¢</th>
-                        <th scope="row">10¢</th>
-                        <th scope="row">20¢</th>
-                        <th scope="row">50¢</th>
-                        <th scope="row">1€</th>
-                        <th scope="row">2€</th>
-                        <th scope="row">5€ </th>
-                        <th scope="row">10€</th>
-                        <th scope="row">20€</th>
-                        <th scope="row">50€</th>
-                        <th scope="row">100€</th>
-                        <th scope="row">Papel</th>
-                        <th>Total</th>
+                        <th scope="col"></th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody>
+                  
                     <tr>
-                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo1" type=" number"
-                                class="form-control bg-yellow-300"> </td>
-                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo2" type=" number"
-                                class="form-control bg-yellow-300"></td>
-                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo5" type=" number"
-                                class="form-control bg-yellow-300"></td>
-                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo10" type=" number"
-                                class="form-control"></td>
-                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo20" type=" number"
-                                class="form-control"></td>
-                        <td><input (keypress)="validateFormat($event)" formControlName="centimo50" type=" number"
-                                class="form-control"></td>
+                        <th scope="row">1€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro1" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro1}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro2" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro2}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5€ </th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro5" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro5}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro10" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro10}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">20€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro20" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro20}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">50€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro50" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro50 }}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">100€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro100" type=" number"
                                 class="form-control"></td>
+                        <td>{{euro100}}€</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Papel</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="papel" type=" number"
                                 class="form-control"></td>
-                        <td colspan="3" class="text-center"> {{cantidadmonedas | number}}€</td>
-                    <tr>
-                        <td>{{centimo1}}€</td>
-                        <td>{{centimo2}}€</td>
-                        <td>{{centimo5 }}€</td>
-                        <td>{{centimo10}}€</td>
-                        <td>{{centimo20}}€</td>
-                        <td>{{centimo50}}€</td>
-                        <td>{{euro1}}€</td>
-                        <td>{{euro2}}€</td>
-                        <td>{{euro5}}€</td>
-                        <td>{{euro10}}€</td>
-                        <td>{{euro20}}€</td>
-                        <td>{{euro50 }}€</td>
-                        <td>{{euro100}}€</td>
                         <td>{{papel}}€</td>
-                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-center"> {{cantidadmonedas | number}}€</td>
                     </tr>
 
 
+
                 </tbody>
-            </table> -->
+            </table>
 
+       
         </div>
-
 
         <button type="button" class="btn btn-success">Guardar</button>
     </form>
