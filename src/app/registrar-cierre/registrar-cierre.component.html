@@ -59,8 +59,8 @@
                                 class="form-control"></td>
                         <td>{{papel}}€</td>
                     </tr>
-                   
-                  
+
+
 
 
 
@@ -81,7 +81,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
+
                     <tr>
                         <th scope="row">1€</th>
                         <td><input (keypress)="validateFormat($event)" formControlName="euro1" type=" number"
@@ -124,10 +124,10 @@
                                 class="form-control"></td>
                         <td>{{euro100}}€</td>
                     </tr>
-                                 </tbody>
+                </tbody>
             </table>
 
-       
+
         </div>
         <div class="col ">
             <table class="table table-striped table-hover">
@@ -140,62 +140,68 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
+
                     <tr>
                         <th scope="row">Ingreso Barb</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro1" type=" number"
+                        <td><input (keypress)="validateFormat($event)" formControlName="bari" type=" number"
                                 class="form-control"></td>
                         <td>{{euro1}}€</td>
                     </tr>
                     <tr>
                         <th scope="row">Consumo Barb</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro2" type=" number"
+                        <td><input (keypress)="validateFormat($event)" formControlName="bare" type=" number"
                                 class="form-control"></td>
                         <td>{{euro2}}€</td>
                     </tr>
                     <tr>
                         <th scope="row">Prestamo Barb</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro5" type=" number"
+                        <td><input (keypress)="validateFormat($event)" formControlName="barpre" type=" number"
                                 class="form-control"></td>
                         <td>{{euro5}}€</td>
                     </tr>
                     <tr>
                         <th scope="row">Ingreso J</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro10" type=" number"
+                        <td><input (keypress)="validateFormat($event)" formControlName="jefei" type=" number"
                                 class="form-control"></td>
                         <td>{{euro10}}€</td>
                     </tr>
                     <tr>
                         <th scope="row">Egreso J</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro20" type=" number"
+                        <td><input (keypress)="validateFormat($event)" formControlName="jefee" type=" number"
                                 class="form-control"></td>
                         <td>{{euro20}}€</td>
                     </tr>
                     <tr>
-                        <th scope="row">50€</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro50" type=" number"
+                        <th scope="row">Compras</th>
+                        <td><input (keypress)="validateFormat($event)" formControlName="compra" type=" number"
                                 class="form-control"></td>
                         <td>{{euro50 }}€</td>
                     </tr>
-                    <tr>
-                        <th scope="row">100€</th>
-                        <td><input (keypress)="validateFormat($event)" formControlName="euro100" type=" number"
-                                class="form-control"></td>
-                        <td>{{euro100}}€</td>
-                    </tr>
-                  
-                    <tr>
-                        <td colspan="3" class="text-center"> {{cantidadmonedas | number}}€</td>
-                    </tr>
+
+
+
 
 
 
                 </tbody>
             </table>
+
+        </div>
+        <h2>Comentario</h2>
+        <textarea formControlName="comentario" rows="9" class="p-2" class="form-control"></textarea>
+
+        <div class="col">
+            Total en caja
             {{cantidadmonedas | number}}€
-       
+            Total Barberia
+            {{cantidadbarberia | number}}€
         </div>
 
+
         <button type="button" class="btn btn-success">Guardar</button>
+
+
     </form>
+
+    {{formulario.value|json}}
 </div>
