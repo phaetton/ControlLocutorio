@@ -23,7 +23,6 @@ export class RegistrarCierreComponent {
 
   crearFormulario() {
     this.formulario = this.fb.group({
-      experienciaLaboral: this.fb.array([]),
       centimo1: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo2: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo5: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
