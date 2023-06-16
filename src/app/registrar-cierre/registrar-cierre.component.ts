@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RegistrodiarioService } from '../services/registrodiario.service';
 
 @Component({
   selector: 'app-registrar-cierre',
@@ -11,10 +12,11 @@ export class RegistrarCierreComponent {
   formulario!: FormGroup;
   totalmonedas = 0;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private registroSvc: RegistrodiarioService) {
+    this.crearFormulario();
+  }
 
   ngOnInit(): void {
-    this.crearFormulario();
   }
 
   get f() {
@@ -120,7 +122,7 @@ export class RegistrarCierreComponent {
 
   }
 
-  
+
   get cantidadbarberia() {
     return (this.centimo1 ? this.centimo1 / 100 : 0) + (this.centimo2 ? this.centimo2 / 50 : 0) + (this.centimo5 ? this.centimo5 * 20 : 0) + (this.centimo10 ? this.centimo10 / 10 : 0) + (this.centimo20 ? this.centimo20 / 5 : 0) + (this.centimo50 ? this.centimo50 / 2 : 0) + (this.euro1 ? this.euro1 : 0) + (this.euro2 ? this.euro2 * 2 : 0) + (this.euro5 ? this.euro5 * 5 : 0) + (this.euro10 ? this.euro10 * 10 : 0) + (this.euro20 ? this.euro20 * 20 : 0) + (this.euro50 ? this.euro50 * 50 : 0) + (this.euro100 ? this.euro100 * 100 : 0) + (this.papel ? this.papel : 0);
 
@@ -143,4 +145,10 @@ export class RegistrarCierreComponent {
     }
   }
 
+
+  async onSubmit() {
+    const response = await this.registroSvc.addRegistroDiario(this.formulario.value);
+    console.log(response);
+
+  }
 }
