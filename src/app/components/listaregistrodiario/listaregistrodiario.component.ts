@@ -22,11 +22,5 @@ export class ListaregistrodiarioComponent {
     console.log(response);
 
   }
-  // async onClickupdate(registro: Registrodiario) {
 
-   
-  //   const response = await this.registroSvc.updateRegistroDiario(registro);
-  //   console.log(response);
-
-  // }
 }
