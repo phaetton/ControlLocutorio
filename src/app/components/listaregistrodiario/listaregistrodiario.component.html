@@ -12,16 +12,13 @@
     <tr *ngFor="let item of registros">
 
 
-      <td>{{item.fecha | date}}</td>
+      <td>{{item.fecha|  date:'dd/MM/yyyy'}}</td>
+      <!-- <td>{{item.fecha|  date:'dd/MM/yyyy(EEE) - hh:mmaaa'}}</td> -->
       <td>{{ item.totalmonedas}}</td>
       <td>{{item.papel}}</td>
       <td>{{item.compra}}</td>
-      <td>{{item.comentario}}</td>
-
-
       <td><button (click)="onClickDelete(item)">Borrar</button></td>
     </tr>
 
   </tbody>
 </table>
-

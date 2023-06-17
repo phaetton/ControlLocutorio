@@ -1,3 +1,5 @@
+import { Timestamp } from "@angular/fire/firestore";
+
 export interface Registrodiario {
     id?: string;
     fecha?: string;

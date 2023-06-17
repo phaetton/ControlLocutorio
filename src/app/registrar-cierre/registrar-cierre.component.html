@@ -1,4 +1,3 @@
-
 <div class="col ">
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="row">
 
@@ -14,6 +13,14 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <tr>
+                        <th scope="row">1¢</th>
+                        <td> <input (keypress)="validateFormat($event)" formControlName="centimo1" type=" number"
+                                class="form-control bg-yellow-300">
+                        </td>
+                        <td>{{centimo1}}€</td>
+                    </tr>
                     <tr>
                         <th scope="row">1¢</th>
                         <td> <input (keypress)="validateFormat($event)" formControlName="centimo1" type=" number"
@@ -125,7 +132,7 @@
                                 class="form-control"></td>
                         <td>{{euro100}}€</td>
                     </tr>
-                    
+
                 </tbody>
             </table>
 
@@ -214,4 +221,3 @@
     </form>
 
 </div>
-
