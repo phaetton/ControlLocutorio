@@ -1,1 +1,59 @@
-<p>listaregistrodiario works!</p>
+{{registros|json}}
+lista de registro
+<table class="table">
+    <thead>
+      <tr>
+        <th>centimo1</th>
+        <th>centimo2</th>
+        <th>centimo5</th>
+        <th>centimo10</th>
+        <th>centimo20</th>
+        <th>centimo50</th>
+        <th>euro1</th>
+        <th>euro2</th>
+        <th>euro5</th>
+        <th>euro10</th>
+        <th>euro20</th>
+        <th>euro50</th>
+        <th>euro100</th>
+        <th>papel</th>
+        <th>bari</th>
+        <th>bare</th>
+        <th>barpre</th>
+        <th>barco</th>
+        <th>jefei</th>
+        <th>jefee</th>
+        <th>compra</th>
+        <th>comentario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of registros">
+        <td>{{item.centimo1}}</td>
+        <td>{{item.centimo2}}</td>
+        <td>{{item.centimo5}}</td>
+        <td>{{item.centimo10}}</td>
+        <td>{{item.centimo20}}</td>
+        <td>{{item.centimo50}}</td>
+        <td>{{item.euro1}}</td>
+        <td>{{item.euro2}}</td>
+        <td>{{item.euro5}}</td>
+        <td>{{item.euro10}}</td>
+        <td>{{item.euro20}}</td>
+        <td>{{item.euro50}}</td>
+        <td>{{item.euro100}}</td>
+        <td>{{item.papel}}</td>
+        <td>{{item.bari}}</td>
+        <td>{{item.bare}}</td>
+        <td>{{item.barpre}}</td>
+        <td>{{item.barco}}</td>
+        <td>{{item.jefei}}</td>
+        <td>{{item.jefee}}</td>
+        <td>{{item.compra}}</td>
+        <td>{{item.comentario}}</td>
+        <td><button (click)="onClickDelete(item)">Borrar</button></td>
+      </tr>
+     
+    </tbody>
+  </table>
