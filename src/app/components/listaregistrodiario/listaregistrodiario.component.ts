@@ -15,16 +15,18 @@ export class ListaregistrodiarioComponent {
     this.registroSvc.getRegistroDiario().subscribe(registros => {
       this.registros = registros;
     })
-  }
+  } 
 
   async onClickDelete(registro: Registrodiario) {
     const response = await this.registroSvc.deleteRegistroDiario(registro);
     console.log(response);
 
   }
-  async onClickupdate(registro: Registrodiario) {
-    const response = await this.registroSvc.updateRegistroDiario(registro);
-    console.log(response);
+  // async onClickupdate(registro: Registrodiario) {
 
-  }
+   
+  //   const response = await this.registroSvc.updateRegistroDiario(registro);
+  //   console.log(response);
+
+  // }
 }

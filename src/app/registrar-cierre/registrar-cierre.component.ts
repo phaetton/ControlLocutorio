@@ -11,6 +11,7 @@ export class RegistrarCierreComponent {
 
   formulario!: FormGroup;
   totalmonedas = 0;
+  today = new Date();
 
   constructor(private fb: FormBuilder, private registroSvc: RegistrodiarioService) {
     this.crearFormulario();
@@ -25,6 +26,7 @@ export class RegistrarCierreComponent {
 
   crearFormulario() {
     this.formulario = this.fb.group({
+      fecha: new FormControl(this.today),
       centimo1: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo2: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo5: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
@@ -118,7 +120,7 @@ export class RegistrarCierreComponent {
 
 
   get cantidadmonedas() {
-    return (this.centimo1 ? this.centimo1 / 100 : 0) + (this.centimo2 ? this.centimo2 / 50 : 0) + (this.centimo5 ? this.centimo5 * 20 : 0) + (this.centimo10 ? this.centimo10 / 10 : 0) + (this.centimo20 ? this.centimo20 / 5 : 0) + (this.centimo50 ? this.centimo50 / 2 : 0) + (this.euro1 ? this.euro1 : 0) + (this.euro2 ? this.euro2 * 2 : 0) + (this.euro5 ? this.euro5 * 5 : 0) + (this.euro10 ? this.euro10 * 10 : 0) + (this.euro20 ? this.euro20 * 20 : 0) + (this.euro50 ? this.euro50 * 50 : 0) + (this.euro100 ? this.euro100 * 100 : 0) + (this.papel ? this.papel : 0);
+    return this.centimo1  + this.centimo2 +this.centimo5  + this.centimo10  +this.centimo20 +this.centimo50 + this.euro1 +this.euro2  +this.euro5 + this.euro10 +this.euro20 + this.euro50 +this.euro100 + this.papel;
 
   }
 

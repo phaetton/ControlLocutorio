@@ -1,6 +1,51 @@
-{{registros|json}}
-lista de registro
+
 <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Ingresos</th>
+        <th>Compras</th>
+        <th>comentario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of registros">
+
+
+        <td>{{item.fecha|date}}</td>
+        <td>{{item.centimo2}}</td>
+        <td>{{item.centimo5}}</td>
+        <td>{{item.centimo10}}</td>
+        <td>{{item.centimo20}}</td>
+        <td>{{item.centimo50}}</td>
+        <td>{{item.euro1}}</td>
+        <td>{{item.euro2}}</td>
+        <td>{{item.euro5}}</td>
+        <td>{{item.euro10}}</td>
+        <td>{{item.euro20}}</td>
+        <td>{{item.euro50}}</td>
+        <td>{{item.euro100}}</td>
+        <td>{{item.papel}}</td>
+        <td>{{item.bari}}</td>
+        <td>{{item.bare}}</td>
+        <td>{{item.barpre}}</td>
+        <td>{{item.barco}}</td>
+        <td>{{item.jefei}}</td>
+        <td>{{item.jefee}}</td>
+        <td>{{item.compra}}</td>
+        <td>{{item.comentario}}</td>
+
+
+        <td><button (click)="onClickDelete(item)">Borrar</button></td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+
+<!-- 
+  <table class="table">
     <thead>
       <tr>
         <th>centimo1</th>
@@ -30,6 +75,8 @@ lista de registro
     </thead>
     <tbody>
       <tr *ngFor="let item of registros">
+
+
         <td>{{item.centimo1}}</td>
         <td>{{item.centimo2}}</td>
         <td>{{item.centimo5}}</td>
@@ -52,8 +99,10 @@ lista de registro
         <td>{{item.jefee}}</td>
         <td>{{item.compra}}</td>
         <td>{{item.comentario}}</td>
+
+
         <td><button (click)="onClickDelete(item)">Borrar</button></td>
       </tr>
      
     </tbody>
-  </table>
+  </table> -->

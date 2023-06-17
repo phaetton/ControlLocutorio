@@ -1,5 +1,6 @@
 export interface Registrodiario {
     id?: string;
+    fecha?: string;
     centimo1?: number;
     centimo2?: number;
     centimo5?: number;
