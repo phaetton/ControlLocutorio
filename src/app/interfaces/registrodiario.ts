@@ -23,4 +23,5 @@ export interface Registrodiario {
     jefee?: number;
     compra?: number;
     comentario?: string;
+    totalmonedas?:number;
 }
