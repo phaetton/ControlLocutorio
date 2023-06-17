@@ -18,8 +18,13 @@ export class ListaregistrodiarioComponent {
   }
 
   async onClickDelete(registro: Registrodiario) {
-const response= await this.registroSvc.deleteRegistroDiario(registro);
-console.log(response);
+    const response = await this.registroSvc.deleteRegistroDiario(registro);
+    console.log(response);
+
+  }
+  async onClickupdate(registro: Registrodiario) {
+    const response = await this.registroSvc.updateRegistroDiario(registro);
+    console.log(response);
 
   }
 }

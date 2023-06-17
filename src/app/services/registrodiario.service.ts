@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection,addDoc, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection,addDoc, collectionData, doc, deleteDoc, UpdateData, updateDoc } from '@angular/fire/firestore';
 import { Registrodiario } from '../interfaces/registrodiario';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,12 @@ export class RegistrodiarioService {
   }
 
   deleteRegistroDiario(registro:Registrodiario){
-    const registroRef=doc(this.firestore,`registros/${registro.id}`);
+    const registroRef=doc(this.firestore,`registrodiario/${registro.id}`);
     return deleteDoc(registroRef);
+  }
+
+  updateRegistroDiario(registro:Registrodiario){
+    const registroRef=doc(this.firestore,`registrodiario/${registro.id}`);
+    return updateDoc(registroRef,{registro});
   }
 }
