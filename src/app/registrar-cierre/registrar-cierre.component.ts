@@ -42,7 +42,7 @@ export class RegistrarCierreComponent {
       euro100: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       papel: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       bari: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
-      bare: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      bare: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
       barpre: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefei: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
@@ -121,14 +121,14 @@ export class RegistrarCierreComponent {
 
 
   get cantidadmonedas() {
-    this.f['totalmonedas']  =   this.centimo1 + this.centimo2 + this.centimo5 + this.centimo10 + this.centimo20 + this.centimo50 + this.euro1 + this.euro2 + this.euro5 + this.euro10 + this.euro20 + this.euro50 + this.euro100;
+    this.f['totalmonedas'] = this.centimo1 + this.centimo2 + this.centimo5 + this.centimo10 + this.centimo20 + this.centimo50 + this.euro1 + this.euro2 + this.euro5 + this.euro10 + this.euro20 + this.euro50 + this.euro100;
 
-     return     this.f['totalmonedas']  
+    return this.f['totalmonedas']
   }
 
 
   get cantidadbarberia() {
-    return this.bari  - this.barpre ;
+    return this.bari - this.barpre;
   }
 
   validateFormat(event: any) {
@@ -140,6 +140,23 @@ export class RegistrarCierreComponent {
       key = String.fromCharCode(key);
     }
     const regex = /[0-9]/;
+    if (!regex.test(key)) {
+      event.returnValue = false;
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+    }
+  }
+
+  validateFormatpunto(event: any) {
+    let key;
+    if (event.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      key = event.keyCode;
+      key = String.fromCharCode(key);
+    }
+    const regex = /[0-9]|\./;
     if (!regex.test(key)) {
       event.returnValue = false;
       if (event.preventDefault) {

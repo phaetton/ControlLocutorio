@@ -17,8 +17,8 @@ export class ListaregistrodiarioComponent {
     this.registroSvc.getRegistroDiario().subscribe(registros => {
       this.registros = registros;
 
-      this.debe = registros.reduce((prev, curr) => Number(prev) + (curr.bare ? curr.bare : 0), 0);
-      this.cobro = registros.reduce((prev, curr) => Number(prev) + (curr.barco ? curr.barco : 0), 0);
+      this.debe = registros.reduce((prev, curr) => Number(prev) + (curr.bare ? Number(curr.bare) : 0), 0);
+      this.cobro = registros.reduce((prev, curr) => Number(prev) + (curr.barco ? Number(curr.barco) : 0), 0);
     })
   }
 
