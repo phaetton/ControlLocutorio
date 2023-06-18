@@ -173,7 +173,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Compras</th>
-                    <td><input (keypress)="validateFormat($event)" formControlName="compra" type="number"
+                    <td><input (keypress)="validateFormatpunto($event)" formControlName="compra" type="number"
                             class="form-control"></td>
                     <td>{{euro50 }}€</td>
                 </tr>
@@ -191,5 +191,3 @@
     </div>
     <input type="submit" value="Guardar" class="btn btn-info">
 </form>
-
-{{formulario.value|json}}

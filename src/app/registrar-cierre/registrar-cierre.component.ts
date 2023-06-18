@@ -48,7 +48,7 @@ export class RegistrarCierreComponent {
       barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefei: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefee: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
-      compra: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      compra: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
       totalmonedas: new FormControl(""),
       comentario: new FormControl(""),
 
