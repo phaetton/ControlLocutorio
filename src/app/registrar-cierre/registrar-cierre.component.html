@@ -12,6 +12,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td colspan="3"> <input formControlName="fecha" type="date"
+                            class="form-control bg-yellow-300">
+                    </td>
+                </tr>
 
                 <tr>
                     <th scope="row">1¢</th>
@@ -186,3 +191,5 @@
     </div>
     <input type="submit" value="Guardar" class="btn btn-info">
 </form>
+
+{{formulario.value|json}}

@@ -24,9 +24,10 @@ export class RegistrarCierreComponent {
     return this.formulario.value;
   }
 
+  // fecha: new FormControl(this.today.getTime()),
   crearFormulario() {
     this.formulario = this.fb.group({
-      fecha: new FormControl(this.today.getTime()),
+      fecha: new FormControl(""),
       centimo1: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo2: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo5: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
