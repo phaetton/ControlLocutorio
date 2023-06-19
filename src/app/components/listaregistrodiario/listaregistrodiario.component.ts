@@ -30,5 +30,13 @@ export class ListaregistrodiarioComponent {
     console.log(response);
 
   }
+  async onClickUpdate(registro: Registrodiario) {
+    registro.papel=100;
+    console.log(registro);
+    
+    const response = await this.registroSvc.updateRegistroDiario(registro);
+    console.log(response);
+
+  }
 
 }

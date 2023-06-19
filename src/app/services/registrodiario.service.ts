@@ -25,31 +25,8 @@ export class RegistrodiarioService {
     return deleteDoc(registroRef);
   }
 
-  // updateRegistroDiario(registro: Registrodiario) {
-
-
-  //   registro.centimo1 = 44;
-  //   registro.centimo2 = 44;
-  //   registro.centimo5 = 44;
-  //   registro.centimo10 = 44;
-  //   registro.centimo20 = 44;
-  //   registro.centimo50 = 44;
-  //   registro.euro1 = 44;
-  //   registro.euro2 = 44;
-  //   registro.euro5 = 44;
-  //   registro.euro10 = 44;
-  //   registro.euro20 = 44;
-  //   registro.euro50 = 44;
-  //   registro.euro100 = 44;
-  //   registro.papel = 44;
-  //   registro.bari = 44;
-  //   registro.bare = 44;
-  //   registro.barpre = 44;
-  //   registro.barco = 44;
-  //   registro.jefei = 44;
-  //   registro.jefee = 44;
-  //   registro.compra = 44;
-  //   const registroRef = doc(this.firestore, `registrodiario/${registro.id}`);
-  //   return updateDoc(registroRef, { registro });
-  // }
+  updateRegistroDiario(registro: Registrodiario) {
+    const registroRef = doc(this.firestore, `registrodiario/LM3mlkwoxabQh1ssyHzh`);
+    return updateDoc(registroRef, {registro});
+  }
 }
