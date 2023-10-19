@@ -1,1 +1,8 @@
-{{productos|json}}
+<tr *ngFor="let item of productos">
+  <td>{{item.nombre}}</td>
+  <td>{{ item.precio}}</td>
+  <td>{{item.categoria}}</td>
+  <td>{{item.subcategoria}}</td>
+  <td><button (click)="onClickDelete(item)">Borrar</button></td>
+  <td><button (click)="onClickUpdate(item)">Update</button></td>
+</tr>
