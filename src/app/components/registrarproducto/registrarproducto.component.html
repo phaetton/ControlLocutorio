@@ -1,0 +1,11 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="row">
+                <input type="text" formControlName="nombre">
+                <input type="text" formControlName="precio">
+                <input type="text" formControlName="cantidad">
+                <input type="text" formControlName="img">
+                <input type="text" formControlName="categoria">
+                <input type="text" formControlName="subcategoria">
+                <input type="text" formControlName="activo">
+
+    <input type="submit" value="Guardar" class="btn btn-info">
+</form>

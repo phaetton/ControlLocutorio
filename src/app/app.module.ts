@@ -11,13 +11,17 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ListaregistrodiarioComponent } from './components/listaregistrodiario/listaregistrodiario.component';
+import { ListarproductosComponent } from './components/listarproductos/listarproductos.component';
+import { RegistrarproductoComponent } from './components/registrarproducto/registrarproducto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrarCierreComponent,
     NavbarComponent,
-    ListaregistrodiarioComponent
+    ListaregistrodiarioComponent,
+    ListarproductosComponent,
+    RegistrarproductoComponent
   ],
   imports: [
     BrowserModule,
