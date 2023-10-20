@@ -1,1 +1,7 @@
-<p>registrarcategoria works!</p>
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="row">
+    <input type="text" formControlName="nombre">
+    <input type="text" formControlName="icono">
+    <input type="text" formControlName="activo">
+
+<input type="submit" value="Guardar" class="btn btn-info">
+</form>
