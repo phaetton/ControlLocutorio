@@ -1,3 +1,5 @@
+{{formulario.value|json}}
+
 <div class="w-full relative">
     <div class="md:mt-2">
         <div class="text-center font-semibold text-black">
@@ -16,7 +18,7 @@
                 <div class="py-1">
                     <span class="px-1 text-sm text-gray-600 font-bold">icono </span>
 
-                    <ul class="flex flex-wrap w-full gap-2 md:grid-cols-5 lg:grid-cols-8 overflow-y-scroll h-48">
+                    <ul class="flex flex-wrap w-full gap-2 overflow-y-scroll h-48">
                         <li *ngFor="let icono of iconos" class="w-14">
                             <input formControlName="icono" type="radio" [id]="icono.nombre" [value]="icono.id"
                                 class="hidden peer" required>
@@ -34,14 +36,14 @@
                 <div class="py-1">
                     <span class="px-1 text-sm text-gray-600 font-bold">Categoría</span>
 
-                    <ul class="grid w-full gap-2 md:grid-cols-5 ">
-                        <li *ngFor="let categoria of categorias">
-                            <input type="radio" [id]="categoria.id" name="categoria" [value]="categoria.id"
+                    <ul class="flex overflow-y-auto  ">
+                        <li *ngFor="let categoria of categorias" class="w-20">
+                            <input type="radio" formControlName="categoria" [id]="categoria.id" name="categoria" [value]="categoria.id"
                                 class="hidden peer" required>
                             <label [for]="categoria.id"
                                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <div class="block">
-                                    <img class="w-12 h-12 text-black" [src]="'../assets/icono/'+[categoria.icono]"
+                                    <img class="w-full h-full text-black" [src]="categoria.icono"
                                         alt="">
                                 </div>
                             </label>

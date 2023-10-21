@@ -1,5 +1,4 @@
 
-
 <!-- <tr *ngFor="let item of subcategoria">
     <td>{{item.nombre}}</td>
     <td>{{ item.icono}}</td>
@@ -18,8 +17,8 @@
 
           <span class="flex flex-col items-center">
 
-              <!-- <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
-                  transition-color duration-200" src="../assets/icono/estante.png" alt=""> -->
+               <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
+                  transition-color duration-200" src="../assets/icono/estante.png" alt="">
 
               <!-- Text -->
               <span class="text-xs mb-2 transition-all duration-200">
@@ -36,17 +35,14 @@
   <div class=" w-full flex   overflow-auto ">
       <!-- Item #1 -->
 
-      <!-- <div class="flex group " *ngFor="let subcategoria of subcategorias; let i = index ">
+      <div class="flex group " *ngFor="let subcategoria of subcategorias; let i = index ">
           <span class="px-3  text-gray-400 relative hover:text-yellow-500"
               routerLinkActive="bg-orange-400 rounded-xl text-white hover:text-black">
 
-              <div *ngIf="verEliminarSubCategoria" class="t-0 absolute right-0">
-                  <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
-                      (click)="onEliminarSubCategoria(i)">-</p>
-              </div>
+            
               <a [routerLink]="['productos',subcategoria.id]" class="flex flex-col items-center">
                   <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
-        transition-color duration-200" [src]="'../assets/icono/'+subcategoria.icono" alt="">
+        transition-color duration-200" [src]="subcategoria.icono" alt="">
 
                   <span class="text-xs mb-2 transition-all duration-200">
                       {{subcategoria.nombre}}
@@ -56,7 +52,7 @@
                               transition-all duration-150 delay-100"></span>
               </a>
           </span>
-      </div> -->
+      </div> 
 
 
 

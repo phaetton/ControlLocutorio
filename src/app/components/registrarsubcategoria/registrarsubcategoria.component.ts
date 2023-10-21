@@ -21,19 +21,35 @@ export class RegistrarsubcategoriaComponent {
   categorias: Categorias[] = [];
   subcategoria: Subcategorias[] = [];
 
-  constructor(private fb: FormBuilder, private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService,private categoriasvc:CategoriasService) {
+  constructor(private fb: FormBuilder, private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService, private categoriasvc: CategoriasService) {
     this.crearFormulario();
   }
 
   ngOnInit(): void {
     combineLatest(
       [this.subcategoriasvc.getSubcategorias(),
-      this.iconosvc.getIconos(),this.categoriasvc.getCategorias()]
-    ).subscribe(([subcategorias, iconos,categorias]) => {
+      this.iconosvc.getIconos(), this.categoriasvc.getCategorias()]
+    ).subscribe(([subcategorias, iconos, categorias]) => {
       this.iconos = iconos;
       this.categorias = categorias;
-   console.log(iconos);
-   
+      this.subcategoria = subcategorias.map(m => {
+        let valor = iconos.find(x => x.id == m.icono);
+        return {
+          id: m.id,
+          nombre: m.nombre,
+          categoria:m.categoria,
+          icono: valor ? valor['img'] : ''
+        }
+      });
+      this.categorias = categorias.map(m => {
+        let valor = iconos.find(x => x.id == m.icono);
+        return {
+          id: m.id,
+          nombre: m.nombre,
+          icono: valor ? valor['img'] : ''
+        }
+      })
+
     })
   }
 
@@ -47,7 +63,6 @@ export class RegistrarsubcategoriaComponent {
       nombre: new FormControl("", Validators.required),
       icono: new FormControl("", Validators.required),
       categoria: new FormControl("", Validators.required),
-      activo: new FormControl(""),
     });
   }
 

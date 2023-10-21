@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { Subcategorias } from 'src/app/interfaces/subcategorias';
 import { CategoriasService } from 'src/app/services/categorias.service';
-import { DashboardService } from 'src/app/services/dashboard.service';
 import { IconosService } from 'src/app/services/iconos.service';
 import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 
@@ -12,34 +11,27 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  subcategoria: Subcategorias[] = [];
+  subcategorias: Subcategorias[] = [];
   admin?: boolean;
-otro:any;
-  constructor(private adminsvc: DashboardService, private subcategoriassvc: SubcategoriasService, private iconosvc: IconosService, private categoriasvc:CategoriasService) {
-    this.admin = this.adminsvc.getAdmin;
-
+  otro: any;
+  constructor(private subcategoriassvc: SubcategoriasService, private iconosvc: IconosService, private categoriasvc: CategoriasService) {
   }
 
-
-
   ngOnInit() {
-    this.admin = this.adminsvc.getAdmin;
-
-
 
     combineLatest(
       [this.subcategoriassvc.getSubcategorias(),
       this.iconosvc.getIconos(), this.categoriasvc.getCategorias()]
-    ).subscribe(([subcategorias, iconos,categorias]) => {
-      this.otro = subcategorias.map(m => {
+    ).subscribe(([subcategorias, iconos, categorias]) => {
+      this.subcategorias = subcategorias.map(m => {
         let icon = iconos.find(x => x.id == m.icono);
         let cat = categorias.find(x => x.id == m.categoria);
 
         return {
           id: m.id,
           nombre: m.nombre,
-          categorias: cat?cat['nombre']:'',
-          icono: icon ? icon['img'] : ''
+          icono: icon ? icon['img'] : '',
+          categoria: cat ? cat['nombre'] : '',
         }
       })
     })
