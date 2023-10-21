@@ -1,7 +1,11 @@
-<tr *ngFor="let item of categorias">
-    <td>{{item.nombre}}</td>
-    <td>{{ item.icono}}</td>
-    <td>{{item.activo}}</td>
-    <td><button (click)="onClickDelete(item)">Borrar</button></td>
-    <td><button (click)="onClickUpdate(item)">Update</button></td>
-  </tr>
+<span [routerLink]="['/categoria',categoria.id]" routerLinkActive="bg-yellow-500 hover:bg-yellow-300"
+  *ngFor="let categoria of categorias; let i = index"
+  class="cursor-pointer flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
+  <!-- <div *ngIf="verEliminarCategoria && categoria.id>1" class="t-0 fixed right-0">
+            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+              (click)="onEliminarCategoria(i)">-</p>
+          </div> -->
+  <img class="w-6 h-6" [src]="categoria.icono | filtroicono  " alt="">
+  <small class="text-center text-xs font-medium"> {{categoria.nombre}} </small>
+  {{categoria.icono | filtroicono }}
+</span>

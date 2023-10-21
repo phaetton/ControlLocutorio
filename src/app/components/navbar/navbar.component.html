@@ -1,8 +1,79 @@
-<tr *ngFor="let item of subcategoria">
+
+
+<!-- <tr *ngFor="let item of subcategoria">
     <td>{{item.nombre}}</td>
     <td>{{ item.icono}}</td>
     <td>{{item.categoria}}</td>
     <td>{{item.activo}}</td>
     <td><button (click)="onClickDelete(item)">Borrar</button></td>
     <td><button (click)="onClickUpdate(item)">Update</button></td>
-  </tr>
+  </tr> -->
+
+
+  <!-- Barra superior -->
+
+<div class="px-5 pt-2 bg-white shadow-lg  w-full flex justify-between ">
+  <div class="flex group">
+      <a [routerLink]="['productos']">
+
+          <span class="flex flex-col items-center">
+
+              <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
+                  transition-color duration-200" src="../assets/icono/estante.png" alt="">
+
+              <!-- Text -->
+              <span class="text-xs mb-2 transition-all duration-200">
+                  Todo
+              </span>
+
+              <!-- Focus Dot -->
+              <span class="h-2 w-2 rounded-full group-hover:bg-yellow-500
+                              transition-all duration-150 delay-100"></span>
+          </span>
+      </a>
+  </div>
+
+  <div class=" w-full flex   overflow-auto ">
+      <!-- Item #1 -->
+
+      <!-- <div class="flex group " *ngFor="let subcategoria of subcategorias; let i = index ">
+          <span class="px-3  text-gray-400 relative hover:text-yellow-500"
+              routerLinkActive="bg-orange-400 rounded-xl text-white hover:text-black">
+
+              <div *ngIf="verEliminarSubCategoria" class="t-0 absolute right-0">
+                  <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                      (click)="onEliminarSubCategoria(i)">-</p>
+              </div>
+              <a [routerLink]="['productos',subcategoria.id]" class="flex flex-col items-center">
+                  <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
+        transition-color duration-200" [src]="'../assets/icono/'+subcategoria.icono" alt="">
+
+                  <span class="text-xs mb-2 transition-all duration-200">
+                      {{subcategoria.nombre}}
+                  </span>
+
+                  <span class="h-2 w-2 rounded-full group-hover:bg-yellow-500
+                              transition-all duration-150 delay-100"></span>
+              </a>
+          </span>
+      </div> -->
+
+
+
+  </div>
+  <div class="flex group  ">
+      <!-- <button
+          class="p-2 rounded-sm cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400"
+          [ngClass]="{'bg-green-500 text-white':verEliminarSubCategoria}">
+          <small className="text-xs font-medium" (click)="onEditarSubCategoria()">{{mEditar}}</small>
+      </button> -->
+      <hr class="dark:border-gray-700/60" />
+
+
+      <!-- <button *ngIf="!verEliminarSubCategoria"
+          class="cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400">
+          <small className="text-xs font-medium" routerLink="/agregarsubcategoria">Agregar</small>
+      </button> -->
+
+  </div>
+</div>

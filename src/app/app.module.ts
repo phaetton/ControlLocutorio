@@ -18,6 +18,10 @@ import { RegistrarcategoriaComponent } from './components/registrarcategoria/reg
 import { RegistrarsubcategoriaComponent } from './components/registrarsubcategoria/registrarsubcategoria.component';
 import { ListarcompraComponent } from './components/listarcompra/listarcompra.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
+import { ListariconoComponent } from './components/listaricono/listaricono.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FiltroiconoPipe } from './pipes/filtroicono.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegistrarcategoriaComponent,
     RegistrarsubcategoriaComponent,
     ListarcompraComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegistrariconoComponent,
+    ListariconoComponent,
+    MenuComponent,
+    FiltroiconoPipe
   ],
   imports: [
     BrowserModule,

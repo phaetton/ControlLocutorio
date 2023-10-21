@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subcategorias } from 'src/app/interfaces/subcategorias';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 
 @Component({
@@ -9,10 +10,16 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 })
 export class NavbarComponent {
   subcategoria: Subcategorias[] = [];
+  admin?:boolean;
 
-  constructor(private subcategorias: SubcategoriasService) { }
+  constructor(private adminsvc:DashboardService,private subcategorias: SubcategoriasService) { 
+    this.admin=this.adminsvc.getAdmin;
+
+  }
 
   ngOnInit() {
+    this.admin=this.adminsvc.getAdmin;
+
     this.subcategorias.getSubcategorias().subscribe(subcategoria => {
       this.subcategoria = subcategoria;
     })

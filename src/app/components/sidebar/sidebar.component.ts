@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Categorias } from 'src/app/interfaces/categorias';
+import { Iconos } from 'src/app/interfaces/iconos';
 import { CategoriasService } from 'src/app/services/categorias.service';
+import { IconosService } from 'src/app/services/iconos.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,12 +11,16 @@ import { CategoriasService } from 'src/app/services/categorias.service';
 })
 export class SidebarComponent {
   categorias: Categorias[] = [];
-  constructor(private categoriasvc: CategoriasService) { }
+  icono: Iconos[] = [];
+  constructor(private categoriasvc: CategoriasService, private iconosvc: IconosService) { }
 
   ngOnInit() {
     this.categoriasvc.getCategorias().subscribe(categorias => {
       this.categorias = categorias;
     })
+
+
+
   }
 
   async onClickDelete(registro: Categorias) {
