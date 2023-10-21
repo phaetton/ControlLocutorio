@@ -14,6 +14,7 @@ export class RegistrariconoComponent {
   totalmonedas = 0;
   today = new Date();
   imageSrc:any;
+  envio:boolean=false;
 
   constructor(private fb: FormBuilder, private iconossvc: IconosService,private location:Location) {
     this.crearFormulario();
@@ -34,11 +35,13 @@ export class RegistrariconoComponent {
   }
 
   async onSubmit() {
+    this.envio=true;
     this.formulario.patchValue({
       img: this.imageSrc
     })
     const response = await this.iconossvc.addIconos(this.formulario.value);
     this.formulario.reset();
+    this.envio=false;
     console.log(response);
 
   }
