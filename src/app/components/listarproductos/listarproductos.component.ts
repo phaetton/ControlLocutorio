@@ -34,10 +34,8 @@ export class ListarproductosComponent {
   async onClickUpdate(registro: Productos) {
     // registro.papel=100;
     console.log(registro);
-    
     const response = await this.productossvc.updateProductos(registro);
     console.log(response);
-
   }
 
 }
