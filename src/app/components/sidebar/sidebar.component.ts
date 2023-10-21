@@ -30,12 +30,6 @@ export class SidebarComponent {
         }
       })
     })  
-   
-
-
-
-
-
   }
 
   async onClickDelete(registro: Categorias) {

@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { combineLatest } from 'rxjs';
+import { Categorias } from 'src/app/interfaces/categorias';
+import { Iconos } from 'src/app/interfaces/iconos';
+import { Subcategorias } from 'src/app/interfaces/subcategorias';
+import { CategoriasService } from 'src/app/services/categorias.service';
+import { IconosService } from 'src/app/services/iconos.service';
 import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 
 @Component({
@@ -10,15 +16,27 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 export class RegistrarsubcategoriaComponent {
 
   formulario!: FormGroup;
-  totalmonedas = 0;
-  today = new Date();
+  envio: boolean = false;
+  iconos: Iconos[] = [];
+  categorias: Categorias[] = [];
+  subcategoria: Subcategorias[] = [];
 
-  constructor(private fb: FormBuilder, private subcategoriasvc: SubcategoriasService) {
+  constructor(private fb: FormBuilder, private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService,private categoriasvc:CategoriasService) {
     this.crearFormulario();
   }
 
   ngOnInit(): void {
+    combineLatest(
+      [this.subcategoriasvc.getSubcategorias(),
+      this.iconosvc.getIconos(),this.categoriasvc.getCategorias()]
+    ).subscribe(([subcategorias, iconos,categorias]) => {
+      this.iconos = iconos;
+      this.categorias = categorias;
+   console.log(iconos);
+   
+    })
   }
+
 
   get f() {
     return this.formulario.value;
@@ -34,8 +52,14 @@ export class RegistrarsubcategoriaComponent {
   }
 
   async onSubmit() {
-    const response = await this.subcategoriasvc.addSubcategorias(this.formulario.value);
-    console.log(response);
+    this.envio = true;
+    const response = await this.subcategoriasvc.addSubcategorias(this.formulario.value).then(m => {
+      this.formulario.reset();
+      this.envio = false
+    })
+  }
 
+  async onClickDelete(registro: Subcategorias) {
+    const response = await this.subcategoriasvc.deleteSubcategorias(registro);
   }
 }

@@ -14,8 +14,6 @@ import { IconosService } from 'src/app/services/iconos.service';
 export class RegistrarcategoriaComponent {
 
   formulario!: FormGroup;
-  totalmonedas = 0;
-  today = new Date();
   iconos: Iconos[] = [];
   categorias: Categorias[] = [];
   envio: boolean = false;
@@ -69,14 +67,11 @@ export class RegistrarcategoriaComponent {
       this.formulario.reset();
       this.envio = false
     });
-
-
   }
 
 
   async onClickDelete(registro: Categorias) {
     const response = await this.categoriasvc.deleteCategorias(registro);
     console.log(response);
-
   }
 }
