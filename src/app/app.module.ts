@@ -21,7 +21,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
 import { ListariconoComponent } from './components/listaricono/listaricono.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { FiltroiconoPipe } from './pipes/filtroicono.pipe';
 
 @NgModule({
   declarations: [
@@ -38,8 +37,7 @@ import { FiltroiconoPipe } from './pipes/filtroicono.pipe';
     DashboardComponent,
     RegistrariconoComponent,
     ListariconoComponent,
-    MenuComponent,
-    FiltroiconoPipe
+    MenuComponent
   ],
   imports: [
     BrowserModule,
