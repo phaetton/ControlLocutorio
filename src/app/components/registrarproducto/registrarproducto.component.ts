@@ -79,7 +79,7 @@ export class RegistrarproductoComponent {
     });
 
     this.formulario.patchValue({
-      imageSrc: this.imageSrc,
+      img: this.imageSrc,
       categoria: this.scategoria,
       subcategoria: this.sSubcategorias,
     })

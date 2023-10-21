@@ -8,34 +8,34 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./listarproductos.component.scss']
 })
 export class ListarproductosComponent {
-
   productos: Productos[] = [];
-  debe: number = 0;
-  cobro: number = 0;
-  ingreso: number = 0;
-  prestamo: number = 0;
+  verEliminarProducto: boolean = false;
+  mEditar: string = "Editar";
+
   constructor(private productossvc: ProductosService) { }
 
   ngOnInit() {
     this.productossvc.getProductos().subscribe(productos => {
       this.productos = productos;
-      // this.debe = productos.reduce((prev, curr) => Number(prev) + (curr.bare ? Number(curr.bare) : 0), 0);
-      // this.cobro = productos.reduce((prev, curr) => Number(prev) + (curr.barco ? Number(curr.barco) : 0), 0);
-      // this.ingreso = productos.reduce((prev, curr) => Number(prev) + (curr.bari ? Number(curr.bari) : 0), 0);
-      // this.prestamo = productos.reduce((prev, curr) => Number(prev) + (curr.barpre ? Number(curr.barpre) : 0), 0);
     })
   }
 
   async onClickDelete(registro: Productos) {
-    const response = await this.productossvc.deleteProductos(registro);
-    console.log(response);
+    await this.productossvc.deleteProductos(registro);
 
   }
   async onClickUpdate(registro: Productos) {
-    // registro.papel=100;
-    console.log(registro);
-    const response = await this.productossvc.updateProductos(registro);
-    console.log(response);
+    await this.productossvc.updateProductos(registro);
+  }
+  onEditarProducto() {
+    this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
+    this.verEliminarProducto = !this.verEliminarProducto;
   }
 
+
+
+  async onEliminarProducto(registro: Productos) {
+    await this.productossvc.deleteProductos(registro);
+
+  }
 }
