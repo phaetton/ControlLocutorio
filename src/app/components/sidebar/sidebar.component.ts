@@ -3,6 +3,7 @@ import { Categorias } from 'src/app/interfaces/categorias';
 import { Iconos } from 'src/app/interfaces/iconos';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import { IconosService } from 'src/app/services/iconos.service';
+import { combineLatest, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,13 +12,27 @@ import { IconosService } from 'src/app/services/iconos.service';
 })
 export class SidebarComponent {
   categorias: Categorias[] = [];
-  icono: Iconos[] = [];
+  iconos: Iconos[] = [];
   constructor(private categoriasvc: CategoriasService, private iconosvc: IconosService) { }
 
   ngOnInit() {
-    this.categoriasvc.getCategorias().subscribe(categorias => {
-      this.categorias = categorias;
-    })
+
+    combineLatest(
+      [this.categoriasvc.getCategorias(),
+      this.iconosvc.getIconos()]
+    ).subscribe(([categorias, iconos]) => {
+      this.categorias = categorias.map(m => {
+        let valor = iconos.find(x => x.id == m.icono);
+        return {
+          id: m.id,
+          nombre: m.nombre,
+          icono: valor ? valor['img']: ''
+        }
+      })
+    })  
+   
+
+
 
 
 
