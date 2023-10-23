@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Productos } from 'src/app/interfaces/productos';
+import { ListacompraService } from 'src/app/services/listacompra.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ListarproductosComponent {
   verEliminarProducto: boolean = false;
   mEditar: string = "Editar";
 
-  constructor(private productossvc: ProductosService) { }
+  constructor(private productossvc: ProductosService,private listacomprasvc:ListacompraService) { }
 
   ngOnInit() {
     this.productossvc.getProductos().subscribe(productos => {
@@ -38,4 +39,18 @@ export class ListarproductosComponent {
     await this.productossvc.deleteProductos(registro);
 
   }
+  
+   onAgregarCarrito(producto: Productos) {
+  
+  this.quitarCantidad(producto.id);
+  this.listacomprasvc.agregarALista(producto);
+  }
+
+   quitarCantidad(id?: string) {
+    let indice = this.productos.findIndex(m => m.id == id);
+    if (indice > -1) {
+      this.productos[indice].cantidad -= 1;
+    }
+  }
+
 }

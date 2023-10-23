@@ -26,7 +26,11 @@ export class ProductosService {
   }
 
   updateProductos(producto: Productos) {
-    const productoRef = doc(this.firestore, `Productos/LM3mlkwoxabQh1ssyHzh`);
-    return updateDoc(productoRef, {producto});
+    const productoRef = doc(this.firestore, `Productos/${producto.id}`);
+    return updateDoc(productoRef, { producto });
+  }
+
+  
+  quitarCantidad(producto:Productos){
   }
 }
