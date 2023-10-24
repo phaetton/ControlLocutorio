@@ -1,39 +1,49 @@
-<header class="flex items-center  justify-between w-full px-4 pt-2 m-4 rounded-xl bg-yellow-400">
-  <h1 class="text-base font-semibold leading-7 w-full">Pailas</h1>
-  <button
-    class="p-2 rounded-sm cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400">
-    <small className="text-xs font-medium" (click)="onEditarProducto()">{{mEditar}}</small>
-  </button>
-</header>
+<div class="flex">
+  <div >
+    <header class="flex items-center  justify-between w-full px-4 pt-2 m-4 rounded-xl bg-yellow-400">
+      <h1 class="text-base font-semibold leading-7 w-full">Pailas</h1>
+      <button
+        class="p-2 rounded-sm cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400">
+        <small className="text-xs font-medium" (click)="onEditarProducto()">{{mEditar}}</small>
+      </button>
+    </header>
 
-<div class="grid grid-cols-4 w-full mx-4 gap-4 ">
-  <div class="relative shadow-xl " *ngFor="let producto of productos; let i=index">
-    <div *ngIf="verEliminarProducto" class="z-40 t-0 absolute -top-2 right-4">
-      <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs border-white border-2 text-white"
-        (click)="onEliminarProducto(producto)">-</p>
-    </div>
-    <div class="product-card " [ngClass]="{'grayscale text-gray-400 ':producto.cantidad==0}">
-      <figure class="img-product ">
-        <img [src]="producto.img" alt="" class="h-full w-full flex-none   object-cover">
-      </figure>
-      <div class="info-product flex flex-wrap flex-col text-center justify-center "
-        [ngClass]="{'bg-gray-300 ':producto.cantidad==0}">
-        <div class="flex justify-between my-2">
-          <div class="font-bold text-lg ">{{producto.nombre}} </div>
-          <span class="text-orange-400">{{producto.precio | currency }}</span>
+    <div class="grid grid-cols-4 w-full mx-4 gap-4 ">
+      <div class="relative shadow-xl " *ngFor="let producto of productos; let i=index">
+        <div *ngIf="verEliminarProducto" class="z-40 t-0 absolute -top-2 right-4">
+          <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs border-white border-2 text-white"
+            (click)="onEliminarProducto(producto)">-</p>
         </div>
+        <div class="product-card " [ngClass]="{'grayscale text-gray-400 ':producto.cantidad==0}">
+          <figure class="img-product ">
+            <img [src]="producto.img" alt="" class="h-40 w-full flex-none   object-cover">
+          </figure>
+          <div class="info-product flex flex-wrap flex-col text-center justify-center "
+            [ngClass]="{'bg-gray-300 ':producto.cantidad==0}">
+            <div class="flex justify-between my-2">
+              <div class="font-bold text-lg ">{{producto.nombre}} </div>
+              <span class="text-orange-500">{{producto.precio | currency }}</span>
+            </div>
 
-        <div *ngIf="!verEliminarProducto"
-          class="absolute -top-2 right-4 rounded-full bg-green-500 p-0.5 px-2 text-sm text-red-50">
-          {{producto.cantidad}} </div>
+            <div *ngIf="!verEliminarProducto"
+              class="absolute -top-2 right-4 rounded-full bg-orange-900 p-0.5 px-2 text-sm text-red-50">
+              {{producto.cantidad}} </div>
 
-        <button *ngIf="producto.cantidad>0"  (click)="onAgregarCarrito(producto)" 
-          class="bg-orange-400 py-2 px-3 rounded-full font-medium mb-4 text-white">Agregar al Carrito</button>
-        
+            <button *ngIf="producto.cantidad>0" (click)="onAgregarCarrito(producto)"
+              class="bg-orange-400 py-2 px-3 rounded-full font-medium mb-4 text-white">Agregar al Carrito</button>
 
-        <span *ngIf="producto.cantidad==0" class="bg-gray-400 py-2 px-3 
+
+            <span *ngIf="producto.cantidad==0" class="bg-gray-400 py-2 px-3 
     rounded-full font-medium mb-4 text-white">Agregar al Carrito</span>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+
+  <div >
+
+    <app-listarcompra></app-listarcompra>
   </div>
 </div>

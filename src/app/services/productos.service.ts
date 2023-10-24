@@ -7,7 +7,7 @@ import { Productos } from '../interfaces/productos';
   providedIn: 'root'
 })
 export class ProductosService {
-
+  productox: Productos[] = [];
   constructor(private firestore: Firestore) { }
 
   addProductos(producto: Productos) {
@@ -25,14 +25,36 @@ export class ProductosService {
     return deleteDoc(productoRef);
   }
 
-  
+
 
   // updateProductos(producto: Productos) {
   //   const productoRef = doc(this.firestore, `Productos/${producto.id}`);
   //   return updateDoc(productoRef, { producto });
   // }
 
-  
+
   // quitarCantidad(producto:Productos){
   // }
+
+  defineProducto(x: Productos[]) {
+    this.productox = x;
+  }
+
+  get gProducto() {
+    return this.productox;
+  }
+
+  quitarCantidad(id?: string) {
+    let indice = this.productox.findIndex(m => m.id == id);
+    if (indice > -1) {
+      this.productox[indice].cantidad -= 1;
+    }
+  }
+
+  agregarCantidad(id: string) {
+    let indice = this.productox.findIndex(m => m.id == id);
+    if (indice > -1) {
+      this.productox[indice].cantidad += 1;
+    }
+  }
 }

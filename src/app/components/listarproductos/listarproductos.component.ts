@@ -13,11 +13,12 @@ export class ListarproductosComponent {
   verEliminarProducto: boolean = false;
   mEditar: string = "Editar";
 
-  constructor(private productossvc: ProductosService,private listacomprasvc:ListacompraService) { }
+  constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService) { }
 
   ngOnInit() {
     this.productossvc.getProductos().subscribe(productos => {
-      this.productos = productos;
+      this.productossvc.defineProducto(productos);
+      this.productos = this.productossvc.gProducto;
     })
   }
 
@@ -25,32 +26,25 @@ export class ListarproductosComponent {
     await this.productossvc.deleteProductos(registro);
 
   }
+
   // async onClickUpdate(registro: Productos) {
   //   await this.productossvc.updateProductos(registro);
   // }
+
   onEditarProducto() {
     this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
     this.verEliminarProducto = !this.verEliminarProducto;
   }
 
-
-
   async onEliminarProducto(registro: Productos) {
     await this.productossvc.deleteProductos(registro);
-
-  }
-  
-   onAgregarCarrito(producto: Productos) {
-  
-  this.quitarCantidad(producto.id);
-  this.listacomprasvc.agregarALista(producto);
   }
 
-   quitarCantidad(id?: string) {
-    let indice = this.productos.findIndex(m => m.id == id);
-    if (indice > -1) {
-      this.productos[indice].cantidad -= 1;
-    }
+  onAgregarCarrito(producto: Productos) {
+    this.productossvc.quitarCantidad(producto.id);
+    this.listacomprasvc.agregarALista(producto);
   }
+
+
 
 }

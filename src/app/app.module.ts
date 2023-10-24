@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
 import { ListariconoComponent } from './components/listaricono/listaricono.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { FacturarComponent } from './component/facturar/facturar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MenuComponent } from './components/menu/menu.component';
     DashboardComponent,
     RegistrariconoComponent,
     ListariconoComponent,
-    MenuComponent
+    MenuComponent,
+    FacturarComponent
   ],
   imports: [
     BrowserModule,

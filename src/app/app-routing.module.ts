@@ -6,10 +6,13 @@ import { RegistrarproductoComponent } from './components/registrarproducto/regis
 import { RegistrarsubcategoriaComponent } from './components/registrarsubcategoria/registrarsubcategoria.component';
 import { ListarproductosComponent } from './components/listarproductos/listarproductos.component';
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
+import { FacturarComponent } from './component/facturar/facturar.component';
 
 const routes: Routes = [
+  {path:"",pathMatch:'full',redirectTo:'home'},
   {
-    path: "", component: DashboardComponent,
+    path: "home", component:DashboardComponent,
+    
 
     children: [
       { path: "", component: ListarproductosComponent },
@@ -24,7 +27,8 @@ const routes: Routes = [
       { path: "editaricono", component:RegistrariconoComponent },
     ]
   },
-  { path: "**", component: DashboardComponent }
+  { path: "facturar", component:FacturarComponent },
+  { path: "**", pathMatch:'full', redirectTo:"/home" }
 ];
 
 @NgModule({

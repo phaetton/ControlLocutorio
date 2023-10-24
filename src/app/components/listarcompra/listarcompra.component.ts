@@ -10,50 +10,50 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./listarcompra.component.scss']
 })
 export class ListarcompraComponent {
- listacompras: Listacompra[] ;
-  totalcompra: number ;
-  cantidadTotal:number=0;
-  descuento:number=0;
-  productos:Productos[]=[];
-  
-  constructor(private listacomprasvc: ListacompraService,private productossvc:ProductosService) {
-    this.listacompras= this.listacomprasvc.listacompras;
+  listacompras: Listacompra[];
+  totalcompra: number = 0;
+  cantidadTotal: number = 0;
+  descuento: number = 0;
+
+
+  constructor(private listacomprasvc: ListacompraService, private productossvc: ProductosService) {
+    this.listacompras = this.listacomprasvc.listacompras;
     this.totalcompra = this.listacomprasvc.totalcompra;
   }
 
   ngOnInit() {
-    this.productos=this.productossvc.
 
   }
 
   calculartotalcompra() {
-    this.cantidadTotal= this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
-    return  this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
+    return this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
   }
 
-  quitar(id:string){
-   this.listacomprasvc.quitarCantidad(id);
-   this.agregarCantidad(id);
+
+  calcularCantidadcompra() {
+    return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
+  }
+
+  quitar(id: string) {
+    this.listacomprasvc.quitarCantidad(id);
+    this.agregarCantidad(id);
   }
 
 
   // onAgregarCarrito(producto: Productos) {
-  
+
   //   this.quitarCantidad(producto.id);
   //   this.listacomprasvc.agregarALista(producto);
   //   }
-  
-   
 
-     agregarCantidad(id: string) {
-    let indice = this.productos.findIndex(m => m.id == id);
-    if (indice > -1) {
-      this.productos[indice].cantidad += 1;
-    }
+
+
+  agregarCantidad(id: string) {
+    this.productossvc.agregarCantidad(id);
   }
 
-  facturar(){
-    
+  facturar() {
+
   }
 
 
