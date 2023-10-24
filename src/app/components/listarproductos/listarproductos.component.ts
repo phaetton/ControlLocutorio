@@ -25,9 +25,9 @@ export class ListarproductosComponent {
     await this.productossvc.deleteProductos(registro);
 
   }
-  async onClickUpdate(registro: Productos) {
-    await this.productossvc.updateProductos(registro);
-  }
+  // async onClickUpdate(registro: Productos) {
+  //   await this.productossvc.updateProductos(registro);
+  // }
   onEditarProducto() {
     this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
     this.verEliminarProducto = !this.verEliminarProducto;
