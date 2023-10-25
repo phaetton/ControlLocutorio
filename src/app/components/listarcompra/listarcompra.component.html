@@ -1,5 +1,5 @@
 <aside
-    class=" flex flex-col lg:h-3/4   lg:bottom-0 lg:right-0 lg:top-0 lg:w-72 lg:overflow-y-auto lg:border-l lg:border-white/5">
+    class=" flex flex-col h-full   lg:bottom-0 lg:right-0 lg:top-0 lg:w-72 lg:overflow-y-auto lg:border-l lg:border-white/5">
     <header class="flex items-center justify-between border-b border-white/5 px-4 pt-4 sm:px-6  lg:px-8">
 
         <div class="relative scale-75 mr-2">
@@ -32,7 +32,7 @@
         <span>Total </span>
         <span>{{(calculartotalcompra() - descuento) | currency}}</span>
     </div>
-    <ul role="list" class="divide-y divide-white/5 overflow-y-auto">
+    <ul role="list" class="divide-y divide-white/5 h-80  overflow-y-auto">
         <li class="px-2 flex items-center gap-x-8 mb-2 shadow-lg relative" *ngFor="let listacompra of listacompras">
 
             <img [src]="listacompra.img" alt="" class="h-16 w-16 flex-none rounded-lg  object-cover">
@@ -70,7 +70,7 @@
     </div>
     <button *ngIf="calcularCantidadcompra()>0"
         class="my-3 text-lg font-semibold bg-gray-800  text-white rounded-lg px-6 py-3 mx-4 block shadow-xl hover:text-white hover:bg-black"
-        routerLink="/facturar">
+      [routerLink]="['/facturar',descuento]">
         Pagar
     </button>
 </aside>

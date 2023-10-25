@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: "editaricono", component:RegistrariconoComponent },
     ]
   },
-  { path: "facturar", component:FacturarComponent },
+  { path: "facturar/:descuento", component:FacturarComponent },
   { path: "**", pathMatch:'full', redirectTo:"/home" }
 ];
 
