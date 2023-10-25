@@ -4,7 +4,7 @@ export interface Productos {
     precio: number,
     cantidad: number,
     img: string,
-    categoria?: number[],
-    subcategoria?: number[],
+    categoria?: string[],
+    subcategoria?: string[],
     activo: boolean
 }
