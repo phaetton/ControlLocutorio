@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Cliente } from 'src/app/interfaces/cliente';
 import { Listacompra } from 'src/app/interfaces/listacompra';
+import { ClientesService } from 'src/app/services/clientes.service';
 import { ListacompraService } from 'src/app/services/listacompra.service';
 
 @Component({
@@ -9,6 +12,12 @@ import { ListacompraService } from 'src/app/services/listacompra.service';
   styleUrls: ['./facturar.component.scss']
 })
 export class FacturarComponent {
+  
+  // registrar cliente
+  formularionuevo!: FormGroup;
+  envio: boolean = false;
+  imageSrc: any;
+
   descuento: any;
   listacompras: Listacompra[] = [
     {
@@ -27,8 +36,12 @@ export class FacturarComponent {
 
 
 
-  constructor(private rutaactiva: ActivatedRoute, private listacomprasvc: ListacompraService) {
-    // this.listacompras = this.listacomprasvc.listacompras;
+  constructor(private rutaactiva: ActivatedRoute,
+    private listacomprasvc: ListacompraService,
+    private fb: FormBuilder,
+    private clientesvc: ClientesService) {
+      // this.listacompras = this.listacomprasvc.listacompras;
+      this.crearFormulario();
   }
 
   calcularCantidadcompra() {
@@ -50,4 +63,50 @@ export class FacturarComponent {
       this.descuento = parametro['descuento'];
     })
   }
+
+
+  get f() {
+    return this.formularionuevo.value;
+  }
+
+  // fecha: new FormControl(this.today.getTime()),
+  crearFormulario() {
+    this.formularionuevo = this.fb.group({
+      nombre: new FormControl("", Validators.required),
+      email: new FormControl(""),
+      foto: new FormControl(""),
+      celular: new FormControl(""),
+    });
+  }
+
+
+
+  async onSubmit() {
+    this.envio = true;
+    this.formularionuevo.patchValue({
+      foto: this.imageSrc?this.imageSrc:"",
+    })
+
+   await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
+      this.formularionuevo.reset();
+      this.envio = false
+      console.log(m);
+      console.log(m['id']);
+    });
+  }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    // Crear un objeto FileReader para leer el archivo.
+    const reader = new FileReader();
+    // Cuando el archivo se haya cargado, establecer la fuente de la imagen en la URL del archivo.
+    reader.onload = () => {
+      this.imageSrc = reader.result;
+    };
+    // Leer el archivo como una URL de datos.
+    reader.readAsDataURL(file);
+  }
+  async onClickDelete(registro: Cliente) {
+    const response = await this.clientesvc.deleteCliente(registro);
+  }
+
 }

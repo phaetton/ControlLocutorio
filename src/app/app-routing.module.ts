@@ -6,7 +6,7 @@ import { RegistrarproductoComponent } from './components/registrarproducto/regis
 import { RegistrarsubcategoriaComponent } from './components/registrarsubcategoria/registrarsubcategoria.component';
 import { ListarproductosComponent } from './components/listarproductos/listarproductos.component';
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
-import { FacturarComponent } from './component/facturar/facturar.component';
+import { FacturarComponent } from './components/facturar/facturar.component';
 
 const routes: Routes = [
   {path:"",pathMatch:'full',redirectTo:'home'},
