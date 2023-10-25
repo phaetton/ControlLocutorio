@@ -27,10 +27,10 @@ export class ProductosService {
 
 
 
-  // updateProductos(producto: Productos) {
-  //   const productoRef = doc(this.firestore, `Productos/${producto.id}`);
-  //   return updateDoc(productoRef, { producto });
-  // }
+  updateProductos(producto: Productos) {
+     const productoRef = doc(this.firestore, `Productos/${producto.id}`);
+     return updateDoc(productoRef, { producto });
+   }
 
 
   // quitarCantidad(producto:Productos){

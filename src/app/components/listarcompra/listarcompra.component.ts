@@ -10,7 +10,7 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./listarcompra.component.scss']
 })
 export class ListarcompraComponent {
-  listacompras: Listacompra[];
+  listacompras: Listacompra;
   totalcompra: number = 0;
   cantidadTotal: number = 0;
   descuento: number = 0;
@@ -26,12 +26,12 @@ export class ListarcompraComponent {
   }
 
   calculartotalcompra() {
-    return this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
+    // return this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
   }
 
 
   calcularCantidadcompra() {
-    return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
+    // return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
   }
 
   quitar(id: string) {
@@ -40,11 +40,6 @@ export class ListarcompraComponent {
   }
 
 
-  // onAgregarCarrito(producto: Productos) {
-
-  //   this.quitarCantidad(producto.id);
-  //   this.listacomprasvc.agregarALista(producto);
-  //   }
 
 
 

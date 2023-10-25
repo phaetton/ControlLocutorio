@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/cliente';
+import { Factura } from 'src/app/interfaces/facturas';
 import { Listacompra } from 'src/app/interfaces/listacompra';
+import { Productos } from 'src/app/interfaces/productos';
 import { ClientesService } from 'src/app/services/clientes.service';
+import { FacturasService } from 'src/app/services/facturas.service';
 import { ListacompraService } from 'src/app/services/listacompra.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-facturar',
@@ -12,36 +16,30 @@ import { ListacompraService } from 'src/app/services/listacompra.service';
   styleUrls: ['./facturar.component.scss']
 })
 export class FacturarComponent {
-  
-  // registrar cliente
+
+  tipocliente: string = "anonimo";
   formularionuevo!: FormGroup;
-  envio: boolean = false;
   imageSrc: any;
+  today = new Date();
+  fecha = this.today.getTime();
+  gracias: boolean = false;
 
+  envio: boolean = false;
+  factura!: Factura;
   descuento: any;
-  listacompras: Listacompra[] = [
-    {
-      "precio": 6, "activo": true, "categoria": ["gaKpNYTxDRCS6jOzNhdA"],
-      "img": "../assets/imagen/predefinida.jpg", "nombre": "nuevo", "cantidad": 4, "subcategoria": ["eC69T9PBGdAaPRxujunS"], "id": "uuqdAwHPzN7merckqIxR", "cantidadCompra": 5
-    }, {
-      "cantidad": 4, "activo": true, "precio": 333, "nombre": "dfsfd", "subcategoria": ["qz0AI9Cvf2hBY52Wvfhc", "eC69T9PBGdAaPRxujunS", "6SEZCAIyPMrpY2aer9k8"], "categoria": ["rS6yTCA36dCNv0cJsX4E", "gaKpNYTxDRCS6jOzNhdA"],
-      "img": "../assets/imagen/predefinida.jpg", "id": "PjsU98LU9gXiqBxrmESw", "cantidadCompra": 5
-    }, {
-      "activo": true, "categoria": ["rS6yTCA36dCNv0cJsX4E"],
-      "img": "../assets/imagen/predefinida.jpg", "precio": 4, "subcategoria": ["qz0AI9Cvf2hBY52Wvfhc"], "cantidad": 0, "nombre": "yyy", "id": "7upybCo98inBv2nQpFFm", "cantidadCompra": 1
-    }];
-  tipocliente: string = "nuevo";
-
-
-
-
+  listacompras: Listacompra[] = [];
+  productos:Productos[]=[];
+  reducido: any[] = [];
 
   constructor(private rutaactiva: ActivatedRoute,
     private listacomprasvc: ListacompraService,
     private fb: FormBuilder,
-    private clientesvc: ClientesService) {
-      // this.listacompras = this.listacomprasvc.listacompras;
-      this.crearFormulario();
+    private clientesvc: ClientesService,
+    private facturasvc: FacturasService,
+    private productosvc:ProductosService
+  ) {
+    this.listacompras = this.listacomprasvc.listacompras;
+    this.crearFormulario();
   }
 
   calcularCantidadcompra() {
@@ -56,10 +54,8 @@ export class FacturarComponent {
     this.listacompras.splice(this.listacompras.indexOf(producto), 1)
   }
 
-
   ngOnInit(): void {
     this.rutaactiva.params.subscribe(parametro => {
-
       this.descuento = parametro['descuento'];
     })
   }
@@ -69,7 +65,6 @@ export class FacturarComponent {
     return this.formularionuevo.value;
   }
 
-  // fecha: new FormControl(this.today.getTime()),
   crearFormulario() {
     this.formularionuevo = this.fb.group({
       nombre: new FormControl("", Validators.required),
@@ -79,21 +74,79 @@ export class FacturarComponent {
     });
   }
 
+  enviaranonimo() {
+    // this.envio = true;
 
+    this.listacompras.map(m => {
+
+      this.productosvc.updateProductos(m);
+
+
+      this.reducido.push(
+        {
+          'nombre': m.nombre,
+          'precio': m.precio,
+          'id': m.id,
+          'cantidadCompra': m.cantidadCompra,
+        }
+      );
+    })
+
+    this.factura = {
+      cliente: 'Anonimo',
+      listacompra: this.reducido,
+      tipoventa: 'Compra Directa',
+      abono: [{
+        fecha: this.fecha,
+        cantidad: this.calculartotalcompra(),
+        descuento: this.descuento
+      }],
+    };
+
+    this.facturasvc.addfactura(this.factura).then(m => {
+      this.gracias = true;
+      this.envio = false;
+    }
+    );
+
+  }
 
   async onSubmit() {
     this.envio = true;
     this.formularionuevo.patchValue({
-      foto: this.imageSrc?this.imageSrc:"",
+      foto: this.imageSrc ? this.imageSrc : "",
     })
 
-   await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
-      this.formularionuevo.reset();
+
+
+
+    await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
+
       this.envio = false
-      console.log(m);
       console.log(m['id']);
+
+      this.factura = {
+        cliente: m['id'],
+        listacompra: this.listacompras,
+        fecha: this.fecha,
+        descuento: this.descuento,
+        tipoventa: 'Compra Directa',
+        abono: [{
+          fecha: this.fecha,
+          cantidad: this.calculartotalcompra(),
+          descuento: this.descuento
+        }],
+      };
+
+      console.log(this.factura);
+      this.facturasvc.addfactura(this.factura);
+
+      this.formularionuevo.reset();
+
     });
   }
+
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     // Crear un objeto FileReader para leer el archivo.

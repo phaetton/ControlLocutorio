@@ -3,10 +3,10 @@ import { Listacompra } from "./listacompra";
 
 export interface Factura {
     id?: string,
-    cliente: string,
+    cliente?: string,
     listacompra?: Listacompra[],
-    fecha?: string,
-    descuento?: string,
+    fecha?: number,
+    descuento?: number,
     tipoventa?:string //fiado, apartado, alcash
     abono?:Abono[],
 }

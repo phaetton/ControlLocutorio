@@ -6,5 +6,4 @@ export interface Productos {
     img: string,
     categoria?: string[],
     subcategoria?: string[],
-    activo: boolean
 }

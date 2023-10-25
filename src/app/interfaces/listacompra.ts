@@ -1,5 +1,6 @@
 import { Productos } from "./productos"
 
-export interface Listacompra extends Productos{
+export interface Listacompra {
+    productos:Productos[],
     cantidadCompra: number
 }

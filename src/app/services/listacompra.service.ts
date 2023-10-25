@@ -6,8 +6,7 @@ import { Productos } from '../interfaces/productos';
   providedIn: 'root'
 })
 export class ListacompraService {
-  listacompras: Listacompra[] = [
-  ]
+  listacompras!: Listacompra ;
   totalcompra: number = 0;
 
   constructor() { }
@@ -15,22 +14,22 @@ export class ListacompraService {
 
 
   agregarALista(producto: Productos) {
-    let productoCompra : Listacompra;
-    let indice = this.listacompras.findIndex(m => m.id == producto.id);
-    if (indice > -1) {
-      this.listacompras[indice].cantidadCompra += 1;
-    } else {
-      productoCompra={...producto, cantidadCompra:1};
-      this.listacompras.push(productoCompra);
-    }
+    // let productoCompra : Listacompra;
+    // let indice = this.listacompras.findIndex(m => m.id == producto.id);
+    // if (indice > -1) {
+    //   this.listacompras[indice].cantidadCompra += 1;
+    // } else {
+    //   productoCompra={...producto, cantidadCompra:1};
+    //   this.listacompras.push(productoCompra);
+    // }
 
   }
 
   quitarCantidad(id: string) {
-    let indice = this.listacompras.findIndex(m => m.id?id :'');
-    if (indice > -1) {
-      this.listacompras[indice].cantidadCompra == 1 ? this.listacompras.splice(indice, 1) : this.listacompras[indice].cantidadCompra -= 1;
+    // let indice = this.listacompras.findIndex(m => m.id?id :'');
+    // if (indice > -1) {
+    //   this.listacompras[indice].cantidadCompra == 1 ? this.listacompras.splice(indice, 1) : this.listacompras[indice].cantidadCompra -= 1;
 
-    }
+    // }
   }
 }
