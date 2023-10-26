@@ -42,6 +42,9 @@ export class ListarproductosComponent {
 
   onAgregarCarrito(producto: Productos) {
     this.productossvc.quitarCantidad(producto.id);
+this.productos[0].cantidad=8;
+
+    this.productossvc.updateProductos(producto);
     this.listacomprasvc.agregarALista(producto);
   }
 
