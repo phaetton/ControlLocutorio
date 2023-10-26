@@ -49,6 +49,9 @@ export class ProductosService {
     if (indice > -1) {
       this.productox[indice].cantidad -= 1;
     }
+
+
+
   }
 
   agregarCantidad(id: string) {
