@@ -7,8 +7,13 @@ import { Productos } from '../interfaces/productos';
   providedIn: 'root'
 })
 export class ProductosService {
-  productox: Productos[] = [];
-  constructor(private firestore: Firestore) { }
+
+  productoGlobal: Productos[] = [];
+
+  constructor(private firestore: Firestore) { 
+    this.getProductos().subscribe(m => this.productoGlobal = m);
+
+  }
 
   addProductos(producto: Productos) {
     const productoRef = collection(this.firestore, 'Productos');
@@ -27,37 +32,44 @@ export class ProductosService {
 
 
 
-  updateProductos(producto: Productos) {
-     const productoRef = doc(this.firestore, `Productos/${producto.id}`);
-     return updateDoc(productoRef, { producto });
-   }
-
-
-  // quitarCantidad(producto:Productos){
+  // updateCantidadProductoProductos(id: string, proceso: boolean) {
+  //   let indice = this.productoGlobal.findIndex(m => m.id == id);
+  //   const productoRef = doc(this.firestore, `Productos/${id}`);
+  //   return updateDoc(productoRef, {
+  //     cantidad: proceso ? this.productoGlobal[indice].cantidad - 1 : this.productoGlobal[indice].cantidad - 1
+  //   });
   // }
 
-  defineProducto(x: Productos[]) {
-    this.productox = x;
+
+  updateProductos(producto: Productos) {
+    const productoRef = doc(this.firestore, `Productos/${producto.id}`);
+    return updateDoc(productoRef, {
+      cantidad: producto.cantidad,
+    });
   }
 
-  get gProducto() {
-    return this.productox;
-  }
-
-  quitarCantidad(id?: string) {
-    let indice = this.productox.findIndex(m => m.id == id);
+  quitarCantidadProducto(id?: string) {
+    let indice = this.productoGlobal.findIndex(m => m.id == id);
     if (indice > -1) {
-      this.productox[indice].cantidad -= 1;
-    }
-
-
-
-  }
-
-  agregarCantidad(id: string) {
-    let indice = this.productox.findIndex(m => m.id == id);
-    if (indice > -1) {
-      this.productox[indice].cantidad += 1;
+      this.productoGlobal[indice].cantidad -= 1;
+      this.updateProductos(this.productoGlobal[indice])
     }
   }
+
+  agregarCantidadProducto(id?: string) {
+    let indice = this.productoGlobal.findIndex(m => m.id == id);
+    if (indice > -1) {
+      this.productoGlobal[indice].cantidad += 1;
+      this.updateProductos(this.productoGlobal[indice])
+    }
+  }
+
+  // agregarCantidadProducto(producto: Productos) {
+  //   let indice = this.productoGlobal.findIndex(m => m.id == producto.id);
+  //   if (indice > -1) {
+  //     this.productoGlobal[indice].cantidad += 1;
+  //   }
+  // }
+
+
 }
