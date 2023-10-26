@@ -1,5 +1,5 @@
 <aside
-    class=" flex flex-col h-full   lg:bottom-0 lg:right-0 lg:top-0 lg:w-72 lg:overflow-y-auto lg:border-l lg:border-white/5">
+    class=" flex flex-col h-full   lg:bottom-0 lg:right-0 lg:top-0 lg:w-60 lg:overflow-y-auto lg:border-l lg:border-white/5">
     <header class="flex items-center justify-between border-b border-white/5 px-4 pt-4 sm:px-6  lg:px-8">
 
         <div class="relative scale-75 mr-2">
@@ -21,7 +21,7 @@
 
             <div *ngIf="cantidadTotal>0" class="flex justify-between">
                 <span>Sub Total</span>
-                <!-- <span>{{calculartotalcompra()| currency}}</span> -->
+                <span>{{calculartotalcompra()| currency}}</span>
             </div>
 
 
@@ -30,28 +30,29 @@
     </header>
     <div class="text-right  px-2 font-semibold leading-6 text-indigo-400">
         <span>Total </span>
-        <!-- <span>{{(calculartotalcompra() - descuento) | currency}}</span> -->
+        <span>{{(calculartotalcompra() - descuento) | currency}}</span>
     </div>
     <ul role="list" class="divide-y divide-white/5 h-80  overflow-y-auto">
-        <li class="px-2 flex items-center gap-x-8 mb-2 shadow-lg relative" *ngFor="let listacompra of listacompras">
+        <li class="px-1 flex items-center  shadow-lg " *ngFor="let listacompra of listacompras">
 
-            <img [src]="listacompra.producto.img" alt="" class="h-16 w-16 flex-none rounded-lg  object-cover">
+            <img [src]="listacompra.producto.img" [alt]="listacompra.producto.nombre"
+                class="h-14 w-14 flex-none rounded-lg  object-cover">
 
-
-
-            <div class="flex flex-col text-sm pb-2 text-center w-full">
-                <div class=" px-2  py-2 font-semibold flex text-center justify-between ">
+            <div class="flex flex-col text-sm pb-1 text-center w-full">
+                <div class=" p-1 font-semibold  ">
                     {{listacompra.producto.nombre}}
                 </div>
-                <div class="flex justify-between px-2">
-                    <span class="  leading-5 text-gray-600">Precio</span>
+                <div class="flex justify-between font-thin  px-1">
                     <span class="  leading-5 text-gray-600"> ${{listacompra.producto.precio}}</span>
-                </div>
-                <div class="flex justify-between px-2">
-                    <span class="  leading-5 text-gray-600">Cantidad</span>
-                    <span (click)="onQuitarCarrito(listacompra)"
-                        class=" -top-2 right-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50">-</span>
-                    <span class="  leading-5 text-gray-600"> {{listacompra.cantidadCompra}}</span>
+
+                    <div>
+                        <span class="  leading-5 text-gray-600 mx-1 bg-green-200 p-2 rounded-lg">
+                            {{listacompra.cantidadCompra}}</span>
+                        <span (click)="onQuitarCarrito(listacompra)"
+                            class=" -top-2 right-4 rounded-lg bg-red-900 p-2  text-red-50">
+                            -
+                        </span>
+                    </div>
                 </div>
 
                 <div class="flex justify-between font-semibold text-gray-800 bg-gray-100 p-2 my-2 rounded-lg">
@@ -67,9 +68,9 @@
         <input [(ngModel)]="descuento" name="nombre" id="nombre" type="number" min="0" max="500"
             class="w-20 text-md block px-3 py-2 rounded-lg  bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
     </div>
-    <!-- <button *ngIf="calcularCantidadcompra()>0"
+    <button *ngIf="calcularCantidadcompra()>0"
         class="my-3 text-lg font-semibold bg-gray-800  text-white rounded-lg px-6 py-3 mx-4 block shadow-xl hover:text-white hover:bg-black"
-      [routerLink]="['/facturar',descuento]">
+        [routerLink]="['/facturar',descuento]">
         Pagar
-    </button> -->
+    </button>
 </aside>

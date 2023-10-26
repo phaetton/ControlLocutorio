@@ -27,12 +27,12 @@ export class ListarcompraComponent {
   }
 
   calculartotalcompra() {
-    // return this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
+     return this.listacompras.reduce((acumulador, listacompra) => acumulador + (listacompra.producto.precio * listacompra.cantidadCompra), 0);
   }
 
 
   calcularCantidadcompra() {
-    // return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
+     return this.listacompras.reduce((acumulador, listacompra) => acumulador + listacompra.cantidadCompra, 0);
   }
 
  
