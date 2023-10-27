@@ -16,6 +16,8 @@ export class ListarproductosComponent {
   categoria?: string;
   subcategoria?: string;
 
+  productoFiltrado:Productos[]=[]
+
   constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService, private rutaactiva: ActivatedRoute) {
   }
 
@@ -26,13 +28,12 @@ export class ListarproductosComponent {
         this.categoria = parametro['categoria'];
         this.subcategoria = parametro['subcategoria'];
         if (parametro['categoria']) {
-          this.productos = m.filter(m => m.categoria == this.categoria)
-        }
-        else if (parametro['subcategoria']) {
-          this.productos = m.filter(m => m.subcategoria == this.subcategoria)
+          this.productoFiltrado = m.filter(m => m.categoria == this.categoria)
         }else {
-          this.productos = m;
+          this.productoFiltrado = m;
         }
+
+        this.productos = this.productoFiltrado;
       });
     })
   }
@@ -55,6 +56,14 @@ export class ListarproductosComponent {
   onAgregarCarrito(producto: Productos) {
     this.productossvc.quitarCantidadProducto(producto.id);
     this.listacomprasvc.agregarAListaCompra(producto);
+  }
+
+  onRecibirSub(idSub:string){
+    //  this.listacompras.splice(this.listacompras.indexOf(producto), 1)
+
+    this.productos = this.productoFiltrado.filter(m => m.subcategoria?.indexOf(idSub))
+    
+
   }
 
 }

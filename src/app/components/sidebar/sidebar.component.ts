@@ -11,10 +11,12 @@ import { combineLatest, forkJoin } from 'rxjs';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  @Output() categoria = new EventEmitter<string>();
   categorias: Categorias[] = [];
   iconos: Iconos[] = [];
-  constructor(private categoriasvc: CategoriasService, private iconosvc: IconosService) { }
+  constructor(
+    private categoriasvc: CategoriasService,
+    private iconosvc: IconosService
+  ) { }
 
   ngOnInit() {
 
@@ -43,11 +45,6 @@ export class SidebarComponent {
     console.log(response);
 
   }
-  onEnviarCategoria(categoria: Categorias) {
-    console.log("    enviando categoria     ");
 
-    this.categoria.emit(categoria.id)
-    // [routerLink]="['categoria',categoria.id]" 
-  }
 
 }

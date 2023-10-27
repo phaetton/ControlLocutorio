@@ -1,28 +1,12 @@
 <div class="px-5 pt-2 bg-white shadow-lg  w-full flex justify-between ">
-    <div class="flex group mt-2">
-        <span class="px-3  text-gray-400 relative hover:text-yellow-500">
-            <a [routerLink]="['/productos']" class="flex flex-col items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
-      transition-color duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                </svg>
-                <span class="text-xs mb-2 transition-all duration-200">
-                    Todo
-                </span>
-                <span class="h-2 w-2 rounded-full group-hover:bg-yellow-500
-                            transition-all duration-150 delay-100"></span>
-            </a>
-        </span>
-    </div>
+ 
     <div class=" w-full flex   overflow-auto ">
         <div class="flex group "    *ngFor="let subcategoria of subcategorias; let i = index ">
             <span class="px-3  text-gray-400 relative hover:text-yellow-500"
                 routerLinkActive="bg-orange-400 rounded-xl text-white hover:text-black">
 
 
-                <a [routerLink]="['/subcategoria',subcategoria.id]" class="flex flex-col items-center">
+                <a (click)="onEnviarSubCategoria(subcategoria.id?subcategoria.id:'')" class="flex flex-col items-center">
                     <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
         transition-color duration-200" [src]="subcategoria.icono" alt="">
 

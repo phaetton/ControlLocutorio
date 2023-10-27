@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   { path: "facturar/:descuento", component: FacturarComponent },
 
-  // { path: "**", pathMatch:'full', redirectTo:"/home" }
+  { path: "**", pathMatch:'full', redirectTo:"/home" }
 ];
 
 @NgModule({

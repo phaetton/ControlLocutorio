@@ -1,6 +1,5 @@
 <app-menu></app-menu>
-<app-navbar [categoria]="categoria" [subcategorias]="subcategorias"></app-navbar>
 <div class="container-fluid    md:ml-32">
-    <app-sidebar (categoria)="onRecibirCategoria($event)" ></app-sidebar>
+    <app-sidebar ></app-sidebar>
         <router-outlet></router-outlet>
 </div>
