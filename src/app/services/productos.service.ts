@@ -51,15 +51,15 @@ export class ProductosService {
   quitarCantidadProducto(id?: string) {
     let indice = this.productoGlobal.findIndex(m => m.id == id);
     if (indice > -1) {
-      this.productoGlobal[indice].cantidad -= 1;
+      this.productoGlobal[indice].cantidad! -= 1;
       this.updateProductos(this.productoGlobal[indice])
     }
   }
 
   agregarCantidadProducto(id?: string) {
     let indice = this.productoGlobal.findIndex(m => m.id == id);
-    if (indice > -1) {
-      this.productoGlobal[indice].cantidad += 1;
+    if ( indice > -1) {
+      this.productoGlobal[indice].cantidad! += 1;
       this.updateProductos(this.productoGlobal[indice])
     }
   }

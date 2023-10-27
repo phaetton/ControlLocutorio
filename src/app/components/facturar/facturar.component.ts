@@ -17,134 +17,144 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class FacturarComponent {
 
-  // tipocliente: string = "anonimo";
-  // formularionuevo!: FormGroup;
-  // imageSrc: any;
-  // today = new Date();
-  // fecha = this.today.getTime();
-  // gracias: boolean = false;
+  tipocliente: string = "anonimo";
+  formularionuevo!: FormGroup;
+  imageSrc: any;
+  today = new Date();
+  fecha = this.today.getTime();
+  gracias: boolean = false;
 
-  // envio: boolean = false;
+  envio: boolean = false;
   // factura!: Factura;
-  // descuento: any;
-  // listacompras: Listacompra[] = [];
+  descuento: number = 0;
+  listacompras: Listacompra[] = [];
   // productos:Productos[]=[];
-  // reducido: any[] = [];
+  reducido: Listacompra[] = [];
 
-  // constructor(private rutaactiva: ActivatedRoute,
-  //   private listacomprasvc: ListacompraService,
-  //   private fb: FormBuilder,
-  //   private clientesvc: ClientesService,
-  //   private facturasvc: FacturasService,
-  //   private productosvc:ProductosService
-  // ) {
-  //   this.listacompras = this.listacomprasvc.listacompras;
-  //   this.crearFormulario();
-  // }
+  constructor(private rutaactiva: ActivatedRoute,
+    private listacomprasvc: ListacompraService,
+    private fb: FormBuilder,
+    private clientesvc: ClientesService,
+    private facturasvc: FacturasService,
+    private productosvc: ProductosService
+  ) {
+    this.listacomprasvc.getListacompra().subscribe(m => this.listacompras = m);
+    this.crearFormulario();
+  }
 
   // calcularCantidadcompra() {
   //   return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
   // }
 
-  // calculartotalcompra() {
-  //   return this.listacompras.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidadCompra), 0);
-  // }
+  calculartotalcompra() {
+    return this.listacompras.reduce((acumulador, listacompra) => acumulador + (listacompra.producto.precio * listacompra.cantidadCompra), 0);
+  }
 
-  // eliminarCompra(producto: Listacompra) {
-  //   this.listacompras.splice(this.listacompras.indexOf(producto), 1)
-  // }
+  eliminarCompra(producto: Listacompra) {
+    //  this.listacompras.splice(this.listacompras.indexOf(producto), 1)
+  }
 
-  // ngOnInit(): void {
-  //   this.rutaactiva.params.subscribe(parametro => {
-  //     this.descuento = parametro['descuento'];
-  //   })
-  // }
+  ngOnInit(): void {
+    this.rutaactiva.params.subscribe(parametro => {
+      this.descuento = parametro['descuento'];
+    })
+  }
 
 
   // get f() {
   //   return this.formularionuevo.value;
   // }
 
-  // crearFormulario() {
-  //   this.formularionuevo = this.fb.group({
-  //     nombre: new FormControl("", Validators.required),
-  //     email: new FormControl(""),
-  //     foto: new FormControl(""),
-  //     celular: new FormControl(""),
-  //   });
-  // }
+  crearFormulario() {
+    this.formularionuevo = this.fb.group({
+      nombre: new FormControl("", Validators.required),
+      email: new FormControl(""),
+      foto: new FormControl(""),
+      celular: new FormControl(""),
+    });
+  }
 
-  // enviaranonimo() {
-  //   // this.envio = true;
+  enviaranonimo() {
+    this.envio = true;
 
-  //   this.listacompras.map(m => {
+    this.reducido = { ...this.listacompras }
+    this.reducido.map(m => {
+      delete m.producto.categoria
+      delete m.producto.subcategoria
+      delete m.producto.img
+      delete m.producto.cantidad
+    })
 
-  //     this.productosvc.updateProductos(m);
+    console.log(this.reducido);
+    
+    //   this.listacompras.map(m => {
 
-
-  //     this.reducido.push(
-  //       {
-  //         'nombre': m.nombre,
-  //         'precio': m.precio,
-  //         'id': m.id,
-  //         'cantidadCompra': m.cantidadCompra,
-  //       }
-  //     );
-  //   })
-
-  //   this.factura = {
-  //     cliente: 'Anonimo',
-  //     listacompra: this.reducido,
-  //     tipoventa: 'Compra Directa',
-  //     abono: [{
-  //       fecha: this.fecha,
-  //       cantidad: this.calculartotalcompra(),
-  //       descuento: this.descuento
-  //     }],
-  //   };
-
-  //   this.facturasvc.addfactura(this.factura).then(m => {
-  //     this.gracias = true;
-  //     this.envio = false;
-  //   }
-  //   );
-
-  // }
-
-  // async onSubmit() {
-  //   this.envio = true;
-  //   this.formularionuevo.patchValue({
-  //     foto: this.imageSrc ? this.imageSrc : "",
-  //   })
+    //     this.productosvc.updateProductos(m);
 
 
+    //     this.reducido.push(
+    //       {
+    //         'nombre': m.nombre,
+    //         'precio': m.precio,
+    //         'id': m.id,
+    //         'cantidadCompra': m.cantidadCompra,
+    //       }
+    //     );
+    //   })
+
+    // this.factura = {
+    //   cliente: 'Anonimo',
+    //   //     listacompra: this.reducido,
+    //   //     tipoventa: 'Compra Directa',
+    //   //     abono: [{
+    //   //       fecha: this.fecha,
+    //   //       cantidad: this.calculartotalcompra(),
+    //   //       descuento: this.descuento
+    //   //     }],
+    // };
+
+    //   this.facturasvc.addfactura(this.factura).then(m => {
+    //     this.gracias = true;
+    //     this.envio = false;
+    //   }
+    //   );
+
+  }
+
+  async onSubmit() {
+    //   this.envio = true;
+    //   this.formularionuevo.patchValue({
+    //     foto: this.imageSrc ? this.imageSrc : "",
+    //   })
 
 
-  //   await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
 
-  //     this.envio = false
-  //     console.log(m['id']);
 
-  //     this.factura = {
-  //       cliente: m['id'],
-  //       listacompra: this.listacompras,
-  //       fecha: this.fecha,
-  //       descuento: this.descuento,
-  //       tipoventa: 'Compra Directa',
-  //       abono: [{
-  //         fecha: this.fecha,
-  //         cantidad: this.calculartotalcompra(),
-  //         descuento: this.descuento
-  //       }],
-  //     };
+    //   await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
 
-  //     console.log(this.factura);
-  //     this.facturasvc.addfactura(this.factura);
+    //     this.envio = false
+    //     console.log(m['id']);
 
-  //     this.formularionuevo.reset();
+    //     this.factura = {
+    //       cliente: m['id'],
+    //       listacompra: this.listacompras,
+    //       fecha: this.fecha,
+    //       descuento: this.descuento,
+    //       tipoventa: 'Compra Directa',
+    //       abono: [{
+    //         fecha: this.fecha,
+    //         cantidad: this.calculartotalcompra(),
+    //         descuento: this.descuento
+    //       }],
+    //     };
 
-  //   });
-  // }
+    //     console.log(this.factura);
+    //     this.facturasvc.addfactura(this.factura);
+
+    //     this.formularionuevo.reset();
+
+    //   });
+  }
 
 
   // onFileSelected(event: any) {
