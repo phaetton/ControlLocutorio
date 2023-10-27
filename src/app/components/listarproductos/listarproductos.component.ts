@@ -19,42 +19,46 @@ export class ListarproductosComponent {
   constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService, private rutaactiva: ActivatedRoute) {
   }
 
-  ngOnInit() {
-    this.rutaactiva.params.subscribe(parametro => {
-    
-      this.productossvc.getProductos().subscribe(m => {
-        this.categoria = parametro['categoria'];
-        this.subcategoria = parametro['subcategoria'];
-        if (parametro['categoria']) {
-          this.productos = m.filter(m => m.categoria == this.categoria)
-        }
-        else if (parametro['subcategoria']) {
-          this.productos = m.filter(m => m.subcategoria == this.subcategoria)
-        }else {
-          this.productos = m;
-        }
-      });
-    })
-  }
+  // ngOnInit() {
+  //   this.rutaactiva.params.subscribe(parametro => {
+  //     console.log("parametro",parametro['subcategoria']);
+      
+  //     this.rutaactiva.parent?.params.subscribe(x =>       console.log("parametro",x['subcategoria'])
+
+  //     )
+  //     this.productossvc.getProductos().subscribe(m => {
+  //       this.categoria = parametro['categoria'];
+  //       this.subcategoria = parametro['subcategoria'];
+  //       if (parametro['categoria']) {
+  //         this.productos = m.filter(m => m.categoria == this.categoria)
+  //       }
+  //       else if (parametro['subcategoria']) {
+  //         this.productos = m.filter(m => m.subcategoria == this.subcategoria)
+  //       } else {
+  //         this.productos = m;
+  //       }
+  //     });
+  //   })
+  // }
 
 
-  async onClickDelete(registro: Productos) {
-    await this.productossvc.deleteProductos(registro);
+  // async onClickDelete(registro: Productos) {
+  //   await this.productossvc.deleteProductos(registro);
 
-  }
+  // }
 
-  onEditarProducto() {
-    this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
-    this.verEliminarProducto = !this.verEliminarProducto;
-  }
+  // onEditarProducto() {
+  //   this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
+  //   this.verEliminarProducto = !this.verEliminarProducto;
+  // }
 
-  async onEliminarProducto(registro: Productos) {
-    await this.productossvc.deleteProductos(registro);
-  }
+  // async onEliminarProducto(registro: Productos) {
+  //   await this.productossvc.deleteProductos(registro);
+  // }
 
-  onAgregarCarrito(producto: Productos) {
-    this.productossvc.quitarCantidadProducto(producto.id);
-    this.listacomprasvc.agregarAListaCompra(producto);
-  }
+  // onAgregarCarrito(producto: Productos) {
+  //   this.productossvc.quitarCantidadProducto(producto.id);
+  //   this.listacomprasvc.agregarAListaCompra(producto);
+  // }
 
 }

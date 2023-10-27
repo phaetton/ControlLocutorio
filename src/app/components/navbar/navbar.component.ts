@@ -12,33 +12,48 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  @Input() categoria?: string;
-  @Input() subcategorias: Subcategorias[] = [];
+  categoria?: string;
+  subcategorias: Subcategorias[] = [];
   admin?: boolean;
-  otro: any;
 
   constructor(
     private subcategoriassvc: SubcategoriasService,
     private iconosvc: IconosService,
     private categoriasvc: CategoriasService,
     private rutaactiva: ActivatedRoute
-  ) {
-    if (this.categoria) {
-      console.log("existe categoria");
-
-    } else {
-      console.log("no hay categoria");
-
-    }
-  }
+  ) { }
 
   ngOnInit() {
     this.rutaactiva.params.subscribe(parametro => {
-      console.log("parametro", parametro);
-      
+      combineLatest(
+        [this.subcategoriassvc.getSubcategorias(),
+        this.iconosvc.getIconos(), this.categoriasvc.getCategorias()]
+      ).subscribe(([subcategorias, iconos, categorias]) => {
+        subcategorias.filter(x => x.categoria == parametro['categoria'])
+        let filtrado: Subcategorias[];
+        if (parametro['categoria']) {
+          filtrado = subcategorias.filter(x => x.categoria == parametro['categoria'])
+        } else {
+          filtrado = subcategorias;
+        }
+        this.subcategorias = filtrado.map(m => {
+          let icon = iconos.find(x => x.id == m.icono);
+          let cat = categorias.find(x => x.id == m.categoria);
+
+          return {
+            id: m.id,
+            nombre: m.nombre,
+            icono: icon ? icon['img'] : '',
+            categoria: cat ? cat['nombre'] : '',
+          }
+        })
+      })
+
     })
 
   }
+
+
 
 
   async onClickDelete(registro: Subcategorias) {

@@ -1,10 +1,27 @@
 <!-- <div class="hidden xl:fixed xl:inset-y-0 xl:z-40 xl:flex xl:w-36 xl:flex-col"> -->
 <!-- <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 ring-1 ring-white/5"> -->
+
+
+
+
 <nav
   class="z-20 overflow-y-auto flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white/50 p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-2/4 -translate-y-2/4 left-6 min-h-[auto] min-w-[64px] flex-col rounded-lg border">
+
+  <span routerLink="" 
+  
+  class="cursor-pointer flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
+  <svg xmlns="http://www.w3.org/2000/svg" class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
+  transition-color duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+  <small class="text-center text-xs font-medium"> Todo </small>
+</span>
+
   <!-- (click)="onFiltrarSubCategoria(categoria.id)"  -->
-  <span (click)="onEnviarCategoria(categoria)" [routerLink]="['categoria',categoria.id]"
-    routerLinkActive="bg-yellow-500 hover:bg-yellow-300" *ngFor="let categoria of categorias"
+  <span [routerLink]="['categoria',categoria.id]" routerLinkActive="bg-yellow-500 hover:bg-yellow-300"
+    *ngFor="let categoria of categorias"
     class="cursor-pointer flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
 
     <img class="w-6 h-6" [src]="categoria.icono " alt="">
@@ -12,19 +29,7 @@
   </span>
 
   <hr class="dark:border-gray-700/60" />
-  <!--   
-        <button (click)="onEditarCategoria()"
-          class="p-2 rounded-sm cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400"
-          [ngClass]="{'bg-green-500 text-white':verEliminarCategoria}">
-          <small className="text-xs font-medium" >{{mEditar}}</small>
-        </button> -->
-  <hr class="dark:border-gray-700/60" />
 
-  <!--   
-        <button *ngIf="!verEliminarCategoria"
-          class="cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400">
-          <small className="text-xs font-medium" routerLink="/agregarcategoria">Agregar</small>
-        </button> -->
 
 
 </nav>

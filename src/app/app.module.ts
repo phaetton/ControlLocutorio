@@ -22,6 +22,7 @@ import { RegistrariconoComponent } from './components/registraricono/registraric
 import { ListariconoComponent } from './components/listaricono/listaricono.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
+import { ProductofiltradoComponent } from './components/productofiltrado/productofiltrado.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FacturarComponent } from './components/facturar/facturar.component';
     ListariconoComponent,
     MenuComponent,
     FacturarComponent,
+    ProductofiltradoComponent,
   ],
   imports: [
     BrowserModule,

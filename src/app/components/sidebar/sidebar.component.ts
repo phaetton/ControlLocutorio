@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Categorias } from 'src/app/interfaces/categorias';
 import { Iconos } from 'src/app/interfaces/iconos';
 import { CategoriasService } from 'src/app/services/categorias.service';
@@ -11,7 +11,6 @@ import { combineLatest, forkJoin } from 'rxjs';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  @Output() categoria = new EventEmitter<string>();
   categorias: Categorias[] = [];
   iconos: Iconos[] = [];
   constructor(private categoriasvc: CategoriasService, private iconosvc: IconosService) { }
@@ -27,10 +26,10 @@ export class SidebarComponent {
         return {
           id: m.id,
           nombre: m.nombre,
-          icono: valor ? valor['img'] : ''
+          icono: valor ? valor['img']: ''
         }
       })
-    })
+    })  
   }
 
   async onClickDelete(registro: Categorias) {
@@ -42,12 +41,6 @@ export class SidebarComponent {
     const response = await this.categoriasvc.updateCategorias(registro);
     console.log(response);
 
-  }
-  onEnviarCategoria(categoria: Categorias) {
-    console.log("    enviando categoria     ");
-
-    this.categoria.emit(categoria.id)
-    // [routerLink]="['categoria',categoria.id]" 
   }
 
 }
