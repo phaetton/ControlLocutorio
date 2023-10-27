@@ -61,8 +61,7 @@ export class RegistrarproductoComponent {
       cantidad: new FormControl(1, Validators.required),
       img: new FormControl(""),
       categoria: new FormControl(""),
-      subcategoria: new FormControl(""),
-      activo: new FormControl(""),
+      subcategoria: new FormControl("")
     });
   }
 

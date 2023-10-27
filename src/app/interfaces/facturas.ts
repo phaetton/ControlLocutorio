@@ -8,5 +8,6 @@ export interface Factura {
     fecha?: number,
     descuento?: number,
     tipoventa?:string //fiado, apartado, alcash
+    totalvendido?:number,
     abono?:Abono[],
 }

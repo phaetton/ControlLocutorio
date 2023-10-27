@@ -25,7 +25,7 @@ export class FacturarComponent {
   gracias: boolean = false;
 
   envio: boolean = false;
-  // factura!: Factura;
+  factura!: Factura;
   descuento: number = 0;
   listacompras: Listacompra[] = [];
   // productos:Productos[]=[];
@@ -77,47 +77,38 @@ export class FacturarComponent {
   enviaranonimo() {
     this.envio = true;
 
-    this.reducido = { ...this.listacompras }
-    this.reducido.map(m => {
-      delete m.producto.categoria
-      delete m.producto.subcategoria
-      delete m.producto.img
-      delete m.producto.cantidad
-    })
+    const minicarrito = this.listacompras.map(item => {
+      const miniproducto = { ...item.producto };
+      delete miniproducto.img;
+      delete miniproducto.categoria;
+      delete miniproducto.subcategoria;
+      delete miniproducto.cantidad;
 
-    console.log(this.reducido);
-    
-    //   this.listacompras.map(m => {
-
-    //     this.productosvc.updateProductos(m);
+      return { ...item, producto: miniproducto };
+    });
 
 
-    //     this.reducido.push(
-    //       {
-    //         'nombre': m.nombre,
-    //         'precio': m.precio,
-    //         'id': m.id,
-    //         'cantidadCompra': m.cantidadCompra,
-    //       }
-    //     );
-    //   })
+    this.factura = {
+      cliente: 'Anonimo',
+      listacompra: minicarrito,
+      tipoventa: 'Compra Directa',
+      totalvendido: this.calculartotalcompra(),
+      abono: [{
+        fecha: this.fecha,
+        cantidad: this.calculartotalcompra(),
+        descuento: this.descuento
+      }],
+    };
 
-    // this.factura = {
-    //   cliente: 'Anonimo',
-    //   //     listacompra: this.reducido,
-    //   //     tipoventa: 'Compra Directa',
-    //   //     abono: [{
-    //   //       fecha: this.fecha,
-    //   //       cantidad: this.calculartotalcompra(),
-    //   //       descuento: this.descuento
-    //   //     }],
-    // };
 
-    //   this.facturasvc.addfactura(this.factura).then(m => {
-    //     this.gracias = true;
-    //     this.envio = false;
-    //   }
-    //   );
+
+    this.facturasvc.addfactura(this.factura).then(m => {
+      this.listacompras.map(m => this.listacomprasvc.deleteListacompra(m)
+      )
+      this.gracias = true;
+      this.envio = false;
+    }
+    );
 
   }
 
