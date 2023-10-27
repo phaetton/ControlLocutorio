@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Productos } from 'src/app/interfaces/productos';
 import { ListacompraService } from 'src/app/services/listacompra.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -12,15 +13,30 @@ export class ListarproductosComponent {
   productos: Productos[] = [];
   verEliminarProducto: boolean = false;
   mEditar: string = "Editar";
+  categoria?: string;
+  subcategoria?: string;
 
-  constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService) {
+  constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService, private rutaactiva: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.productossvc.getProductos().subscribe(m =>
-      this.productos = m
-    );
+    this.rutaactiva.params.subscribe(parametro => {
+    
+      this.productossvc.getProductos().subscribe(m => {
+        this.categoria = parametro['categoria'];
+        this.subcategoria = parametro['subcategoria'];
+        if (parametro['categoria']) {
+          this.productos = m.filter(m => m.categoria == this.categoria)
+        }
+        else if (parametro['subcategoria']) {
+          this.productos = m.filter(m => m.subcategoria == this.subcategoria)
+        }else {
+          this.productos = m;
+        }
+      });
+    })
   }
+
 
   async onClickDelete(registro: Productos) {
     await this.productossvc.deleteProductos(registro);

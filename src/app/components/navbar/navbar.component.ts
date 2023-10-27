@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { Subcategorias } from 'src/app/interfaces/subcategorias';
 import { CategoriasService } from 'src/app/services/categorias.service';
@@ -11,30 +12,32 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  subcategorias: Subcategorias[] = [];
+  @Input() categoria?: string;
+  @Input() subcategorias: Subcategorias[] = [];
   admin?: boolean;
   otro: any;
-  constructor(private subcategoriassvc: SubcategoriasService, private iconosvc: IconosService, private categoriasvc: CategoriasService) {
+
+  constructor(
+    private subcategoriassvc: SubcategoriasService,
+    private iconosvc: IconosService,
+    private categoriasvc: CategoriasService,
+    private rutaactiva: ActivatedRoute
+  ) {
+    if (this.categoria) {
+      console.log("existe categoria");
+
+    } else {
+      console.log("no hay categoria");
+
+    }
   }
 
   ngOnInit() {
-
-    combineLatest(
-      [this.subcategoriassvc.getSubcategorias(),
-      this.iconosvc.getIconos(), this.categoriasvc.getCategorias()]
-    ).subscribe(([subcategorias, iconos, categorias]) => {
-      this.subcategorias = subcategorias.map(m => {
-        let icon = iconos.find(x => x.id == m.icono);
-        let cat = categorias.find(x => x.id == m.categoria);
-
-        return {
-          id: m.id,
-          nombre: m.nombre,
-          icono: icon ? icon['img'] : '',
-          categoria: cat ? cat['nombre'] : '',
-        }
-      })
+    this.rutaactiva.params.subscribe(parametro => {
+      console.log("parametro", parametro);
+      
     })
+
   }
 
 

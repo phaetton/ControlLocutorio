@@ -9,26 +9,29 @@ import { RegistrariconoComponent } from './components/registraricono/registraric
 import { FacturarComponent } from './components/facturar/facturar.component';
 
 const routes: Routes = [
-  {path:"",pathMatch:'full',redirectTo:'home'},
+  { path: "", pathMatch: 'full', redirectTo: 'home' },
   {
-    path: "home", component:DashboardComponent,
-    
-
-    children: [
+    path: "home", component: DashboardComponent, children: [
       { path: "", component: ListarproductosComponent },
+      {
+        path: "categoria/:categoria", component: ListarproductosComponent, children: [
+          { path: "subcategoria/:subcategoria", component: ListarproductosComponent },
+        ]
+      },
       { path: "agregarcategoria", component: RegistrarcategoriaComponent },
       { path: "agregarproducto", component: RegistrarproductoComponent },
       { path: "agregarsubcategoria", component: RegistrarsubcategoriaComponent },
-      { path: "agregaricono", component:RegistrariconoComponent },
+      { path: "agregaricono", component: RegistrariconoComponent },
 
       { path: "editarcategoria", component: RegistrarcategoriaComponent },
       { path: "editarproducto", component: ListarproductosComponent },
       { path: "editarsubcategoria", component: RegistrarsubcategoriaComponent },
-      { path: "editaricono", component:RegistrariconoComponent },
+      { path: "editaricono", component: RegistrariconoComponent },
     ]
   },
-  { path: "facturar/:descuento", component:FacturarComponent },
-  { path: "**", pathMatch:'full', redirectTo:"/home" }
+  { path: "facturar/:descuento", component: FacturarComponent },
+
+  // { path: "**", pathMatch:'full', redirectTo:"/home" }
 ];
 
 @NgModule({
