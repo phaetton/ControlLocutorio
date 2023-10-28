@@ -4,6 +4,7 @@ import { Iconos } from 'src/app/interfaces/iconos';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import { IconosService } from 'src/app/services/iconos.service';
 import { combineLatest, forkJoin } from 'rxjs';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,8 @@ export class SidebarComponent {
   iconos: Iconos[] = [];
   constructor(
     private categoriasvc: CategoriasService,
-    private iconosvc: IconosService
+    private iconosvc: IconosService,
+    private productosvc:ProductosService
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class SidebarComponent {
     console.log(response);
 
   }
+
 
 
 }

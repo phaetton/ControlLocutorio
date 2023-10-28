@@ -10,7 +10,7 @@ export class ProductosService {
 
   productoGlobal: Productos[] = [];
 
-  constructor(private firestore: Firestore) { 
+  constructor(private firestore: Firestore) {
     this.getProductos().subscribe(m => this.productoGlobal = m);
 
   }
@@ -30,7 +30,7 @@ export class ProductosService {
     return deleteDoc(productoRef);
   }
 
-
+ 
 
   // updateCantidadProductoProductos(id: string, proceso: boolean) {
   //   let indice = this.productoGlobal.findIndex(m => m.id == id);
@@ -58,7 +58,7 @@ export class ProductosService {
 
   agregarCantidadProducto(id?: string) {
     let indice = this.productoGlobal.findIndex(m => m.id == id);
-    if ( indice > -1) {
+    if (indice > -1) {
       this.productoGlobal[indice].cantidad! += 1;
       this.updateProductos(this.productoGlobal[indice])
     }

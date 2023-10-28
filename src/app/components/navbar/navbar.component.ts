@@ -17,6 +17,7 @@ export class NavbarComponent {
   subcategorias: Subcategorias[] = [];
   admin?: boolean;
   otro: any;
+  emitiendo: boolean = true;
 
   constructor(
     private subcategoriassvc: SubcategoriasService,
@@ -66,8 +67,9 @@ export class NavbarComponent {
 
   }
 
-  onEnviarSubCategoria(id: string ) {
-    this.ESubcategoria.emit(id)
+  onEnviarSubCategoria(id: string) {
+    this.ESubcategoria.emit(id);
   }
+
 
 }

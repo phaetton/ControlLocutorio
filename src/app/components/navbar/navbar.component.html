@@ -1,12 +1,13 @@
 <div class="z-50 px-5 pt-2   shadow-lg  w-full flex justify-between ">
- 
+
     <div class=" w-full flex   overflow-auto ">
-        <div class="flex group "    *ngFor="let subcategoria of subcategorias; let i = index ">
+        <div class="flex group " *ngFor="let subcategoria of subcategorias; let i = index ">
             <span class="px-3  text-gray-400 relative hover:text-yellow-500"
                 routerLinkActive="bg-orange-400 rounded-xl text-white hover:text-black">
 
 
-                <a (click)="onEnviarSubCategoria(subcategoria.id?subcategoria.id:'')" class="flex flex-col items-center">
+                <a (click)="onEnviarSubCategoria(subcategoria.id?subcategoria.id:'')"
+                    class="flex flex-col items-center">
                     <img class="mt-2 my-1 w-6 h-6  mx-1  group-hover:text-gray-700
         transition-color duration-200" [src]="subcategoria.icono" alt="">
 
@@ -20,9 +21,8 @@
             </span>
         </div>
     </div>
-<div class="w-20">
 
-    <app-menu></app-menu>
+    <div class="w-20">
+        <app-menu></app-menu>
+    </div>
 </div>
-</div>
-

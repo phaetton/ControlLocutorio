@@ -38,7 +38,6 @@ export class ListarproductosComponent {
     })
   }
 
-
   async onClickDelete(registro: Productos) {
     await this.productossvc.deleteProductos(registro);
 
@@ -59,11 +58,7 @@ export class ListarproductosComponent {
   }
 
   onRecibirSub(idSub:string){
-    //  this.listacompras.splice(this.listacompras.indexOf(producto), 1)
-
-    this.productos = this.productoFiltrado.filter(m => m.subcategoria?.indexOf(idSub))
-    
-
+  this.productos = this.productoFiltrado.filter(m => m.subcategoria?.indexOf(idSub))
   }
 
 }
