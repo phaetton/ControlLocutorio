@@ -54,30 +54,10 @@ export class ListacompraService {
       }
     }
 
-    // let indice = this.listacompras.findIndex(m => m.productos.id == producto.id);
-    // if (indice > -1) {
-    //   this.listacompras[indice].cantidadCompra += 1;
-    // } else {
-    //   productoCompra={...producto, cantidadCompra:1};
-    //   this.listacompras.push(productoCompra);
-    // }
 
   }
 
 
-  // quitarAListaCompra(listacompra: Listacompra) {
-  //   let indice = this.listacompras.findIndex(m => m.id == listacompra.id);
-  //   if (indice > -1) {
-
-  //     if (this.listacompras[indice].cantidadCompra == 1) {
-  //       this.deleteListacompra(listacompra)
-  //       // .splice(indice, 1) :
-  //     } else {
-  //       listacompra.cantidadCompra -= 1;
-  //       this.updateListaCompra(listacompra);
-  //     }
-  //   }
-  // }
 
   quitarCantidadListaCompra(listacompra: Listacompra) {
     let indice = this.listacompras.findIndex(m => m.id == listacompra.id);

@@ -50,13 +50,10 @@ export class RegistrariconoComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    // Crear un objeto FileReader para leer el archivo.
     const reader = new FileReader();
-    // Cuando el archivo se haya cargado, establecer la fuente de la imagen en la URL del archivo.
     reader.onload = () => {
       this.imageSrc = reader.result;
     };
-    // Leer el archivo como una URL de datos.
     reader.readAsDataURL(file);
   }
 

@@ -24,7 +24,6 @@ export class RegistrarCierreComponent {
     return this.formulario.value;
   }
 
-  // fecha: new FormControl(this.today.getTime()),
   crearFormulario() {
     this.formulario = this.fb.group({
       fecha: new FormControl(""),

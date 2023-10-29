@@ -28,7 +28,6 @@ export class FacturarComponent {
   factura!: Factura;
   descuento: number = 0;
   listacompras: Listacompra[] = [];
-  // productos:Productos[]=[];
   reducido: Listacompra[] = [];
 
   constructor(private rutaactiva: ActivatedRoute,
@@ -42,16 +41,13 @@ export class FacturarComponent {
     this.crearFormulario();
   }
 
-  // calcularCantidadcompra() {
-  //   return this.listacompras.reduce((acumulador, producto) => acumulador + producto.cantidadCompra, 0);
-  // }
 
   calculartotalcompra() {
     return this.listacompras.reduce((acumulador, listacompra) => acumulador + (listacompra.producto.precio * listacompra.cantidadCompra), 0);
   }
 
   eliminarCompra(producto: Listacompra) {
-    //  this.listacompras.splice(this.listacompras.indexOf(producto), 1)
+      this.listacompras.splice(this.listacompras.indexOf(producto), 1)
   }
 
   ngOnInit(): void {
@@ -61,9 +57,7 @@ export class FacturarComponent {
   }
 
 
-  // get f() {
-  //   return this.formularionuevo.value;
-  // }
+ 
 
   crearFormulario() {
     this.formularionuevo = this.fb.group({
@@ -113,54 +107,9 @@ export class FacturarComponent {
   }
 
   async onSubmit() {
-    //   this.envio = true;
-    //   this.formularionuevo.patchValue({
-    //     foto: this.imageSrc ? this.imageSrc : "",
-    //   })
-
-
-
-
-    //   await this.clientesvc.addCliente(this.formularionuevo.value).then(m => {
-
-    //     this.envio = false
-    //     console.log(m['id']);
-
-    //     this.factura = {
-    //       cliente: m['id'],
-    //       listacompra: this.listacompras,
-    //       fecha: this.fecha,
-    //       descuento: this.descuento,
-    //       tipoventa: 'Compra Directa',
-    //       abono: [{
-    //         fecha: this.fecha,
-    //         cantidad: this.calculartotalcompra(),
-    //         descuento: this.descuento
-    //       }],
-    //     };
-
-    //     console.log(this.factura);
-    //     this.facturasvc.addfactura(this.factura);
-
-    //     this.formularionuevo.reset();
-
-    //   });
   }
 
 
-  // onFileSelected(event: any) {
-  //   const file = event.target.files[0];
-  //   // Crear un objeto FileReader para leer el archivo.
-  //   const reader = new FileReader();
-  //   // Cuando el archivo se haya cargado, establecer la fuente de la imagen en la URL del archivo.
-  //   reader.onload = () => {
-  //     this.imageSrc = reader.result;
-  //   };
-  //   // Leer el archivo como una URL de datos.
-  //   reader.readAsDataURL(file);
-  // }
-  // async onClickDelete(registro: Cliente) {
-  //   const response = await this.clientesvc.deleteCliente(registro);
-  // }
+ 
 
 }

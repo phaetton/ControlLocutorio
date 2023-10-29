@@ -15,8 +15,6 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 export class RegistrarproductoComponent {
 
   formulario!: FormGroup;
-  // totalmonedas = 0;
-  // today = new Date();
   subcategorias: Subcategorias[] = [];
   envio: boolean = false;
   imageSrc: any;
@@ -53,7 +51,6 @@ export class RegistrarproductoComponent {
     return this.formulario.value;
   }
 
-  // fecha: new FormControl(this.today.getTime()),
   crearFormulario() {
     this.formulario = this.fb.group({
       nombre: new FormControl("", Validators.required),
@@ -69,7 +66,6 @@ export class RegistrarproductoComponent {
   
   async onSubmit() {
     this.envio = true;
-    // filtramos las subcategorias y categorias de nuestro arreglo
     this.prevsubcategorias.forEach((subCategoria) => {
       if (!this.scategoria.includes(subCategoria.categoria)) {
         this.scategoria.push(subCategoria.categoria);
@@ -91,13 +87,10 @@ export class RegistrarproductoComponent {
   }
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    // Crear un objeto FileReader para leer el archivo.
     const reader = new FileReader();
-    // Cuando el archivo se haya cargado, establecer la fuente de la imagen en la URL del archivo.
     reader.onload = () => {
       this.imageSrc = reader.result;
     };
-    // Leer el archivo como una URL de datos.
     reader.readAsDataURL(file);
   }
   async onClickDelete(registro: Productos) {

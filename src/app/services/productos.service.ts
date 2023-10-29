@@ -32,13 +32,7 @@ export class ProductosService {
 
  
 
-  // updateCantidadProductoProductos(id: string, proceso: boolean) {
-  //   let indice = this.productoGlobal.findIndex(m => m.id == id);
-  //   const productoRef = doc(this.firestore, `Productos/${id}`);
-  //   return updateDoc(productoRef, {
-  //     cantidad: proceso ? this.productoGlobal[indice].cantidad - 1 : this.productoGlobal[indice].cantidad - 1
-  //   });
-  // }
+ 
 
 
   updateProductos(producto: Productos) {
@@ -64,12 +58,7 @@ export class ProductosService {
     }
   }
 
-  // agregarCantidadProducto(producto: Productos) {
-  //   let indice = this.productoGlobal.findIndex(m => m.id == producto.id);
-  //   if (indice > -1) {
-  //     this.productoGlobal[indice].cantidad += 1;
-  //   }
-  // }
+
 
 
 }

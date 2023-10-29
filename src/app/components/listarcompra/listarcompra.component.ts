@@ -43,34 +43,8 @@ export class ListarcompraComponent {
   }
 
 
-  // onAgregarCarrito(producto: Productos) {
-  //   this.productossvc.quitarCantidadProducto(producto.id);
-  //   this.listacomprasvc.agregarAListaCompra(producto);
-  // }
-
-
-
-  // agregarCantidad(id: string) {
-  //   this.productossvc.agregarCantidad(id);
-
-
-   //   let indice = this.listacompras.findIndex(m => m.producto.id == id);
-  //   // this.listacompras[indice].producto.cantidad += this.listacompras[indice].cantidadCompra;
-  //   this.productossvc.agregarCantidadProducto(this.listacompras[indice].producto);
-  //   this.productossvc.updateProductos(this.listacompras[indice].producto)
-  //   if (this.listacompras[indice].cantidadCompra > 1) {
-  //     this.listacompras[indice].cantidadCompra -= 1;
-  //     this.listacomprasvc.updateListaCompra(this.listacompras[indice])
-  //   } else {
-  //     this.listacomprasvc.deleteListacompra(this.listacompras[indice]);
-  //   }
-  // }
-
-
-
   
   facturar() {
-
   }
 
 
