@@ -15,6 +15,7 @@ export class ListarproductosComponent {
   mEditar: string = "Editar";
   categoria?: string;
   subcategoria?: string;
+  nombreCategoria:any;
 
   productoFiltrado:Productos[]=[]
 
@@ -25,6 +26,7 @@ export class ListarproductosComponent {
     this.rutaactiva.params.subscribe(parametro => {
     
       this.productossvc.getProductos().subscribe(m => {
+        this.nombreCategoria = m[0].categoria;
         this.categoria = parametro['categoria'];
         this.subcategoria = parametro['subcategoria'];
         if (parametro['categoria']) {
