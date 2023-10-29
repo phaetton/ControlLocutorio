@@ -46,6 +46,7 @@ export class RegistrarCierreComponent {
       bare: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
       barpre: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefei: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefee: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       compra: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
@@ -113,7 +114,9 @@ export class RegistrarCierreComponent {
   get barco() {
     return this.f['barco'] ? this.f['barco'] : 0;
   }
- 
+  get barco() {
+    return this.f['barco'] ? this.f['barco'] : 0;
+  }
   get jefei() {
     return this.f['jefei'] ? this.f['jefei'] : 0;
   }
