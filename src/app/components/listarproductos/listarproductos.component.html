@@ -1,8 +1,9 @@
+{{productos|json}}
 <app-navbar (ESubcategoria)="onRecibirSub($event)"></app-navbar>
 <div class="grid grid-cols-8 md:flex justify-between ">
   <div class="col-span-5 md:w-[80%]">
     <header class="flex items-center  justify-between w-full px-4 pt-2 m-4 rounded-xl bg-yellow-400">
-      <h1 class="text-base font-semibold leading-7 w-full">Pailas</h1>
+      <h1 class="text-base font-semibold leading-7 w-full">{{nombreCategoria}}</h1>
       <button
         class="p-2 rounded-sm cursor-pointer flex  flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400">
         <small className="text-xs font-medium" (click)="onEditarProducto()">{{mEditar}}</small>
