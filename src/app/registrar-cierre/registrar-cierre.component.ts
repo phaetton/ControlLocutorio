@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RegistrodiarioService } from '../services/registrodiario.service';
 
 @Component({
   selector: 'app-registrar-cierre',
@@ -10,19 +11,23 @@ export class RegistrarCierreComponent {
 
   formulario!: FormGroup;
   totalmonedas = 0;
+  today = new Date();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private registroSvc: RegistrodiarioService) {
+    this.crearFormulario();
+  }
 
   ngOnInit(): void {
-    this.crearFormulario();
   }
 
   get f() {
     return this.formulario.value;
   }
 
+  // fecha: new FormControl(this.today.getTime()),
   crearFormulario() {
     this.formulario = this.fb.group({
+      fecha: new FormControl(""),
       centimo1: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo2: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       centimo5: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
@@ -38,12 +43,14 @@ export class RegistrarCierreComponent {
       euro100: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       papel: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       bari: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
-      bare: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      bare: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
       barpre: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       barco: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefei: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
       jefee: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
-      compra: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[1-9]')])),
+      compra: new FormControl("", Validators.compose([Validators.maxLength(10), Validators.pattern('/^[0-9]|\./')])),
+      totalmonedas: new FormControl(""),
       comentario: new FormControl(""),
 
 
@@ -107,6 +114,9 @@ export class RegistrarCierreComponent {
   get barco() {
     return this.f['barco'] ? this.f['barco'] : 0;
   }
+  get barco() {
+    return this.f['barco'] ? this.f['barco'] : 0;
+  }
   get jefei() {
     return this.f['jefei'] ? this.f['jefei'] : 0;
   }
@@ -116,13 +126,14 @@ export class RegistrarCierreComponent {
 
 
   get cantidadmonedas() {
-    return this.centimo1 + this.centimo2 + this.centimo5 + this.centimo10 + this.centimo20 + this.centimo50 + this.euro1 + this.euro2 + this.euro5 + this.euro10 + this.euro20 + this.euro50 + this.euro100 + this.papel;
+    this.f['totalmonedas'] = this.centimo1 + this.centimo2 + this.centimo5 + this.centimo10 + this.centimo20 + this.centimo50 + this.euro1 + this.euro2 + this.euro5 + this.euro10 + this.euro20 + this.euro50 + this.euro100;
+
+    return this.f['totalmonedas']
   }
 
 
   get cantidadbarberia() {
-    return this.bari - this.bare - this.barpre ;
-
+    return this.bari - this.barpre;
   }
 
   validateFormat(event: any) {
@@ -142,4 +153,27 @@ export class RegistrarCierreComponent {
     }
   }
 
+  validateFormatpunto(event: any) {
+    let key;
+    if (event.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      key = event.keyCode;
+      key = String.fromCharCode(key);
+    }
+    const regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+      event.returnValue = false;
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+    }
+  }
+
+
+  async onSubmit() {
+    const response = await this.registroSvc.addRegistroDiario(this.formulario.value);
+    console.log(response);
+
+  }
 }

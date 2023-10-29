@@ -1,0 +1,95 @@
+<aside
+    class="w-28  fixed top-20 right-0 flex flex-wrap  justify-start   lg:bottom-0 lg:right-0  lg:w-60 lg:overflow-y-auto lg:border-l lg:border-white/5">
+
+    <button *ngIf="calcularCantidadcompra()>0"
+        class=" mx-5 w-60  my-3 text-lg font-semibold bg-gray-800  text-white rounded-lg px-6 block shadow-xl hover:text-white hover:bg-black"
+        [routerLink]="['/facturar',descuento]">
+        Pagar
+    </button>
+    <header class="hidden md:flex items-center justify-between border-b border-white/5 px-4 pt-4 sm:px-6  lg:px-8">
+
+        <div class="relative scale-75 mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="h-8 w-8 text-gray-600">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+            </svg>
+            <span
+                class="absolute -top-2 left-4 rounded-full bg-blue-500 p-0.5 px-2 text-sm text-blue-50">{{calcularCantidadcompra()}}</span>
+        </div>
+
+
+        <div class="flex  flex-col w-full text-xs">
+            <div class="flex justify-between">
+                <span>Descuento</span>
+                <span>{{descuento| currency}}</span>
+            </div>
+
+            <div *ngIf="cantidadTotal>0" class="flex justify-between">
+                <span>Sub Total</span>
+                <span>{{calculartotalcompra()| currency}}</span>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </header>
+
+    <div class="w-60 text-right  px-2 font-semibold leading-6 text-indigo-400">
+        <span>Total </span>
+        <span>{{(calculartotalcompra() - descuento) | currency}}</span>
+    </div>
+    <div class="w-60 mx-5 py-1 max-h-12 flex justify-between">
+        <span class="hidden md:block px-2 text-sm text-gray-600 font-bold">Descuento</span>
+        <input [(ngModel)]="descuento" name="nombre" id="nombre" type="number" min="0" max="500"
+            class="w-20 text-md block px-3 py-2 rounded-lg  bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+    </div>
+
+    
+    
+  
+
+   
+    <ul role="list" class="divide-y divide-white/5 h-80  w-full ml-5 overflow-y-auto ">
+        <li class="relative  px-1 flex flex-col md:flex-row items-center  shadow-lg "
+            *ngFor="let listacompra of listacompras">
+            <div (click)="onQuitarCarrito(listacompra)" class="md:hidden absolute -top-2 right-4 rounded-full bg-orange-900 p-0.5 px-2 text-sm text-red-50">
+                -</div>
+            <img [src]="listacompra.producto.img" [alt]="listacompra.producto.nombre"
+                class="h-14 w-14 flex-none rounded-lg  object-cover">
+
+            <div class="flex flex-col text-sm pb-1 text-center w-full">
+                <div class=" p-1 font-semibold  ">
+                    {{listacompra.producto.nombre}}
+                </div>
+                <div class="hidden md:flex justify-between font-thin  px-1">
+                    <span class="  leading-5 text-gray-600">
+                        ${{listacompra.producto.precio}}</span>
+
+                    <div>
+                        <span class="  leading-5 text-gray-600 mx-1 bg-green-200 p-2 rounded-lg">
+                            {{listacompra.cantidadCompra}}</span>
+                        <span (click)="onQuitarCarrito(listacompra)"
+                            class=" -top-2 right-4 rounded-lg bg-red-900 p-2  text-red-50">
+                            -
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between font-semibold text-gray-800 bg-gray-100 p-2 my-2 rounded-lg">
+                    <span class="hidden md:block">Sub Total</span>
+                    <span class=" md:hidden"> ${{listacompra.cantidadCompra }}x{{ listacompra.producto.precio}}=</span>
+                    <span> ${{listacompra.cantidadCompra * listacompra.producto.precio}}</span>
+                </div>
+            </div>
+        </li>
+
+      
+    </ul>
+
+  
+</aside>
