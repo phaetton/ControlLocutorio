@@ -24,7 +24,12 @@ export class RegistrarproductoComponent {
   scategoria: any[] = [];
   sSubcategorias: any[] = [];
 
-  constructor(private iconosvc: IconosService, private fb: FormBuilder, private productosvc: ProductosService, private subcategociasvc: SubcategoriasService) {
+  constructor(
+    private iconosvc: IconosService,
+     private fb: FormBuilder, 
+     private productosvc: ProductosService, 
+     private subcategociasvc: SubcategoriasService
+     ) {
     this.crearFormulario();
   }
 
