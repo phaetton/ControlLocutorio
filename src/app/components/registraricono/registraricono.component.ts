@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IconosService } from 'src/app/services/iconos.service';
@@ -16,16 +15,13 @@ export class RegistrariconoComponent {
   imageSrc:any;
   envio:boolean=false;
 
-  constructor(private fb: FormBuilder, private iconossvc: IconosService,private location:Location) {
+  constructor(
+    private fb: FormBuilder,
+     private iconossvc: IconosService,
+     ) {
     this.crearFormulario();
   }
 
-  ngOnInit(): void {
-  }
-
-  get f() {
-    return this.formulario.value;
-  }
 
   crearFormulario() {
     this.formulario = this.fb.group({
@@ -36,17 +32,16 @@ export class RegistrariconoComponent {
 
   async onSubmit() {
     this.envio=true;
+
     this.formulario.patchValue({
       img: this.imageSrc
     })
-    const response = await this.iconossvc.addIconos(this.formulario.value);
-    this.formulario.reset();
-    this.envio=false;
-    console.log(response);
 
+    await this.iconossvc.addIconos(this.formulario.value).then(response=>{
+      this.formulario.reset();
+      this.envio=false;
+    });
   }
-
-
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -57,7 +52,4 @@ export class RegistrariconoComponent {
     reader.readAsDataURL(file);
   }
 
-
 }
-
-
