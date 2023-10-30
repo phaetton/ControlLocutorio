@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h3{
+    @apply text-lg font-bold dark:text-white
+}
+
+
+h2{
+    @apply text-xl font-bold dark:text-white
+}
+
+h1{
+    @apply text-2xl font-bold dark:text-white
+}
+
+.container{
+    @apply flex flex-wrap w-full justify-center bg-yellow-100 dark:bg-gray-950
+}
+
+
+.fila{
+    @apply w-full  bg-white dark:bg-gray-800 text-center  mt-8
+}
