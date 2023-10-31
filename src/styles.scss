@@ -2,24 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-h3{
+h3 {
     @apply text-lg font-bold dark:text-white
 }
 
 
-h2{
+h2 {
     @apply text-xl font-bold dark:text-white
 }
 
-h1{
-    @apply text-2xl font-bold dark:text-white
+h1 {
+    @apply text-2xl font-bold dark:text-white m-2
 }
 
-.container{
-    @apply flex flex-wrap w-full justify-center bg-yellow-100 dark:bg-gray-950
+.contenedor {
+    @apply flex flex-wrap w-full justify-center bg-red-400
 }
 
-
-.fila{
-    @apply w-full  bg-white dark:bg-gray-800 text-center  mt-8
+.caja {
+    @apply p-4 m-4  shadow-xl rounded-2xl bg-yellow-100
 }
+
+.scroll-hidden::-webkit-scrollbar {
+    @apply h-0;
+    background: transparent;
+  }
