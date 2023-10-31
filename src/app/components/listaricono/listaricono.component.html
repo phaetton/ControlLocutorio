@@ -1,17 +1,17 @@
-<div class="flex justify-center grow mt-4  gap-y-5 overflow-auto w-full bg-black/10 px-6 ring-1 ring-white/5">
-    <nav
-        class="z-20  flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white/50 p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50  left-6 min-h-[auto] min-w-[64px]  rounded-lg border">
-        <span *ngFor="let icono of iconos; let i = index"
-            class="cursor-pointer flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
+<div class="caja flex-auto ">
+    <h1 class="text-center ">Lista de iconos</h1>
 
+    <div class="flex flex-wrap justify-center">
 
-            <img class="w-6 h-6" [src]="icono.img" alt="">
-            <small class="text-center text-xs font-medium"> {{icono.nombre}} </small>
-            <div class="t-0  right-0">
-                <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
-                    (click)="onClickDelete(icono)">-</p>
-            </div>
+        <span class="cursor-pointer backdrop-blur-lg flex flex-wrap items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
+             gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border" *ngFor="let icono of iconos; let i = index">
+
+            <img class="w-8" [src]="icono.img" alt="">
+            <p class="text-center text-xs text-clip font-medium"> {{icono.nombre}} </p>
+            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                (click)="onClickDelete(icono)">-</p>
         </span>
-        <hr class="dark:border-gray-700/60" />
-    </nav>
+        <!-- </nav> -->
+    </div>
+
 </div>
