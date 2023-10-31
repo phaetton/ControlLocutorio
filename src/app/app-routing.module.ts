@@ -21,14 +21,13 @@ const routes: Routes = [
       { path: "agregarcategoria", component: RegistrarcategoriaComponent },
       { path: "agregarproducto", component: RegistrarproductoComponent },
       { path: "agregarsubcategoria", component: RegistrarsubcategoriaComponent },
-      { path: "agregaricono", component: RegistrariconoComponent },
 
       { path: "editarcategoria", component: RegistrarcategoriaComponent },
       { path: "editarproducto", component: ListarproductosComponent },
       { path: "editarsubcategoria", component: RegistrarsubcategoriaComponent },
-      { path: "editaricono", component: RegistrariconoComponent },
     ]
   },
+  { path: "agregaricono", component: RegistrariconoComponent },
   { path: "facturar/:descuento", component: FacturarComponent },
 
   { path: "**", pathMatch:'full', redirectTo:"/home" }
