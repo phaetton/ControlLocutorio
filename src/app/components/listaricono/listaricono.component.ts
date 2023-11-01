@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Iconos } from 'src/app/interfaces/iconos';
 import { IconosService } from 'src/app/services/iconos.service';
 
@@ -8,12 +8,11 @@ import { IconosService } from 'src/app/services/iconos.service';
   styleUrls: ['./listaricono.component.scss']
 })
 export class ListariconoComponent {
-
+  @Input() editar: boolean = false;
+  @Output() seleccionado= new  EventEmitter<string>;
   iconos: Iconos[] = [];
-  debe: number = 0;
-  cobro: number = 0;
-  ingreso: number = 0;
-  prestamo: number = 0;
+  idicono:string='';
+
   constructor(private iconosvc: IconosService) { }
 
   ngOnInit() {
@@ -24,15 +23,12 @@ export class ListariconoComponent {
 
   async onClickDelete(registro: Iconos) {
     const response = await this.iconosvc.deleteIconos(registro);
-    console.log(response);
-
   }
-  async onClickUpdate(registro: Iconos) {
-    console.log(registro);
-    
-    const response = await this.iconosvc.updateIconos(registro);
-    console.log(response);
 
+  seleccionar() {
+    console.log(this.idicono);
+    
+    // this.seleccionado.emit(icono);
   }
 
 }
