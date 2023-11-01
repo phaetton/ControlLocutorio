@@ -14,16 +14,3 @@ h2 {
 h1 {
     @apply text-2xl font-bold dark:text-white m-2
 }
-
-.contenedor {
-    @apply flex flex-wrap w-full justify-center bg-red-400
-}
-
-.caja {
-    @apply p-4 m-4  shadow-xl rounded-2xl bg-yellow-100
-}
-
-.scroll-hidden::-webkit-scrollbar {
-    @apply h-0;
-    background: transparent;
-  }
