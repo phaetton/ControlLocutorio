@@ -18,15 +18,15 @@ const routes: Routes = [
           { path: "subcategoria/:subcategoria", component: ListarproductosComponent },
         ]
       },
-      { path: "agregarcategoria", component: RegistrarcategoriaComponent },
-      { path: "agregarproducto", component: RegistrarproductoComponent },
-      { path: "agregarsubcategoria", component: RegistrarsubcategoriaComponent },
-
+      
       { path: "editarcategoria", component: RegistrarcategoriaComponent },
       { path: "editarproducto", component: ListarproductosComponent },
       { path: "editarsubcategoria", component: RegistrarsubcategoriaComponent },
     ]
   },
+  { path: "agregarcategoria", component: RegistrarcategoriaComponent },
+  { path: "agregarproducto", component: RegistrarproductoComponent },
+  { path: "agregarsubcategoria", component: RegistrarsubcategoriaComponent },
   { path: "agregaricono", component: RegistrariconoComponent },
   { path: "facturar/:descuento", component: FacturarComponent },
 
