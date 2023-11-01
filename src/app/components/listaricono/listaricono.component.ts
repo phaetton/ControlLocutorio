@@ -11,7 +11,7 @@ export class ListariconoComponent {
   @Input() editar: boolean = false;
   @Output() seleccionado= new  EventEmitter<string>;
   iconos: Iconos[] = [];
-  idicono:string='';
+  iconoselect:string="";
 
   constructor(private iconosvc: IconosService) { }
 
@@ -25,10 +25,8 @@ export class ListariconoComponent {
     const response = await this.iconosvc.deleteIconos(registro);
   }
 
-  seleccionar() {
-    console.log(this.idicono);
-    
-    // this.seleccionado.emit(icono);
+  seleccionar(idicono:string) {
+    this.seleccionado.emit(idicono);
   }
 
 }
