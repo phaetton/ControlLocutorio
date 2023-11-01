@@ -18,6 +18,8 @@ export class RegistrarcategoriaComponent {
   categorias: Categorias[] = [];
   envio: boolean = false;
 
+  iconoseleccionado:string='';
+
 
   constructor(private fb: FormBuilder, private categoriasvc: CategoriasService, private iconosvc: IconosService) {
     this.crearFormulario();
@@ -73,5 +75,9 @@ export class RegistrarcategoriaComponent {
   async onClickDelete(registro: Categorias) {
     const response = await this.categoriasvc.deleteCategorias(registro);
     console.log(response);
+  }
+
+  oniconoseleccionado(icono:string){
+    this.iconoseleccionado = icono;
   }
 }
