@@ -1,22 +1,58 @@
-<h1 class="text-center ">Lista de iconos</h1>
+<h1 class="text-center ">Lista de categorias</h1>
 <div class="p-2 m-2  shadow-xl rounded-2xl bg-yellow-100 flex-auto ">
     <div class="grid grid-cols-2 md:grid-cols-3   ">
 
-        <div *ngFor="let icono of iconos; let i = index">
-            <input type="radio" [id]="icono.nombre" [value]="icono.id" [(ngModel)]="iconoselect"  (click)="seleccionar(icono.id?icono.id:'')"
+        <div *ngFor="let categoria of categorias; let i = index">
+            <input type="radio" [id]="categoria.nombre" [value]="categoria.id" [(ngModel)]="categoriaselect"  (click)="seleccionar(categoria.id?categoria.id:'')"
                 class="hidden peer">
-            <label [for]="icono.nombre" class="    w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
+            <label [for]="categoria.nombre" class="    w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
              gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border "
                 [ngClass]="{ 'cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 ':  !editar} ">
 
-                <img class="w-5" [src]="icono.img" alt="">
+                <img class="w-5" [src]="categoria.icono" alt="">
 
-                <p class=" truncate text-center text-xs  font-medium "> {{icono.nombre}} </p>
+                <p class=" truncate text-center text-xs  font-medium "> {{categoria.nombre}} </p>
                 <p *ngIf="editar"
                     class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
-                    (click)="onClickDelete(icono)">-</p>
+                    (click)="onClickDelete(categoria)">-</p>
 
             </label>
         </div>
     </div>
 </div>
+
+<!-- <div class="flex justify-center grow mt-4  gap-y-5 overflow-auto w-full bg-black/10 px-6 ring-1 ring-white/5">
+  <nav
+      class="z-20  flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white/50 p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50  left-6 min-h-[auto] min-w-[64px]  rounded-lg border">
+      <span *ngFor="let icono of categorias; let i = index"
+          class="cursor-pointer flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
+
+
+          <img class="w-6 h-6" [src]="icono.icono" alt="">
+          <small class="text-center text-xs font-medium"> {{icono.nombre}} </small>
+          <div class="t-0  right-0">
+              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                  (click)="onClickDelete(icono)">-</p>
+          </div>
+      </span>
+      <hr class="dark:border-gray-700/60" />
+  </nav>
+</div>  -->
+
+
+   <!-- <div class="py-1">
+          <span class="px-1 text-sm text-gray-600 font-bold">icono </span>
+
+          <ul class="grid w-full gap-2 md:grid-cols-5 lg:grid-cols-6 overflow-y-scroll h-48">
+            <li *ngFor="let icono of iconos">
+              <input formControlName="icono" type="radio" [id]="icono.nombre"  [value]="icono.id"
+                class="hidden peer" required>
+              <label [for]="icono.nombre"
+                class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <div class="block">
+                  <img class="w-12 h-12 text-black" [src]="icono.img" alt="">
+                </div>
+              </label>
+            </li>
+          </ul>
+        </div> -->
