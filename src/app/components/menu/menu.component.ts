@@ -7,14 +7,4 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
   isOpen:boolean = false;
-  // admin: boolean;
-  // constructor() {
-  //   this.admin = false;
-  // }
-
-  // onEstadoAdmin() {
-  //   this.admin = !this.admin;
-  // }
-
-  
 }
