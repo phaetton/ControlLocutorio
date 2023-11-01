@@ -10,15 +10,13 @@ import { IconosService } from 'src/app/services/iconos.service';
 export class RegistrariconoComponent {
 
   formulario!: FormGroup;
-  totalmonedas = 0;
-  today = new Date();
-  imageSrc:any;
-  envio:boolean=false;
+  imageSrc: any;
+  envio: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-     private iconossvc: IconosService,
-     ) {
+    private iconossvc: IconosService,
+  ) {
     this.crearFormulario();
   }
 
@@ -31,15 +29,15 @@ export class RegistrariconoComponent {
   }
 
   async onSubmit() {
-    this.envio=true;
+    this.envio = true;
 
     this.formulario.patchValue({
       img: this.imageSrc
     })
 
-    await this.iconossvc.addIconos(this.formulario.value).then(response=>{
+    await this.iconossvc.addIconos(this.formulario.value).then(response => {
       this.formulario.reset();
-      this.envio=false;
+      this.envio = false;
     });
   }
 
