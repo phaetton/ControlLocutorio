@@ -6,13 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+  isOpen:boolean = false;
+  // admin: boolean;
+  // constructor() {
+  //   this.admin = false;
+  // }
 
-  admin: boolean;
-  constructor() {
-    this.admin = false;
-  }
+  // onEstadoAdmin() {
+  //   this.admin = !this.admin;
+  // }
 
-  onEstadoAdmin() {
-    this.admin = !this.admin;
-  }
+  
 }
