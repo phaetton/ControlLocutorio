@@ -23,6 +23,7 @@ import { ListariconoComponent } from './components/listaricono/listaricono.compo
 import { MenuComponent } from './components/menu/menu.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { ListarsubcategoriasComponent } from './components/listarsubcategorias/listarsubcategorias.component';
+import { ListarcategoriasComponent } from './components/listarcategorias/listarcategorias.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ListarsubcategoriasComponent } from './components/listarsubcategorias/l
     MenuComponent,
     FacturarComponent,
     ListarsubcategoriasComponent,
+    ListarcategoriasComponent,
   ],
   imports: [
     BrowserModule,
