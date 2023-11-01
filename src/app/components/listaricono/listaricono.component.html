@@ -3,7 +3,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3   ">
 
         <div *ngFor="let icono of iconos; let i = index">
-            <input type="radio" [id]="icono.nombre" [value]="icono.id" [(ngModel)]="idicono" (click)="seleccionar()"
+            <input type="radio" [id]="icono.nombre" [value]="icono.id" [(ngModel)]="iconoselect"  (click)="seleccionar(icono.id?icono.id:'')"
                 class="hidden peer">
             <label [for]="icono.nombre" class="    w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
              gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border "
