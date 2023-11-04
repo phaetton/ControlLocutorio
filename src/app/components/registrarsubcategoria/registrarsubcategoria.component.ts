@@ -21,53 +21,33 @@ export class RegistrarsubcategoriaComponent {
   categorias: Categorias[] = [];
   subcategoria: Subcategorias[] = [];
 
+  iconoseleccionado:string='';
+  categoriaseleccionado:string='';
+
   constructor(private fb: FormBuilder, private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService, private categoriasvc: CategoriasService) {
     this.crearFormulario();
   }
 
   ngOnInit(): void {
-    combineLatest(
-      [this.subcategoriasvc.getSubcategorias(),
-      this.iconosvc.getIconos(), this.categoriasvc.getCategorias()]
-    ).subscribe(([subcategorias, iconos, categorias]) => {
-      this.iconos = iconos;
-      this.categorias = categorias;
-      this.subcategoria = subcategorias.map(m => {
-        let valor = iconos.find(x => x.id == m.icono);
-        return {
-          id: m.id,
-          nombre: m.nombre,
-          categoria:m.categoria,
-          icono: valor ? valor['img'] : ''
-        }
-      });
-      this.categorias = categorias.map(m => {
-        let valor = iconos.find(x => x.id == m.icono);
-        return {
-          id: m.id,
-          nombre: m.nombre,
-          icono: valor ? valor['img'] : ''
-        }
-      })
-
-    })
+   
   }
 
-
-  get f() {
-    return this.formulario.value;
-  }
 
   crearFormulario() {
     this.formulario = this.fb.group({
       nombre: new FormControl("", Validators.required),
-      icono: new FormControl("", Validators.required),
-      categoria: new FormControl("", Validators.required),
+      icono: new FormControl(""),
+      categoria: new FormControl(""),
     });
   }
 
   async onSubmit() {
     this.envio = true;
+    this.formulario.patchValue({
+      icono: this.iconoseleccionado,
+      categoria: this.categoriaseleccionado
+    })
+
     const response = await this.subcategoriasvc.addSubcategorias(this.formulario.value).then(m => {
       this.formulario.reset();
       this.envio = false
@@ -76,5 +56,13 @@ export class RegistrarsubcategoriaComponent {
 
   async onClickDelete(registro: Subcategorias) {
     const response = await this.subcategoriasvc.deleteSubcategorias(registro);
+  }
+
+
+  oniconoseleccionadoicono(icono: string) {
+    this.iconoseleccionado = icono;
+  }
+  oniconoseleccionadocategoria(categoria: string) {
+    this.categoriaseleccionado = categoria;
   }
 }
