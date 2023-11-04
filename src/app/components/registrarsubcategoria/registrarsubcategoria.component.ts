@@ -59,7 +59,7 @@ export class RegistrarsubcategoriaComponent {
   }
 
 
-  oniconoseleccionadoicono(icono: string) {
+  oniconoseleccionado(icono: string) {
     this.iconoseleccionado = icono;
   }
   oniconoseleccionadocategoria(categoria: string) {
