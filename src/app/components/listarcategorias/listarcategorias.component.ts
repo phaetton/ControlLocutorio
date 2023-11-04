@@ -18,10 +18,6 @@ export class ListarcategoriasComponent {
   constructor(private categoriasvc: CategoriasService, private iconosvc:IconosService) { }
 
   ngOnInit() {
-    this.categoriasvc.getCategorias().subscribe(categoria => {
-      this.categorias = categoria;
-    })
-
     combineLatest(
       [this.categoriasvc.getCategorias(),
       this.iconosvc.getIconos()]
