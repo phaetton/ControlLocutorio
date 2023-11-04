@@ -5,7 +5,7 @@
     <ul class="grid grid-cols-2 md:grid-cols-3  ">
         <li *ngFor="let subcategoria of subcategorias" class="col-span-1 ">
             <input type="checkbox" [id]="subcategoria.id" name="subcategoria"
-                (change)="seleccionar(subcategoria.id?subcategoria.id:'')" [value]="subcategoria.id" class="hidden peer"
+                (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer"
                 required>
             <label [for]="subcategoria.id"
                 class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
