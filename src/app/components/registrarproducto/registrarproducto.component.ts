@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { combineLatest } from 'rxjs';
 import { Productos } from 'src/app/interfaces/productos';
 import { Subcategorias } from 'src/app/interfaces/subcategorias';
+import { CategoriasService } from 'src/app/services/categorias.service';
 import { IconosService } from 'src/app/services/iconos.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { SubcategoriasService } from 'src/app/services/subcategorias.service';
@@ -27,8 +28,10 @@ export class RegistrarproductoComponent {
   constructor(
     private fb: FormBuilder,
     private productosvc: ProductosService,
+    private categoriasvc:CategoriasService
   ) {
     this.crearFormulario();
+    this.categoriasvc.getCategorias().subscribe(m=>this.scategoria=m)
   }
 
 
@@ -48,7 +51,7 @@ export class RegistrarproductoComponent {
   async onSubmit() {
     this.envio = true;
     this.prevsubcategorias.forEach((subCategoria) => {
-      if (!this.scategoria.includes(subCategoria.categoria)) {
+      if (!this.scategoria.includes(subCategoria)) {
         this.scategoria.push(subCategoria.categoria);
       }
       this.sSubcategorias.push(subCategoria.id);
@@ -57,15 +60,17 @@ export class RegistrarproductoComponent {
     this.formulario.patchValue({
       img: this.imageSrc,
       categoria: this.scategoria,
-      subcategoria: this.sSubcategorias,
+      subcategoria: this.prevsubcategorias,
     })
 
 
-    const response = await this.productosvc.addProductos(this.formulario.value).then(m => {
-      this.formulario.reset();
-      this.envio = false
-    });
+    // const response = await this.productosvc.addProductos(this.formulario.value).then(m => {
+    //   this.formulario.reset();
+    //   this.envio = false
+    // });
   }
+
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -78,16 +83,13 @@ export class RegistrarproductoComponent {
     const response = await this.productosvc.deleteProductos(registro);
   }
 
-  // oncheckbox(subcategoria: Subcategorias) {
-  //   this.prevsubcategorias.includes(subcategoria) ?
-  //     this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
-  //     this.prevsubcategorias.push(subcategoria);
-
-  // }
-
-
-  onsubcategoriaseleccionado(subcategoria: any){
-console.log(subcategoria);
+  onsubcategoriaseleccionado(subcategoria: any) {
+    this.prevsubcategorias.includes(subcategoria) ?
+      this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+      this.prevsubcategorias.push(subcategoria);
 
   }
+
+
+
 }
