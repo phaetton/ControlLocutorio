@@ -1,1 +1,27 @@
-<p>listarsubcategorias works!</p>
+<h1 class="text-center ">Lista de Sub Categorías</h1>
+<div class="p-2 m-2  shadow-xl rounded-2xl bg-yellow-100 flex-auto ">
+    <div class="grid grid-cols-2 md:grid-cols-3   ">
+
+        <pre>
+    {{subcategorias|json}}
+</pre>
+
+        <div *ngFor="let subcategoria of subcategorias; let i = index">
+            <input type="radio" [id]="subcategoria.nombre" [name]="subcategoria.nombre" [value]="subcategoria.id"
+                [(ngModel)]="subcategoriaselect" (click)="seleccionar(subcategoria.id?subcategoria.id:'')"
+                class="hidden peer">
+            <label [for]="subcategoria.nombre" class="    w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
+             gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border "
+                [ngClass]="{ 'cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 ':  !editar} ">
+
+                <img class="w-5" [src]="subcategoria.icono" alt="">
+
+                <p class=" truncate text-center text-xs  font-medium "> {{subcategoria.nombre}} </p>
+                <p *ngIf="editar"
+                    class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                    (click)="onClickDelete(subcategoria)">-</p>
+
+            </label>
+        </div>
+    </div>
+</div>
