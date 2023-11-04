@@ -12,7 +12,7 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 export class ListarsubcategoriasComponent {
 
   @Input() editar: boolean = false;
-  @Output() seleccionado = new EventEmitter<string>;
+  @Output() seleccionado = new EventEmitter<Subcategorias>;
   subcategorias: Subcategorias[] = [];
 
   constructor(private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService) { }
@@ -25,11 +25,15 @@ export class ListarsubcategoriasComponent {
     ).subscribe(([subcategorias, iconos]) => {
       this.subcategorias = subcategorias.map(m => {
         let valor = iconos.find(x => x.id == m.icono);
-        return {
-          id: m.id,
-          nombre: m.nombre,
-          icono: valor ? valor['img'] : ''
-        }
+        return {...m ,icono: valor ? valor['img'] : ''}
+
+        //otro metodo para hacer la linea anterior
+        // return {
+        //   id: m.id,
+        //   nombre: m.nombre,
+        //   categoria: m.categoria,
+        //   icono: valor ? valor['img'] : ''
+        // }
       })
     })
   }
@@ -38,8 +42,8 @@ export class ListarsubcategoriasComponent {
     const response = await this.subcategoriasvc.deleteSubcategorias(registro);
   }
 
-  seleccionar(idsubcategoria: string) {
-    this.seleccionado.emit(idsubcategoria);
+  seleccionar(subcategoria: Subcategorias) {
+    this.seleccionado.emit(subcategoria);
   }
 
 
