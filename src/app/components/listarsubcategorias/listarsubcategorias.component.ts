@@ -15,6 +15,7 @@ export class ListarsubcategoriasComponent {
   @Output() seleccionado = new EventEmitter<string>;
   subcategorias: Subcategorias[] = [];
   subcategoriaselect: string = "";
+  prevsubcategorias: Subcategorias[] = [];
 
   constructor(private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService) { }
 
@@ -42,4 +43,16 @@ export class ListarsubcategoriasComponent {
   seleccionar(idsubcategoria: string) {
     this.seleccionado.emit(idsubcategoria);
   }
+
+
+  
+  // oncheckbox(subcategoria: Subcategorias) {
+  //   // delete subcategoria.icono;
+  //   console.log(subcategoria );
+    
+  //   this.prevsubcategorias.includes(subcategoria) ?
+  //     this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+  //     this.prevsubcategorias.push(subcategoria);
+
+  // }
 }
