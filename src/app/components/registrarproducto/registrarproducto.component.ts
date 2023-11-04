@@ -25,36 +25,12 @@ export class RegistrarproductoComponent {
   sSubcategorias: any[] = [];
 
   constructor(
-    private iconosvc: IconosService,
-     private fb: FormBuilder, 
-     private productosvc: ProductosService, 
-     private subcategociasvc: SubcategoriasService
-     ) {
+    private fb: FormBuilder,
+    private productosvc: ProductosService,
+  ) {
     this.crearFormulario();
   }
 
-  ngOnInit(): void {
-    combineLatest(
-      [this.subcategociasvc.getSubcategorias(),
-      this.iconosvc.getIconos()]
-    ).subscribe(([subcategorias, iconos]) => {
-      this.subcategorias = subcategorias.map(m => {
-        let valor = iconos.find(x => x.id == m.icono);
-        return {
-          id: m.id,
-          nombre: m.nombre,
-          categoria: m.categoria,
-          icono: valor ? valor['img'] : ''
-        }
-      });
-    })
-
-    this.cantSubCat = this.subcategorias.length+1;
-  }
-
-  get f() {
-    return this.formulario.value;
-  }
 
   crearFormulario() {
     this.formulario = this.fb.group({
@@ -68,7 +44,7 @@ export class RegistrarproductoComponent {
   }
 
 
-  
+
   async onSubmit() {
     this.envio = true;
     this.prevsubcategorias.forEach((subCategoria) => {
@@ -102,11 +78,16 @@ export class RegistrarproductoComponent {
     const response = await this.productosvc.deleteProductos(registro);
   }
 
-  oncheckbox(subcategoria: Subcategorias) {
-    this.prevsubcategorias.includes(subcategoria) ?
-      this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
-      this.prevsubcategorias.push(subcategoria);
+  // oncheckbox(subcategoria: Subcategorias) {
+  //   this.prevsubcategorias.includes(subcategoria) ?
+  //     this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+  //     this.prevsubcategorias.push(subcategoria);
+
+  // }
+
+
+  onsubcategoriaseleccionado(subcategoria: any){
+console.log(subcategoria);
 
   }
-
 }
