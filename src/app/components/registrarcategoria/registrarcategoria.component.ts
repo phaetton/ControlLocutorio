@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { combineLatest } from 'rxjs';
 import { Categorias } from 'src/app/interfaces/categorias';
 import { Iconos } from 'src/app/interfaces/iconos';
 import { CategoriasService } from 'src/app/services/categorias.service';
@@ -29,10 +28,6 @@ export class RegistrarcategoriaComponent {
     this.iconosvc.getIconos().subscribe(icono => {
       this.iconos = icono;
     })
-
-
-
- 
   }
 
 
