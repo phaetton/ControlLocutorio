@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { combineLatest } from 'rxjs';
 import { Productos } from 'src/app/interfaces/productos';
-import { ListacompraService } from 'src/app/services/listacompra.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -10,57 +9,39 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./listarproductos.component.scss']
 })
 export class ListarproductosComponent {
+  @Input() editar: boolean = false;
+  @Output() seleccionado = new EventEmitter<string>;
   productos: Productos[] = [];
-  verEliminarProducto: boolean = false;
-  mEditar: string = "Editar";
-  categoria?: string;
-  subcategoria?: string;
-  nombreCategoria:any;
+  productoselect: string = "";
 
-  productoFiltrado:Productos[]=[]
-
-  constructor(private productossvc: ProductosService, private listacomprasvc: ListacompraService, private rutaactiva: ActivatedRoute) {
-  }
+  constructor(private productosvc: ProductosService) { }
 
   ngOnInit() {
-    this.rutaactiva.params.subscribe(parametro => {
-    
-      this.productossvc.getProductos().subscribe(m => {
-        this.nombreCategoria = m[0].categoria;
-        this.categoria = parametro['categoria'];
-        this.subcategoria = parametro['subcategoria'];
-        if (parametro['categoria']) {
-          this.productoFiltrado = m.filter(m => m.categoria == this.categoria)
-        }else {
-          this.productoFiltrado = m;
-        }
-
-        this.productos = this.productoFiltrado;
-      });
+    this.productosvc.getProductos().subscribe(producto => {
+      this.productos = producto;
     })
+
+    // combineLatest(
+    //   [this.productosvc.getProductos(),
+    //     this.categoriasvc.getCategorias()]
+    // ).subscribe(([categorias, producto]) => {
+    //   this.productos = producto.map(m => {
+    //     let valor = categorias.find(x => x.id == m.icono);
+    //     return {
+    //       id: m.id,
+    //       nombre: m.nombre,
+    //       icono: valor ? valor['img'] : ''
+    //     }
+    //   })
+    // })
   }
 
   async onClickDelete(registro: Productos) {
-    await this.productossvc.deleteProductos(registro);
-
+    const response = await this.productosvc.deleteProductos(registro);
   }
 
-  onEditarProducto() {
-    this.verEliminarProducto ? this.mEditar = "Editar" : this.mEditar = "Salir";
-    this.verEliminarProducto = !this.verEliminarProducto;
-  }
-
-  async onEliminarProducto(registro: Productos) {
-    await this.productossvc.deleteProductos(registro);
-  }
-
-  onAgregarCarrito(producto: Productos) {
-    this.productossvc.quitarCantidadProducto(producto.id);
-    this.listacomprasvc.agregarAListaCompra(producto);
-  }
-
-  onRecibirSub(idSub:string){
-  this.productos = this.productoFiltrado.filter(m => m.subcategoria?.indexOf(idSub))
+  seleccionar(idcategoria: string) {
+    this.seleccionado.emit(idcategoria);
   }
 
 }
