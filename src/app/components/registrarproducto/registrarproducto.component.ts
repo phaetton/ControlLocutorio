@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { map } from 'rxjs';
 import { Productos } from 'src/app/interfaces/productos';
 import { Subcategorias } from 'src/app/interfaces/subcategorias';
 import { ProductosService } from 'src/app/services/productos.service';
+import { SubcategoriasService } from 'src/app/services/subcategorias.service';
 
 @Component({
   selector: 'app-registrarproducto',
@@ -19,11 +21,16 @@ export class RegistrarproductoComponent {
 
   scategoria: any[] = [];
   sSubcategorias: any[] = [];
+  enviandoSubCategoria?: string[];
 
+
+  // todosubcategoria?: any
   constructor(
     private fb: FormBuilder,
-    private productosvc: ProductosService
+    private productosvc: ProductosService,
+    private subcategoriasvc: SubcategoriasService
   ) {
+
     this.crearFormulario();
   }
 
@@ -44,7 +51,7 @@ export class RegistrarproductoComponent {
   async onSubmit() {
     this.envio = true;
     this.prevsubcategorias.forEach((subCategoria) => {
-      
+
       if (!this.scategoria.includes(subCategoria.categoria)) {
         this.scategoria.push(subCategoria.categoria);
       }
@@ -81,9 +88,62 @@ export class RegistrarproductoComponent {
     this.prevsubcategorias.includes(subcategoria) ?
       this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
       this.prevsubcategorias.push(subcategoria);
+  }
+
+  editarproducto(producto: Productos) {
+    this.formulario.patchValue(producto);
+    this.imageSrc = producto.img;
+    this.enviandoSubCategoria = producto.subcategoria;
+
+
+    // this.subcategoriasvc.getSubcategorias().pipe(
+    //   map(m =>
+    //     producto.subcategoria?.map(
+    //       x => m.find(a => a.id == x)
+    //     )
+    //   )
+    // ).subscribe(respuesta => {
+    //   this.todosubcategoria = respuesta
+    //   this.onsubcategoriaseleccionado(this.todosubcategoria)
+    // });
+
 
   }
 
+  actualizarproducto() {
+    console.log(this.prevsubcategorias);
+    console.log(this.enviandoSubCategoria);
 
+    // let existe = objeto.some(elemento => elemento.id === "rlzWPkjhAk4CMVFsA5Y2");
+
+
+
+
+    // this.enviandoSubCategoria?.map(m => {
+    //   let objetoFiltrado = this.prevsubcategorias.filter(elemento => elemento.id !== m);
+    // })
+
+
+    let objetoFiltrado = this.prevsubcategorias.filter(elemento => {
+      return !this.enviandoSubCategoria?.some(m => m == elemento.id)
+    });
+
+
+    console.log(objetoFiltrado);
+
+
+
+    // Eliminar el elemento en enviandoSubCategoria
+    // this.enviandoSubCategoria?.slice(this.enviandoSubCategoria.findIndex(m=>m=='USXcpHI0qZNpLNvcajtc'))
+    // console.log(this.enviandoSubCategoria);
+    // let valor =  this.enviandoSubCategoria?.filter(x => x != 'USXcpHI0qZNpLNvcajtc');
+
+    //   console.log(valor);
+
+    // this.prevsubcategorias.includes(subcategoria) ?
+    // this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+    // this.prevsubcategorias.push(subcategoria);
+
+  }
 
 }
