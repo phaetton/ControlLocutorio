@@ -16,14 +16,16 @@ export class RegistrarproductoComponent {
   formulario!: FormGroup;
   envio: boolean = false;
   imageSrc: any;
-  prevsubcategorias: Subcategorias[] = [];
+  prevsubcategorias?: Subcategorias[];
   cantSubCat: number = 0;
 
   scategoria: any[] = [];
   sSubcategorias: any[] = [];
   enviandoSubCategoria?: string[];
+   idproducto? :string;
 
-
+   mensaje ?:string ;
+   mostrarmensaje :boolean= false;
   // todosubcategoria?: any
   constructor(
     private fb: FormBuilder,
@@ -50,7 +52,7 @@ export class RegistrarproductoComponent {
 
   async onSubmit() {
     this.envio = true;
-    this.prevsubcategorias.forEach((subCategoria) => {
+    this.prevsubcategorias?.forEach((subCategoria) => {
 
       if (!this.scategoria.includes(subCategoria.categoria)) {
         this.scategoria.push(subCategoria.categoria);
@@ -67,7 +69,15 @@ export class RegistrarproductoComponent {
 
     const response = await this.productosvc.addProductos(this.formulario.value).then(m => {
       this.formulario.reset();
-      this.envio = false
+      this.envio = false;
+
+
+
+      this.imageSrc ='';
+      this.enviandoSubCategoria =[];
+      this.mensaje = "Agregado";
+      this.mostrarmensaje = true;
+
     });
   }
 
@@ -85,16 +95,102 @@ export class RegistrarproductoComponent {
   }
 
   onsubcategoriaseleccionado(subcategoria: any) {
-    this.prevsubcategorias.includes(subcategoria) ?
-      this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
-      this.prevsubcategorias.push(subcategoria);
+
+    if (this.prevsubcategorias?.find(item => item.nombre == subcategoria.nombre)) {
+      this.prevsubcategorias = this.prevsubcategorias?.filter(item => item.nombre !== subcategoria.nombre)
+    } else {
+      this.prevsubcategorias?.push(subcategoria)
+    }
+
+    // this.prevsubcategorias?.includes(subcategoria.nombre) ?
+    //   this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+    //   this.prevsubcategorias?.push(subcategoria);
+
+
+    // this.prevsubcategorias?.includes(subcategoria.nombre) ?
+    //   this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
+    //   this.prevsubcategorias?.push(subcategoria);
   }
 
   editarproducto(producto: Productos) {
+    this.idproducto = producto.id;
+    
     this.formulario.patchValue(producto);
     this.imageSrc = producto.img;
+    this.subcategoriasvc.getSubcategorias().subscribe(respuesta => {
+      let filteredArray = respuesta.filter(item => producto.subcategoria?.includes(item.id ? item.id : ''));
+      this.prevsubcategorias = filteredArray;
+    });
+
     this.enviandoSubCategoria = producto.subcategoria;
 
+  }
+
+  async actualizarproducto() {
+
+    this.envio = true;
+    this.prevsubcategorias?.forEach((subCategoria) => {
+
+      if (!this.scategoria.includes(subCategoria.categoria)) {
+        this.scategoria.push(subCategoria.categoria);
+      }
+      this.sSubcategorias.push(subCategoria.id);
+    });
+
+    this.formulario.patchValue({
+      img: this.imageSrc,
+      categoria: this.scategoria,
+      subcategoria: this.sSubcategorias,
+    })
+
+
+    const response = await this.productosvc.updateProductos(this.formulario.value,this.idproducto ).then(m => {
+      this.formulario.reset();
+      this.envio = false;
+      this.imageSrc ='';
+      this.prevsubcategorias =[];
+      this.enviandoSubCategoria =[];
+      this.mensaje = "Actualizado";
+      this.mostrarmensaje = true;
+    });
+
+    // let objetoFiltrado = this.prevsubcategorias?.filter(elemento => {
+    //   let valor = !this.enviandoSubCategoria?.some(m => m == elemento.id);
+    //   this.enviandoSubCategoria = this.enviandoSubCategoria?.filter(subcat => subcat != elemento.id);
+    //   return valor;
+    // });
+
+
+
+
+
+    // objetoFiltrado?.forEach((subCategoria) => {
+
+    //   if (!this.scategoria.includes(subCategoria.categoria)) {
+    //     this.scategoria.push(subCategoria.categoria);
+    //   }
+    //   this.sSubcategorias.push(subCategoria.id);
+    // });
+
+
+    // this.formulario.patchValue({
+    //   img: this.imageSrc,
+    //   categoria: this.scategoria,
+    //   subcategoria: this.sSubcategorias,
+    // })
+    // this.scategoria = [];
+    // this.sSubcategorias = [];
+
+   
+
+  }
+
+}
+
+
+ // let resp = respuesta.filter(sub=>sub.id != m)
+      // this.prevsubcategorias = resp;
+      // this.enviandoSubCategoria = respuesta?.filter(subcat => subcat != elemento.id);   
 
     // this.subcategoriasvc.getSubcategorias().pipe(
     //   map(m =>
@@ -108,12 +204,6 @@ export class RegistrarproductoComponent {
     // });
 
 
-  }
-
-  actualizarproducto() {
-    console.log(this.prevsubcategorias);
-    console.log(this.enviandoSubCategoria);
-
     // let existe = objeto.some(elemento => elemento.id === "rlzWPkjhAk4CMVFsA5Y2");
 
 
@@ -124,26 +214,25 @@ export class RegistrarproductoComponent {
     // })
 
 
-    let objetoFiltrado = this.prevsubcategorias.filter(elemento => {
-      return !this.enviandoSubCategoria?.some(m => m == elemento.id)
-    });
 
-
-    console.log(objetoFiltrado);
-
+     // const response = await this.productosvc.addProductos(this.formulario.value).then(m => {
+    //   this.formulario.reset();
+    //   this.envio = false
+    // });
 
 
     // Eliminar el elemento en enviandoSubCategoria
     // this.enviandoSubCategoria?.slice(this.enviandoSubCategoria.findIndex(m=>m=='USXcpHI0qZNpLNvcajtc'))
-    // console.log(this.enviandoSubCategoria);
     // let valor =  this.enviandoSubCategoria?.filter(x => x != 'USXcpHI0qZNpLNvcajtc');
 
-    //   console.log(valor);
 
     // this.prevsubcategorias.includes(subcategoria) ?
     // this.prevsubcategorias.splice(this.prevsubcategorias.indexOf(subcategoria), 1) :
     // this.prevsubcategorias.push(subcategoria);
 
-  }
 
-}
+    
+    //ya tenemos el producto eliminado de ambos arreglos
+    // this.envio = true;
+    // this.scategoria = this.prevsubcategorias.map(m=>m.categoria);
+    // this.sSubcategorias = this.prevsubcategorias.map(m=>m.id);

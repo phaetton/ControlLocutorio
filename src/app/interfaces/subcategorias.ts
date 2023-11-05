@@ -1,6 +1,6 @@
 export interface Subcategorias {
     id?: string,
-    nombre: string,
+    nombre?: string,
     icono?: string,
     categoria?: string,
 }
