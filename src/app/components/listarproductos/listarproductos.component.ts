@@ -11,6 +11,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class ListarproductosComponent {
   @Input() editar: boolean = false;
   @Output() seleccionado = new EventEmitter<string>;
+  @Output() EProducto = new EventEmitter<Productos>;
   productos: Productos[] = [];
   productoselect: string = "";
 
@@ -42,6 +43,14 @@ export class ListarproductosComponent {
 
   seleccionar(idcategoria: string) {
     this.seleccionado.emit(idcategoria);
+  }
+
+  onAgregarCarrito(producto: Productos) {
+
+  }
+
+  editarProducto(producto: Productos) {
+    this.EProducto.emit(producto);
   }
 
 }
