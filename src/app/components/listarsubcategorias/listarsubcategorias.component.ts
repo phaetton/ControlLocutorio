@@ -10,7 +10,8 @@ import { SubcategoriasService } from 'src/app/services/subcategorias.service';
   styleUrls: ['./listarsubcategorias.component.scss']
 })
 export class ListarsubcategoriasComponent {
-
+  
+  @Input() enviandoSubCategoria?: string[];
   @Input() editar: boolean = false;
   @Output() seleccionado = new EventEmitter<Subcategorias>;
   subcategorias: Subcategorias[] = [];
@@ -18,6 +19,7 @@ export class ListarsubcategoriasComponent {
   constructor(private subcategoriasvc: SubcategoriasService, private iconosvc: IconosService) { }
 
   ngOnInit() {
+
 
     combineLatest(
       [this.subcategoriasvc.getSubcategorias(),
@@ -36,6 +38,8 @@ export class ListarsubcategoriasComponent {
         // }
       })
     })
+
+    
   }
 
   async onClickDelete(registro: Subcategorias) {
@@ -45,6 +49,8 @@ export class ListarsubcategoriasComponent {
   seleccionar(subcategoria: Subcategorias) {
     this.seleccionado.emit(subcategoria);
   }
+
+
 
 
 
