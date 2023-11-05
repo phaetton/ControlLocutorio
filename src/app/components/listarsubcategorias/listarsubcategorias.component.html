@@ -1,26 +1,27 @@
-
+categoria {{enviandoSubCategoria|json}}
 <h1 class="text-center ">Lista de Sub Categorías</h1>
 
 <div class="p-2 m-2  shadow-xl rounded-2xl bg-yellow-100 flex-auto ">
     <ul class="grid grid-cols-2 md:grid-cols-3  ">
         <li *ngFor="let subcategoria of subcategorias" class="col-span-1 ">
-            <input type="checkbox" [id]="subcategoria.id" name="subcategoria"
+            <input *ngIf="!enviandoSubCategoria" type="checkbox" [id]="subcategoria.id" name="subcategoria"
+                (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer">
+
+            <input *ngIf="enviandoSubCategoria" type="checkbox" [id]="subcategoria.id" name="subcategoria"
                 (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer"
-                required>
-            <label [for]="subcategoria.id"
-                class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
+                [checked]="enviandoSubCategoria.indexOf(subcategoria.id?subcategoria.id:'1') != -1">
+            <label [for]="subcategoria.id" class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
                 gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border
                        text-xs text-gray-500 border-gray-200 
               dark:hover:text-gray-300
              dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 
              hover:text-gray-600  dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
 
-                <img class=" w-5"
-                    [src]="subcategoria.icono" alt="">
+                <img class=" w-5" [src]="subcategoria.icono" alt="">
                 <span class="truncate text-center text-xs  font-medium"> {{subcategoria.nombre}}</span>
                 <p *ngIf="editar"
-                class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
-                (click)="onClickDelete(subcategoria)">-</p>
+                    class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                    (click)="onClickDelete(subcategoria)">-</p>
             </label>
         </li>
     </ul>
