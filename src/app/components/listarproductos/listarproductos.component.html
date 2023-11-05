@@ -1,23 +1,59 @@
-
 <h1 class="text-center ">Lista de Productos</h1>
 <div class="p-2 m-2  shadow-xl rounded-2xl bg-yellow-100 flex-auto ">
-    <div class="grid grid-cols-2 md:grid-cols-3   ">
+  <div class="grid grid-cols-2 md:grid-cols-3   ">
 
-        <div *ngFor="let producto of productos; let i = index">
-            <input type="radio" [id]="producto.nombre" [name]="producto.nombre" [value]="producto.id" [(ngModel)]="productoselect"  (click)="seleccionar(producto.id?producto.id:'')"
-                class="hidden peer">
-            <label [for]="producto.nombre" class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
+    <div *ngFor="let producto of productos; let i = index">
+      <input type="radio" [id]="producto.nombre" [name]="producto.nombre" [value]="producto.id"
+        [(ngModel)]="productoselect" (click)="seleccionar(producto.id?producto.id:'')" class="hidden peer">
+      <label [for]="producto.nombre" class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
              gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border "
-                [ngClass]="{ 'cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 ':  !editar} ">
+        [ngClass]="{ 'cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 ':  !editar} ">
 
-                <img class="w-5" [src]="producto.img" alt="">
+        <img class="w-20" [src]="producto.img" alt="">
 
-                <p class=" truncate text-center text-xs  font-medium "> {{producto.nombre}} </p>
-                <p *ngIf="editar"
-                    class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
-                    (click)="onClickDelete(producto)">-</p>
+        <p class=" truncate text-center text-xs  font-medium "> {{producto.nombre}} </p>
+        <p *ngIf="editar"
+          class=" flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+          (click)="onClickDelete(producto)">-</p>
 
-            </label>
-        </div>
+      </label>
     </div>
+  </div>
+</div>
+
+
+<div class="grid grid-cols-1   sm:grid-cols-2 md:grid-cols-4  w-full mx-4 gap-4 ">
+  <div class="relative shadow-xl " *ngFor="let producto of productos; let i=index">
+    <!-- *ngIf="verEliminarProducto"  -->
+    <!-- (click)="onEliminarProducto(producto)" -->
+    <div class="z-40 t-0 absolute -top-2 right-4">
+      
+    </div>
+    <div  [ngClass]="{'grayscale text-gray-400 ':producto.cantidad==0}">
+      <figure class="img-product ">
+        <img [src]="producto.img" alt="" class="h-40 w-full flex-none   object-cover">
+      </figure>
+      <div class=" flex flex-wrap flex-col text-center justify-center "
+        [ngClass]="{'bg-gray-300 ':producto.cantidad==0}">
+        <div class="flex flex-col md:flex-row justify-between my-2">
+          <div class="font-bold text-lg ">{{producto.nombre}} </div>
+          <span class="text-orange-500">{{producto.precio | currency }}</span>
+        </div>
+
+        <!-- *ngIf="!verEliminarProducto" -->
+        <div 
+          class="absolute -top-2 right-4 rounded-full bg-orange-900 p-0.5 px-2 text-sm text-red-50">
+          {{producto.cantidad}} </div>
+
+        <button (click)="onAgregarCarrito(producto)" *ngIf="!editar && producto.cantidad && producto.cantidad>0" 
+          class="bg-orange-400 py-2 px-3 rounded-full font-medium mb-4 text-white">Agregar</button>
+
+          <button (click)="editarProducto(producto)" *ngIf="editar" 
+            class="bg-green-400 py-2 px-3 rounded-full font-medium mb-4 text-white">Editar</button>
+
+        <span *ngIf="!editar && producto.cantidad==0" class="bg-gray-400 py-2 px-3 
+rounded-full font-medium mb-4 text-white">Agregar</span>
+      </div>
+    </div>
+  </div>
 </div>
