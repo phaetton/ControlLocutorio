@@ -7,6 +7,7 @@ import { RegistrarsubcategoriaComponent } from './components/registrarsubcategor
 import { ListarproductosComponent } from './components/listarproductos/listarproductos.component';
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
+import { RegistrarclientesComponent } from './components/registrarclientes/registrarclientes.component';
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'home' },
@@ -18,7 +19,7 @@ const routes: Routes = [
           { path: "subcategoria/:subcategoria", component: ListarproductosComponent },
         ]
       },
-      
+
       { path: "editarcategoria", component: RegistrarcategoriaComponent },
       { path: "editarproducto", component: ListarproductosComponent },
       { path: "editarsubcategoria", component: RegistrarsubcategoriaComponent },
@@ -28,9 +29,10 @@ const routes: Routes = [
   { path: "agregarproducto", component: RegistrarproductoComponent },
   { path: "agregarsubcategoria", component: RegistrarsubcategoriaComponent },
   { path: "agregaricono", component: RegistrariconoComponent },
+  { path: "agregarcliente", component: RegistrarclientesComponent },
   { path: "facturar/:descuento", component: FacturarComponent },
 
-  { path: "**", pathMatch:'full', redirectTo:"/home" }
+  { path: "**", pathMatch: 'full', redirectTo: "/home" }
 ];
 
 @NgModule({
