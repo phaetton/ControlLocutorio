@@ -24,6 +24,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { ListarsubcategoriasComponent } from './components/listarsubcategorias/listarsubcategorias.component';
 import { ListarcategoriasComponent } from './components/listarcategorias/listarcategorias.component';
+import { ListarclientesComponent } from './components/listarclientes/listarclientes.component';
+import { RegistrarclientesComponent } from './components/registrarclientes/registrarclientes.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ListarcategoriasComponent } from './components/listarcategorias/listarc
     FacturarComponent,
     ListarsubcategoriasComponent,
     ListarcategoriasComponent,
+    ListarclientesComponent,
+    RegistrarclientesComponent,
   ],
   imports: [
     BrowserModule,
