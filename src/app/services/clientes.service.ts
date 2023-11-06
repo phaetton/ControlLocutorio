@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cliente } from '../interfaces/cliente';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,13 @@ export class ClientesService {
     return deleteDoc(clienteRef);
   }
 
-
-
+  updateClientes(cliente: Cliente, id?: string) {
+    const clienteRef = doc(this.firestore, `Cliente/${id}`);
+    return updateDoc(clienteRef, { ...cliente });
+  }
+  // cantidad: cliente.cantidad,
+  // nombre:cliente.nombre,
+  // categoria:cliente.categoria,
+  // subcategoria:cliente.subcategoria,
+  // precio:cliente.precio
 }
