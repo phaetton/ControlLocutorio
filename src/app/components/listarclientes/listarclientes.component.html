@@ -83,7 +83,7 @@
 
         <tbody>
             <tr class="bg-yellow-50  " *ngFor="let cliente of clientefiltrado">
-                <input type="radio" *ngIf="!editar" [id]="cliente.nombre" [value]="cliente.id" [name]="cliente.nombre"
+                <input type="radio" *ngIf="!editar" [id]="cliente.nombre" [value]="cliente.id" [name]="cliente.nombre?cliente.nombre:''"
                     [(ngModel)]="clienteselect" (click)="seleccionar(cliente)" class="hidden peer">
                 <label [for]="cliente.nombre" class="    w-full h-full cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
                          hover:bg-yellow-200 border "
