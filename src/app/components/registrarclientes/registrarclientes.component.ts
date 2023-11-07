@@ -54,22 +54,6 @@ export class RegistrarclientesComponent {
     });
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageSrc = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  editarCliente(cliente: Cliente) {
-    this.idcliente = cliente.id;
-    this.formulario.patchValue(cliente);
-    this.imageSrc = cliente.foto;
-
-  }
-
 
   async actualizarcliente() {
     this.envio = true;
@@ -87,4 +71,23 @@ export class RegistrarclientesComponent {
       this.mostrarmensaje = true;
     });
   }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageSrc = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  editarCliente(cliente: Cliente) {
+    this.idcliente = cliente.id;
+    this.formulario.patchValue(cliente);
+    this.imageSrc = cliente.foto;
+
+  }
+
+
+ 
 }
