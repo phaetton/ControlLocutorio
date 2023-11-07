@@ -26,6 +26,7 @@ import { ListarsubcategoriasComponent } from './components/listarsubcategorias/l
 import { ListarcategoriasComponent } from './components/listarcategorias/listarcategorias.component';
 import { ListarclientesComponent } from './components/listarclientes/listarclientes.component';
 import { RegistrarclientesComponent } from './components/registrarclientes/registrarclientes.component';
+import { FormularioclienteComponent } from './components/formulariocliente/formulariocliente.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RegistrarclientesComponent } from './components/registrarclientes/regis
     ListarcategoriasComponent,
     ListarclientesComponent,
     RegistrarclientesComponent,
+    FormularioclienteComponent,
   ],
   imports: [
     BrowserModule,
