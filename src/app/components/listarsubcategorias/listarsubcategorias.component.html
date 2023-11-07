@@ -3,11 +3,11 @@
 <div class="p-2 m-2  shadow-xl rounded-2xl bg-yellow-100 flex-auto ">
     <ul class="grid grid-cols-2 md:grid-cols-3  ">
         <li *ngFor="let subcategoria of subcategorias" class="col-span-1 ">
-            <input *ngIf="!enviandoSubCategoria" type="checkbox" [id]="subcategoria.id" name="subcategoria"
+            <input *ngIf="!enviandoSubCategoria " type="checkbox" [id]="subcategoria.id" name="subcategoria"
                 (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer">
 
-            <input *ngIf="enviandoSubCategoria" type="checkbox" [id]="subcategoria.id" name="subcategoria"
-                (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer"
+            <input *ngIf="enviandoSubCategoria && enviandoSubCategoria.length >0" type="checkbox" [id]="subcategoria.id"
+                name="subcategoria" (change)="seleccionar(subcategoria)" [value]="subcategoria.id" class="hidden peer"
                 [checked]="enviandoSubCategoria.indexOf(subcategoria.id?subcategoria.id:'1') != -1">
             <label [for]="subcategoria.id" class="w-11/12 cursor-pointer backdrop-blur-lg flex  items-center bg-yellow-50 shadow-inner  overflow-x-hidden justify-between
                 gap-1 rounded-lg p-2 m-2 hover:bg-yellow-200 border
@@ -25,3 +25,4 @@
         </li>
     </ul>
 </div>
+

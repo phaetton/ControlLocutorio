@@ -77,7 +77,12 @@ export class RegistrarproductoComponent {
       this.enviandoSubCategoria =[];
       this.mensaje = "Agregado";
       this.mostrarmensaje = true;
+      this.scategoria=[];
+      this.sSubcategorias=[];
 
+
+      this.prevsubcategorias =[];
+      this.idproducto='';
     });
   }
 
@@ -95,9 +100,13 @@ export class RegistrarproductoComponent {
   }
 
   onsubcategoriaseleccionado(subcategoria: any) {
+console.log("sub llegando",subcategoria);
 
-    if (this.prevsubcategorias?.find(item => item.nombre == subcategoria.nombre)) {
-      this.prevsubcategorias = this.prevsubcategorias?.filter(item => item.nombre !== subcategoria.nombre)
+    if (this.prevsubcategorias?.find(item => item.id == subcategoria.id)) {
+      console.log('existe ',this.prevsubcategorias);
+      
+      this.prevsubcategorias = this.prevsubcategorias?.filter(item => item.id !== subcategoria.id)
+      console.log('despues ',this.prevsubcategorias);
     } else {
       this.prevsubcategorias?.push(subcategoria)
     }
@@ -130,6 +139,7 @@ export class RegistrarproductoComponent {
 
     this.envio = true;
     this.prevsubcategorias?.forEach((subCategoria) => {
+console.log("recorriendo sub", subCategoria);
 
       if (!this.scategoria.includes(subCategoria.categoria)) {
         this.scategoria.push(subCategoria.categoria);
@@ -137,6 +147,9 @@ export class RegistrarproductoComponent {
       this.sSubcategorias.push(subCategoria.id);
     });
 
+
+  console.log("categoria y sub", this.scategoria,this.sSubcategorias);
+  
     this.formulario.patchValue({
       img: this.imageSrc,
       categoria: this.scategoria,
@@ -152,6 +165,10 @@ export class RegistrarproductoComponent {
       this.enviandoSubCategoria =[];
       this.mensaje = "Actualizado";
       this.mostrarmensaje = true;
+      this.idproducto='';
+      this.scategoria=[];
+      this.sSubcategorias=[];
+
     });
 
     // let objetoFiltrado = this.prevsubcategorias?.filter(elemento => {
