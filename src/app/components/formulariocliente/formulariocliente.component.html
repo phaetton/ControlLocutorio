@@ -1,0 +1,30 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="flex justify-between gap-4 items-center">
+      <div>
+        <span class="px-1 text-sm text-gray-900 font-semibold">Nombre del Cliente</span>
+        <input (input)="enviarFormulario()" type="text" formControlName="nombre"
+          class="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-900 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-900 focus:outline-none">
+
+        <span class="px-1 text-sm text-gray-900 font-semibold">Email</span>
+        <input (input)="enviarFormulario()" type="email" formControlName="email"
+          class="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-900 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-900 focus:outline-none">
+
+        <span class="px-1 text-sm text-gray-900 font-semibold">Celular</span>
+        <input (input)="enviarFormulario()" type="number" formControlName="celular"
+          class="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-900 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-900 focus:outline-none">
+        <span class="px-1 text-sm text-gray-900 font-semibold">Foto</span>
+        <input  (change)="onFileSelected($event)" name="imagen"
+          id="imagen" type="file"
+          class=" text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-900 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-900 focus:outline-none">
+        <div class="items-center justify-center flex w-full my-4">
+
+          <figure class="h-40 w-40 rounded-2xl  ">
+            <img  [src]="imageSrc?imageSrc:'../assets/imagen/predefinida.png'" alt=""
+              class="h-full w-full flex-none object-cover rounded-2xl shadow-2xl">
+          </figure>
+        </div>
+      </div>
+    </div>
+
+ 
+  </form>
