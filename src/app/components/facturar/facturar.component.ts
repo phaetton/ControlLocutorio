@@ -157,6 +157,47 @@ export class FacturarComponent {
 
 
   }
+
+  enviarCargado() {
+    this.envio = true;
+
+    const minicarrito = this.listacompras.map(item => {
+      const miniproducto = { ...item.producto };
+      delete miniproducto.img;
+      delete miniproducto.categoria;
+      delete miniproducto.subcategoria;
+      delete miniproducto.cantidad;
+
+      return { ...item, producto: miniproducto };
+    });
+
+
+    this.factura = {
+      cliente: this.formulariocliente.id,
+      listacompra: minicarrito,
+      tipoventa: 'Compra Directa',
+      totalvendido: this.calculartotalcompra(),
+      abono: [{
+        fecha: this.fecha,
+        cantidad: this.calculartotalcompra(),
+        descuento: this.descuento
+      }],
+    };
+
+
+
+    this.facturasvc.addfactura(this.factura).then(m => {
+      this.listacompras.map(m => this.listacomprasvc.deleteListacompra(m)
+      )
+      this.gracias = true;
+      this.envio = false;
+    }
+    );
+
+
+
+
+  }
   async onSubmit() {
   }
 
@@ -164,5 +205,8 @@ export class FacturarComponent {
   onFormularioCliente(formcliente: Cliente) {
     this.formulariocliente = { ...formcliente };
   }
+
+
+
 
 }
