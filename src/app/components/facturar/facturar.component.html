@@ -202,6 +202,87 @@
 
     </div>
 
+    <div class="w-full flex flex-wrap justify-center" *ngIf="tipocliente == 'cargar'">
+        <div class="h-screen bg-gray-100 py-10 w-full mx-20">
+            <div class="w-full text-center">
+                <h2 class="text-4xl font-bold ">Cliente existente</h2>
+                <p class=" my-3 text-gray-900">!!! Muchas Gracias por su compra !!!</p>
+            </div>
+            <div class="mx-auto max-w-7xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+                <div class="rounded-lg md:w-2/3">
+                    <div *ngFor="let listacompra of listacompras"
+                        class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start h-40 ">
+                        <img [src]="listacompra.producto.img" alt=""
+                            class="h-full w-40 flex-none rounded-lg  object-cover">
+                        <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                            <div class="mt-5 sm:mt-0">
+                                <h2 class="text-lg font-bold text-gray-900">{{listacompra.producto.nombre}}</h2>
+                                <p class="mt-1 text-xs text-gray-700">{{listacompra.producto.precio |currency}}</p>
+                            </div>
+                            <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                                <div class="flex items-center border-gray-100">
+                                    <span
+                                        class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                                        Cantidad:
+                                        {{listacompra.cantidadCompra}}
+                                    </span>
+
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <p class="text-sm">${{listacompra.cantidadCompra * listacompra.producto.precio}}</p>
+                                    <svg (click)="eliminarCompra(listacompra)" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+                
+    <app-listarclientes  (seleccionado)="onFormularioCliente($event)"></app-listarclientes>
+                    
+
+
+
+                    <div class="mb-2 flex justify-between">
+                        <p class="text-gray-700">Subtotal</p>
+                        <p class="text-gray-700">{{calculartotalcompra()| currency}}</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p class="text-gray-700">Descuento</p>
+                        <p class="text-gray-700">{{descuento| currency}}</p>
+                    </div>
+                    <hr class="my-4" />
+                    <div class="flex justify-between">
+                        <p class="text-lg font-bold">Total</p>
+                        <div class="">
+                            <p class="mb-1 text-lg font-bold">{{(calculartotalcompra() - descuento) | currency}}</p>
+                            <p class="text-sm text-gray-700">No cobramos IVA</p>
+                        </div>
+                    </div>
+                    <div class="flex w-full">
+                        <button (click)="enviarCargado()"
+                            class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 flex items-center justify-center focus:outline-none  text-sm sm:text-base transition duration-150 ease-in ">
+                            <span class="mr-2 uppercase">Completar
+                                Venta</span>
+                            <span>
+                                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 
     <div *ngIf="envio" class="h-screen  w-screen fixed top-0 bg-white opacity-80">
         <div class="flex justify-center items-center h-full">
