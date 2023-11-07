@@ -10,4 +10,5 @@ export interface Factura {
     tipoventa?:string //fiado, apartado, alcash
     totalvendido?:number,
     abono?:Abono[],
+    
 }
