@@ -30,6 +30,8 @@ export class FacturarComponent {
   listacompras: Listacompra[] = [];
   reducido: Listacompra[] = [];
 
+  formulariocliente: Cliente = {};
+
   constructor(private rutaactiva: ActivatedRoute,
     private listacomprasvc: ListacompraService,
     private fb: FormBuilder,
@@ -47,7 +49,7 @@ export class FacturarComponent {
   }
 
   eliminarCompra(producto: Listacompra) {
-      this.listacompras.splice(this.listacompras.indexOf(producto), 1)
+    this.listacompras.splice(this.listacompras.indexOf(producto), 1)
   }
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class FacturarComponent {
   }
 
 
- 
+
 
   crearFormulario() {
     this.formularionuevo = this.fb.group({
@@ -106,10 +108,61 @@ export class FacturarComponent {
 
   }
 
+
+
+  enviarNuevo() {
+    this.envio = true;
+
+    const minicarrito = this.listacompras.map(item => {
+      const miniproducto = { ...item.producto };
+      delete miniproducto.img;
+      delete miniproducto.categoria;
+      delete miniproducto.subcategoria;
+      delete miniproducto.cantidad;
+
+      return { ...item, producto: miniproducto };
+    });
+
+
+
+
+    this.clientesvc.addCliente(this.formulariocliente).then(response => {
+      console.log(response.id);
+      console.log(response);
+
+      this.factura = {
+        cliente: response.id,
+        listacompra: minicarrito,
+        tipoventa: 'Compra Directa',
+        totalvendido: this.calculartotalcompra(),
+        abono: [{
+          fecha: this.fecha,
+          cantidad: this.calculartotalcompra(),
+          descuento: this.descuento
+        }],
+      };
+
+
+
+      this.facturasvc.addfactura(this.factura).then(m => {
+        this.listacompras.map(m => this.listacomprasvc.deleteListacompra(m)
+        )
+        this.gracias = true;
+        this.envio = false;
+      }
+      );
+    });
+
+
+
+
+  }
   async onSubmit() {
   }
 
 
- 
+  onFormularioCliente(formcliente: Cliente) {
+    this.formulariocliente = { ...formcliente };
+  }
 
 }
