@@ -8,6 +8,7 @@ import { ListarproductosComponent } from './components/listarproductos/listarpro
 import { RegistrariconoComponent } from './components/registraricono/registraricono.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { RegistrarclientesComponent } from './components/registrarclientes/registrarclientes.component';
+import { ListarfacturasComponent } from './components/listarfacturas/listarfacturas.component';
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'home' },
@@ -31,6 +32,9 @@ const routes: Routes = [
   { path: "agregaricono", component: RegistrariconoComponent },
   { path: "agregarcliente", component: RegistrarclientesComponent },
   { path: "facturar/:descuento", component: FacturarComponent },
+  { path: "listarfactura", component: ListarfacturasComponent },
+
+  
 
   { path: "**", pathMatch: 'full', redirectTo: "/home" }
 ];
