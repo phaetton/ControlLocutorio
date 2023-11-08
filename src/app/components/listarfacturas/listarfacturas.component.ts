@@ -12,8 +12,8 @@ import { FacturasService } from 'src/app/services/facturas.service';
 export class ListarfacturasComponent {
 
 
-  facturas: any ;
-  facturaselect: string = "";
+  facturas: any;
+  facturaselect?: Factura;
 
   constructor(private facturasvc: FacturasService, private clientesvc: ClientesService) {
 
@@ -29,6 +29,10 @@ export class ListarfacturasComponent {
           fotocliente: valor ? valor['foto'] : 'Anonimo'
         }
       })
+
+      this.facturas.sort((a: any, b: any) => {
+        return b.fechaCompra - a.fechaCompra;
+      })
     })
   }
 
@@ -36,6 +40,10 @@ export class ListarfacturasComponent {
 
 
 
+  }
+
+  onEnviarFactura(factura: Factura) {
+    this.facturaselect = factura;
   }
 
   // async onClickDelete(registro: Factura) {
