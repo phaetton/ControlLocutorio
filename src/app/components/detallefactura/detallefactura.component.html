@@ -1,0 +1,207 @@
+<div class="  bg-yellow-100 dark:bg-yellow-950 ">
+    <!-- Sticky search header -->
+    <!-- <div
+        class="sticky top-14 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-yellow-200 dark:bg-yellow-900 px-4 shadow-sm sm:px-6 lg:px-8">
+        <button type="button" class="-m-2.5 p-2.5 dark:text-white xl:">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-="true">
+                <path fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
+
+        <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+            <nav class="flex overflow-x-auto border-b border-white/10 py-4">
+                <ul role="list"
+                    class="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6   dark:text-yellow-400 sm:px-6 lg:px-8">
+                    <li>
+                        <a (click)="scroll(cliente)" class="text-indigo-400">Cliente</a>
+                    </li>
+                    <li>
+                        <a (click)="scroll(abono)" class="">Abono</a>
+                    </li>
+                    <li>
+                        <a (click)="scroll(listacompra)" class="">Lista de compra</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div> -->
+
+    <main #cliente class=" h-screen   overflow-y-auto">
+        <header>
+            <!-- Secondary navigation -->
+
+
+            <!-- Heading -->
+            <div *ngIf="factura"
+                class=" flex flex-col items-start justify-between gap-x-8 gap-y-4 bg-yellow-50 dark:bg-yellow-700/10 px-4 py-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+                <div>
+                    <div class="flex items-center gap-x-3">
+                        <div class="flex-none rounded-full bg-green-400/10 p-1 text-green-400">
+                            <div class="h-2 w-2 rounded-full bg-current"></div>
+                        </div>
+                        <h1 class="flex gap-x-3 text-base leading-7">
+                            <span class="font-semibold dark:text-white">{{factura.cliente}}</span>
+                            <span class="dark:text-yellow-600">/</span>
+                            <span class="font-semibold dark:text-white">{{factura.fechaCompra|date}}</span>
+                        </h1>
+                    </div>
+                    <p class="mt-2 text-xs leading-6 dark:text-yellow-400">{{factura.tipoventa}}</p>
+                </div>
+                <div
+                    class="order-first flex-none rounded-full bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30 sm:order-none">
+                    Cancelada</div>
+            </div>
+
+
+            <!-- Stats -->
+            <div class="flex justify-evenly bg-yellow-50 dark:bg-yellow-700/10 ">
+                <div class="border-t border-white/5 py-6 px-4 sm:px-6 lg:px-8">
+                    <p class="text-sm font-medium leading-6 dark:text-yellow-400">Total comprado</p>
+                    <p class="mt-2 flex items-baseline gap-x-2">
+                        <span class="text-4xl font-semibold tracking-tight dark:text-white">C$ {{factura?.totalvendido}}
+                        </span>
+                    </p>
+                </div>
+                <div class="border-t border-white/5 py-6 px-4 sm:px-6 lg:px-8 sm:border-l">
+                    <p class="text-sm font-medium leading-6 dark:text-yellow-400">Cantidad de Productos</p>
+                    <p class="mt-2 flex items-baseline gap-x-2">
+                        <span
+                            class="text-4xl font-semibold tracking-tight dark:text-white">{{factura?.listacompra?.length}}</span>
+                        <!-- <span class="text-sm dark:text-yellow-400">mins</span> -->
+                    </p>
+                </div>
+                <div class="border-t border-white/5 py-6 px-4 sm:px-6 lg:px-8 lg:border-l">
+                    <p class="text-sm font-medium leading-6 dark:text-yellow-400">Descuento</p>
+                    <p class="mt-2 flex items-baseline gap-x-2">
+                        <span
+                            class="text-4xl font-semibold tracking-tight dark:text-white">{{factura?.descuento?factura?.descuento:'0'}}</span>
+                    </p>
+                </div>
+                <!-- <div class="border-t border-white/5 py-6 px-4 sm:px-6 lg:px-8 sm:border-l">
+                        <p class="text-sm font-medium leading-6 dark:text-yellow-400">Success rate</p>
+                        <p class="mt-2 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-semibold tracking-tight dark:text-white">98.5%</span>
+                        </p>
+                    </div> -->
+            </div>
+        </header>
+
+        <!-- Lista de abono -->
+        <div #abono class="  border-t border-white/10 ">
+            <h2 class="px-4 text-base font-semibold leading-7 dark:text-white sm:px-6 lg:px-8">Pagos</h2>
+            <table class="mt-6 w-full whitespace-nowrap text-left">
+                <colgroup>
+                    <col class="w-full sm:w-4/12">
+                    <col class="lg:w-4/12">
+                    <col class="lg:w-2/12">
+                </colgroup>
+                <thead class="border-b border-white/10 text-sm leading-6 dark:text-white">
+                    <tr>
+                        <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">Fecha</th>
+                        <th scope="col" class=" py-2 pl-0 pr-8 font-semibold sm:table-cell">Cantidad</th>
+                        <th scope="col" class="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20">
+                            Descuento
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="factura" class="divide-y divide-white/5">
+                    <tr *ngFor="let abono of factura.abono">
+                        <td class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
+                            <div class="flex items-center justify-end gap-x-2 sm:justify-start">
+
+                                <div class="flex-none rounded-full p-1 text-green-400 bg-green-400/10">
+                                    <div class="h-1.5 w-1.5 rounded-full bg-current"></div>
+                                </div>
+                                <div class=" dark:text-white sm:block">{{abono.fecha|date}}</div>
+                            </div>
+                        </td>
+                        <td class="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
+                            <div class="flex items-center gap-x-4">
+
+                                <div class="truncate text-sm font-medium leading-6 dark:text-white">
+                                    C${{abono.cantidad}}</div>
+                            </div>
+                        </td>
+
+                        <td class=" py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+                            <div class="flex gap-x-3">
+                                <div class="font-mono text-sm leading-6 dark:text-yellow-400">C${{abono.descuento}}
+                                </div>
+                            </div>
+                        </td>
+
+
+
+                    </tr>
+
+                    <!-- More items... -->
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Lista de compra -->
+        <div #listacompra class="mb-40  border-t border-white/10">
+            <h2 class=" px-4 text-base font-semibold leading-7 dark:text-white sm:px-6 lg:px-8">Lista de Compra</h2>
+            <table class="mt-6 w-full whitespace-nowrap text-left">
+                <colgroup>
+                    <col class="w-full sm:w-4/12">
+                    <col class="lg:w-4/12">
+                    <col class="lg:w-2/12">
+                    <col class="lg:w-1/12">
+                    <col class="lg:w-1/12">
+                </colgroup>
+                <thead class="border-b border-white/10 text-sm leading-6 dark:text-white">
+                    <tr>
+                        <th scope="col" class="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">Nombre</th>
+                        <th scope="col" class=" py-2 pl-0 pr-8 font-semibold sm:table-cell">Cantidad</th>
+                        <th scope="col" class="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20">
+                            Precio
+                        </th>
+                        <th scope="col" class=" py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20">Total
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody *ngIf="factura" class="divide-y divide-white/5">
+                    <tr *ngFor="let lista of factura.listacompra">
+                        <td class="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
+                            <div class="flex items-center justify-end gap-x-2 sm:justify-start">
+
+                                <div class="flex-none rounded-full p-1 text-green-400 bg-green-400/10">
+                                    <div class="h-1.5 w-1.5 rounded-full bg-current"></div>
+                                </div>
+                                <div class=" dark:text-white sm:block">{{lista.producto.nombre}}</div>
+                            </div>
+                        </td>
+                        <td class="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
+                            <div class="flex items-center gap-x-4">
+
+                                <div class="truncate text-sm font-medium leading-6 dark:text-white">
+                                    {{lista.cantidadCompra}}</div>
+                            </div>
+                        </td>
+
+                        <td class=" py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+                            <div class="flex gap-x-3">
+                                <div class="font-mono text-sm leading-6 dark:text-yellow-400">
+                                    C${{lista.producto.precio}}
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class=" py-4 pl-0 pr-8 text-sm leading-6 dark:text-yellow-400 md:table-cell lg:pr-20">
+                            C${{lista.producto.precio * lista.cantidadCompra}}</td>
+
+                    </tr>
+
+                    <!-- More items... -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
