@@ -3,4 +3,6 @@ export interface Abono {
     fecha?: number,
     cantidad?: number,
     descuento?: number,
+    fechaProximoPago?:number,
+
 }
