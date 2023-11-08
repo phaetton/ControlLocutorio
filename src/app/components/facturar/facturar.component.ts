@@ -177,6 +177,8 @@ export class FacturarComponent {
       listacompra: minicarrito,
       tipoventa: 'Compra Directa',
       totalvendido: this.calculartotalcompra(),
+      fechaCompra: this.fecha,
+      descuento: this.descuento,
       abono: [{
         fecha: this.fecha,
         cantidad: this.calculartotalcompra(),
