@@ -28,6 +28,7 @@ import { ListarclientesComponent } from './components/listarclientes/listarclien
 import { RegistrarclientesComponent } from './components/registrarclientes/registrarclientes.component';
 import { FormularioclienteComponent } from './components/formulariocliente/formulariocliente.component';
 import { ListarfacturasComponent } from './components/listarfacturas/listarfacturas.component';
+import { DetallefacturaComponent } from './components/detallefactura/detallefactura.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ListarfacturasComponent } from './components/listarfacturas/listarfactu
     RegistrarclientesComponent,
     FormularioclienteComponent,
     ListarfacturasComponent,
+    DetallefacturaComponent,
   ],
   imports: [
     BrowserModule,
