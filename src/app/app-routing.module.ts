@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: "facturar/:descuento", component: FacturarComponent },
   { path: "listarfactura", component: ListarfacturasComponent },
 
-  
+
 
   { path: "**", pathMatch: 'full', redirectTo: "/home" }
 ];
